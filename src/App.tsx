@@ -2,6 +2,10 @@ import './App.css'
 import { Container, createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import  HeaderSidebar  from './components/HeaderSidebar/HeaderSidebar'
 import SlideAdmin from './components/SlideAdmin/SlideAdmin';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import AutoLogin from './configuration/AutoLogin';
+
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
 function App() {
 
@@ -23,15 +27,19 @@ function App() {
     }
   });
   
+  console.log(GOOGLE_CLIENT_ID)
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <HeaderSidebar />
-      <Container className="content-container">
-        <SlideAdmin />
-      </Container>
-    </ThemeProvider>
+    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+      <AutoLogin />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <HeaderSidebar />
+        <Container className="content-container">
+          <SlideAdmin />
+        </Container>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
   )
 }
 
