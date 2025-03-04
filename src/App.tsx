@@ -1,6 +1,7 @@
 import './App.css'
 import { Container, createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 import  HeaderSidebar  from './components/HeaderSidebar/HeaderSidebar'
+import SlideAdmin from './components/SlideAdmin/SlideAdmin';
 
 function App() {
 
@@ -27,7 +28,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <HeaderSidebar />
-      <Container />
+      <Container className="content-container">
+        <SlideAdmin />
+      </Container>
     </ThemeProvider>
   )
 }
