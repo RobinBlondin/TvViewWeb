@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -16,16 +16,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import ImageIcon from '@mui/icons-material/Image'
 import NoteIcon from '@mui/icons-material/Note'
 import PreviewIcon from '@mui/icons-material/Preview'
 import ViewIcon from '@mui/icons-material/Web'
-import { red } from '@mui/material/colors';
 import { Container } from '@mui/material';
+import { getUserDetails, GoogleUser } from '../../utils/getUserDetails';
 
 const drawerWidth = 200;
+
 
 const icons: React.ReactElement[] = [<ImageIcon />, <NoteIcon />, <PreviewIcon />, <ViewIcon /> ]
 
@@ -55,7 +54,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -113,7 +111,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function HeaderSidebar() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<GoogleUser>()
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -123,7 +122,17 @@ export default function HeaderSidebar() {
     setOpen(false);
   };
 
-
+  useEffect( () => {
+    const user = getUserDetails();
+    
+    if(user) {
+      user.then((data) => {
+        if(data) {
+          setUser(data)
+        }
+      })
+    }
+  }, [user])
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -158,8 +167,8 @@ export default function HeaderSidebar() {
         <Divider />
         {open? 
         <Container style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", paddingTop: "1.5em"}}>
-          <img src="https://picsum.photos/100" alt="Image" style={{ borderRadius: "50%", width: "100px", height: "100px"}}/>
-          <p>Robin Blondin</p>     
+          <img src={user? user.picture : ""} alt="Image" style={{ borderRadius: "50%", width: "100px", height: "100px"}}/>
+          <p>{user? user.name: ""}</p>     
         </Container> : null }
         <Divider />
         <List>
