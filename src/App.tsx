@@ -7,7 +7,7 @@ import AutoLogin from "./configuration/AutoLogin";
 import { useEffect, useState } from "react";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_TOKEN_STORAGE_KEY;
+const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
@@ -43,7 +43,6 @@ function App() {
     },
   });
 
-  console.log("Token in state", token)
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
