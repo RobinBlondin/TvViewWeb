@@ -59,7 +59,7 @@ function App() {
       text: { primary: "#6b9080", secondary: "#a4c3b2" },
     },
   });
-  console.log("token:", token)
+
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
