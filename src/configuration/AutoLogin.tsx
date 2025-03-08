@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import LoginFailed from "../components/LoginFailed/LoginFailed";
 
-const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_TOKEN_STORAGE_KEY;
+const ACCESS_TOKEN_KEY = import.meta.env.VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY;
+const ID_TOKEN_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = import.meta.env.VITE_GOOGLE_CLIENT_SECRET;
@@ -11,7 +12,7 @@ const REDIRECT_URI = import.meta.env.VITE_GOOGLE_CLIENT_REDIRECT_URI;
 const AutoLogin: React.FC = () => {
   
 
-  const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
+  const [token, setToken] = useState<string | null>(localStorage.getItem(ACCESS_TOKEN_KEY));
   const [loginFailed, setLoginFailed] = useState(false);
   const [trigger, setTrigger] = useState<boolean>(false);
 
@@ -19,6 +20,7 @@ const AutoLogin: React.FC = () => {
     flow: "auth-code",
     ux_mode: "redirect",
     redirect_uri: REDIRECT_URI,
+    scope: "openid email profile"
   });
 
   useEffect(() => {
@@ -49,8 +51,18 @@ const AutoLogin: React.FC = () => {
             return;
           }
 
-          const { access_token } = await response.json();
-          localStorage.setItem(TOKEN_STORAGE_KEY, access_token);
+          const { access_token, id_token, name, email, picture } = await response.json();
+
+          const googleUser = {
+            name: name, 
+            email: email,
+            picture: picture
+          }
+
+          localStorage.setItem(ACCESS_TOKEN_KEY, access_token);
+          localStorage.setItem(ID_TOKEN_KEY, id_token);
+          localStorage.setItem("googleUser", JSON.stringify(googleUser));
+
           setToken(access_token);
 
           window.history.replaceState({}, document.title, window.location.pathname);

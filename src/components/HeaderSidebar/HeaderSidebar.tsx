@@ -126,13 +126,9 @@ export default function HeaderSidebar() {
     const user = getUserDetails();
     
     if(user) {
-      user.then((data) => {
-        if(data) {
-          setUser(data)
-        }
-      })
+      setUser(user)
     }
-  }, [user])
+  }, [])
 
   return (
     <Box sx={{ display: 'flex' }}>
