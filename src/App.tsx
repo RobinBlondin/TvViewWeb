@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import AutoLogin from "./configuration/AutoLogin";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import SlideCard from "./components/SlideAdmin/SlideCard";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -68,7 +69,10 @@ function App() {
           <Container>
             <HeaderSidebar />
             <Container className="content-container">
-              <SlideAdmin />
+              <SlideCard   
+                url={"https://picsum.photos/200"}
+                id={"1"}
+              ></SlideCard>
             </Container>
           </Container>
         ) : (

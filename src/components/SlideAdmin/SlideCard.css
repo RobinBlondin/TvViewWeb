@@ -1,0 +1,19 @@
+.card-container {
+    width: 200px;
+    height: 500px;
+    border: 2px solid red;
+}
+
+img {
+    width: 200px;
+}
+/* 
+.image-container {
+    width: 50%;
+    height: 90%;
+}
+
+.button-container {
+    width: 50%;
+    height: 10%;
+} */
