@@ -30,7 +30,7 @@ const AutoLogin: React.FC = () => {
     const authCode = urlParams.get("code");
 
     if (authCode) {
-      console.log("✅ Found authorization code in URL:", authCode);
+      console.log("Found authorization code in URL:", authCode);
 
       (async () => {
         try {

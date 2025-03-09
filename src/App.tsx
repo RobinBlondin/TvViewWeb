@@ -1,5 +1,5 @@
 import "./App.css";
-import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import HeaderSidebar from "./components/HeaderSidebar/HeaderSidebar";
 import SlideAdmin from "./components/SlideAdmin/SlideAdmin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -21,7 +21,7 @@ function App() {
       const currentTime = Math.floor(Date.now() / 1000);
       return decoded.exp ? decoded.exp < currentTime : true;
     } catch (error) {
-      return true; // Invalid token
+      return true;
     }
   };
 
@@ -31,7 +31,7 @@ function App() {
     if (!newToken || isJwtExpired(newToken)) {
       localStorage.removeItem(TOKEN_STORAGE_KEY);
       localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY)
-      setToken(null); // This will trigger AutoLogin
+      setToken(null); 
     } else if (newToken !== token) {
       setToken(newToken);
     }
@@ -60,19 +60,19 @@ function App() {
     },
   });
 
+  console.log(token)
+
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
-          <Container>
+          <Box className="outer-content-container">
             <HeaderSidebar />
-            <Container className="content-container">
-              <SlideAdmin />
-            </Container>
-          </Container>
+            <SlideAdmin />
+          </Box>
         ) : (
-          <AutoLogin /> // Triggers auto-login when token is null
+          <AutoLogin />
         )}
       </ThemeProvider>
     </GoogleOAuthProvider>

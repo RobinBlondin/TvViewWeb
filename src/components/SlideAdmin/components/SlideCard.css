@@ -1,0 +1,15 @@
+.sc-card-content {
+    padding: 1em 0.5em 0.5em 1em !important;
+    gap: 1em;
+}
+
+.card-button-container {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding: 0 !important;
+}
+
+.card-delete-button {
+    padding: 1em 0.5em 0em 0.5em !important
+}

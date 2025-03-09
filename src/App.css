@@ -1,11 +1,16 @@
-#root {
-  height: 100vh;
-  width: 100vw;
+.outer-content-container {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  height: 100vh !important;
+  width: 100vw !important;
+  padding: 0;
+  margin-top: 5em !important
 }
 
 .content-container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
