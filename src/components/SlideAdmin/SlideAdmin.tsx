@@ -87,7 +87,7 @@ const SlideAdmin: React.FC = () => {
             color="primary"
             startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{ mb: 2, borderRadius: 50 }}
+            sx={{ mb: 2, borderRadius: 50, fontWeight: "bold" }}
           >
             Add New Slide
           </Button>
