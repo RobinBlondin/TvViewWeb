@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete'
-import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Button, Card, CardContent, CardMedia, Container, Typography } from '@mui/material'
 import React from 'react'
 import { SlideModel } from '../../../models/SlideModel'
 import { deleteSlideById } from '../../../service/slideService'
@@ -30,22 +30,23 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
           alt="Uploaded Image"
           sx={{ objectFit: "cover" }}
         />
-        <CardContent>
+        <CardContent sx={{paddingBottom: 0}}>
           <Typography variant="body2" color="text.secondary">
             <strong>Uploaded:</strong> {timestamp}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
             <strong>Uploaded by:</strong> {name}
           </Typography>
-          <Button
-            variant="text"
-            color="error"
-            startIcon={<DeleteIcon />}
-            sx={{ mt: 2, textTransform: "none" }}
-            onClick={handleDelete}
-          >
-            Remove
-          </Button>
+          <Container className="card-button-container" sx={{width: "100%", display: "flex", justifyContent: "end"}}>
+            <Button
+              variant="text"
+              color="error"
+              startIcon={<DeleteIcon />}
+              onClick={handleDelete}
+            >
+              Remove
+            </Button>
+          </Container>
         </CardContent>
       </Card>
     );

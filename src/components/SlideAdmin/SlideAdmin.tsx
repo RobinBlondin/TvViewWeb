@@ -46,6 +46,7 @@ const SlideAdmin: React.FC = () => {
     } else {
       console.log("File for upload does not exist")
     }
+    setOpen(false);
   }
 
   const triggerFileInput = () => {
