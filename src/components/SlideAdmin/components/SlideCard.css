@@ -1,53 +1,15 @@
-.sc-card-container {
-    padding: 0;
+.sc-card-content {
+    padding: 1em 0.5em 0.5em 1em !important;
+    gap: 1em;
+}
+
+.card-button-container {
     display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    width: 20em;
-    height: 10em;
-    max-height: 20em;
-    border: 2px solid rgb(98, 98, 98);
-    background-color: white;
-}
-
-.sc-img {
-    width: 100;
-}
- 
-.sc-image-container {
-    padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px 10px 0 0;
-    width: 100%;
-    height: 50%;
-}
-
-.sc-middle-container {
-    width: 100%;
-    height: 40%;
-    padding: 0 0.5em !important;
-    margin: 0;
-}
-
-.sc-p {
-    font-weight: bold;
-}
-
-.sc-span {
-    font-weight: 100;
-}
-
-
-
-.sc-button-container {
-    display: flex;
-    flex: 1;
-    padding: 0 0.5em !important;
-    margin: 0;
-    width:100%;
-    height: 10%;
-    align-items: end;
     justify-content: end;
-    
+    align-items: end;
+    padding: 0 !important;
+}
+
+.card-delete-button {
+    padding: 1em 0.5em 0em 0.5em !important
 }

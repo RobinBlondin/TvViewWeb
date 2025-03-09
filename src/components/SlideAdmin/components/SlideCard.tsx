@@ -30,19 +30,20 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
           alt="Uploaded Image"
           sx={{ objectFit: "cover" }}
         />
-        <CardContent sx={{paddingBottom: 0}}>
+        <CardContent className='sc-card-content'>
           <Typography variant="body2" color="text.secondary">
             <strong>Uploaded:</strong> {timestamp}
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
             <strong>Uploaded by:</strong> {name}
           </Typography>
-          <Container className="card-button-container" sx={{width: "100%", display: "flex", justifyContent: "end"}}>
+          <Container className="card-button-container">
             <Button
               variant="text"
               color="error"
               startIcon={<DeleteIcon />}
               onClick={handleDelete}
+              className='card-delete-button'
             >
               Remove
             </Button>

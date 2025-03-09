@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button, Modal, Box, Typography } from "@mui/material";
+import AddIcon from '@mui/icons-material/Add'
 import { SlideModel } from "../../models/SlideModel";
 import { createSlide, getAllSlides } from "../../service/slideService";
 import SlideCard from "./components/SlideCard";
@@ -19,7 +20,15 @@ const SlideAdmin: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if(!open) {
+      setSelectedFile(null)
+      setPreviewUrl(null)
+    }
+  }, [open])
+
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => {
     setOpen(false);
     setSelectedFile(null);
@@ -76,8 +85,9 @@ const SlideAdmin: React.FC = () => {
           <Button
             variant="contained"
             color="primary"
+            startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{ mb: 2 }}
+            sx={{ mb: 2, borderRadius: 50 }}
           >
             Add New Slide
           </Button>
@@ -132,6 +142,7 @@ const SlideAdmin: React.FC = () => {
               variant="contained"
               color="primary"
               onClick={handleSave}
+              sx={{borderRadius: 50, fontWeight: "bold", width: "25%", height: "85%"}}
             >
               Save
             </Button>
@@ -140,7 +151,7 @@ const SlideAdmin: React.FC = () => {
               variant="outlined"
               color="primary"
               onClick={handleClose}
-            >
+              sx={{borderRadius: 50, border: "2px solid", fontWeight: "bold", height: "85%"}}            >
               Cancel
             </Button>
           </Container>
