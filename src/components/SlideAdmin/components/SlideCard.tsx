@@ -1,8 +1,9 @@
-import { Box, Button, Container, Typography } from '@mui/material'
+import DeleteIcon from '@mui/icons-material/Delete'
+import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import './SlideCard.css'
-import { deleteSlideById } from '../../../service/slideService'
 import { SlideModel } from '../../../models/SlideModel'
+import { deleteSlideById } from '../../../service/slideService'
+import './SlideCard.css'
 
 interface SlideCardProps {
     id: string, 
@@ -21,19 +22,33 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
         setSlides(newSlides);
     }
     return (
-
-            <Box className="card-container">
-                <Container className='image-container' sx={{backgroundImage: `url(${url})`}} />
-                <Container className="middle-container">
-                    <p>Uploaded: <span>{timestamp}</span></p>
-                    <p>Uploaded by: <span>{name}</span></p>
-                </Container>
-                <Container className="button-container">
-                    <Button variant='text'onClick={handleDelete}>Remove</Button>
-                </Container>
-            </Box>
-        
-    )
+        <Card sx={{ maxWidth: 250, maxHeight: 350 , borderRadius: 3, boxShadow: 3, transition: "0.3s", "&:hover": { boxShadow: 6 } }}>
+        <CardMedia
+          component="img"
+          height="180"
+          image={url}
+          alt="Uploaded Image"
+          sx={{ objectFit: "cover" }}
+        />
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Uploaded:</strong> {timestamp}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            <strong>Uploaded by:</strong> {name}
+          </Typography>
+          <Button
+            variant="text"
+            color="error"
+            startIcon={<DeleteIcon />}
+            sx={{ mt: 2, textTransform: "none" }}
+            onClick={handleDelete}
+          >
+            Remove
+          </Button>
+        </CardContent>
+      </Card>
+    );
 }
 
 export default SlideCard
