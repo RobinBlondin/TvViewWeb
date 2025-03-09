@@ -5,6 +5,7 @@ import { createSlide, getAllSlides } from "../../service/slideService";
 import SlideCard from "./components/SlideCard";
 import { uploadFile } from "../../service/fileUploadService";
 import './SlideAdmin.css'
+import ImageIcon from '@mui/icons-material/Image'
 
 const SlideAdmin: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
@@ -47,9 +48,16 @@ const SlideAdmin: React.FC = () => {
     }
   }
 
+  const triggerFileInput = () => {
+    const input = document.getElementById('fileInput')
+    if(input) {
+      input.click();
+    }
+  };
+
   return (
     <>
-      <Container className="sa-main-container">
+      <Box className="sa-main-container">
         <Container className="sa-content-container">
           {slides?.map((slide) => (
             <SlideCard
@@ -73,37 +81,68 @@ const SlideAdmin: React.FC = () => {
             Add New Slide
           </Button>
         </Container>
-      </Container>
+      </Box>
 
       <Modal open={open} onClose={handleClose}>
         <Box className="modal-box">
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            Upload New Slide
-          </Typography>
-          <input type="file" accept="image/*" onChange={handleFileChange} />
+          <Container className="modal-header-container">
+            <Typography variant="h5">
+              Upload New Slide
+            </Typography>
+          </Container>
+          <Container className="modal-input-container" sx={{padding: ""}}>
+            <Button variant="outlined" color="primary" sx={{borderRadius: 50, border: "2px solid", fontWeight: "bold"}} onClick={triggerFileInput}>
+            <input
+              type="file"
+              accept="image/*"
+              id="fileInput"
+              style={{ display: 'none' }}
+              onChange={handleFileChange}
+            />
+            Choose image
+            </Button>
 
-          
-          {previewUrl && (
-            <img src={previewUrl} alt="Preview" className="preview-image" />
-          )}
+    
+            <Container
+              className="preview-box"
+              sx={{
+                background: previewUrl ? `url(${previewUrl})` : '',
+                backgroundSize: previewUrl ? 'cover' : 'initial', 
+                backgroundPosition: previewUrl ? 'center' : 'initial', 
+                width: "100%",
+                height: "15em",
+                display: 'flex',
+                justifyContent: 'center',
+                margin: 0,
+                alignItems: 'center',
+                border: '1px solid #ddd',
+                backgroundColor: previewUrl ? '' : '#lightgray'
+              }}
+            >
+              {selectedFile === null ? (
+                <ImageIcon sx={{ color: 'white', fontSize: "3em" }} />
+              ) : (
+                <></>
+              )}
+            </Container>
+          </Container>  
+          <Container className="modal-button-container">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+            >
+              Save
+            </Button>
 
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleSave}
-            sx={{ mt: 2 }}
-          >
-            Save
-          </Button>
-
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={handleClose}
-            sx={{ mt: 2 }}
-          >
-            Cancel
-          </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+          </Container>
         </Box>
       </Modal>
     </>

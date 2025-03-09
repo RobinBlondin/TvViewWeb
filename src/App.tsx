@@ -1,5 +1,5 @@
 import "./App.css";
-import { Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import HeaderSidebar from "./components/HeaderSidebar/HeaderSidebar";
 import SlideAdmin from "./components/SlideAdmin/SlideAdmin";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -67,12 +67,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
-          <Container>
+          <Box className="outer-content-container">
             <HeaderSidebar />
-            <Container className="content-container">
-              <SlideAdmin />
-            </Container>
-          </Container>
+            <SlideAdmin />
+          </Box>
         ) : (
           <AutoLogin />
         )}
