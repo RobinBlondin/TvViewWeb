@@ -22,6 +22,8 @@
   border: 1px solid #ddd;
   border-radius: 0.5em;
   margin: 0 !important;
+  
+
 }
 
 .sa-button-container {
@@ -31,6 +33,20 @@
   max-width: 44%;
   display: flex;
   justify-content: end;
+}
+
+@media screen and (max-width: 1199px) {
+  .sa-content-container {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .sa-button-container {
+    justify-content: center;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
 }
 
 ::-webkit-scrollbar {

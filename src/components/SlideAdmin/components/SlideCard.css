@@ -1,6 +1,15 @@
 .sc-card-content {
     padding: 1em 0.5em 0.5em 1em !important;
-    gap: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 50%;
+}
+.text-container {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .card-button-container {
