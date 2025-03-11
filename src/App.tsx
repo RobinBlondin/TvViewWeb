@@ -6,6 +6,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import AutoLogin from "./configuration/AutoLogin";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import AdminReminders from "./components/AdminReminders/AdminReminders";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -69,7 +70,7 @@ function App() {
         {token ? (
           <Box className="outer-content-container">
             <HeaderSidebar />
-            <SlideAdmin />
+            <AdminReminders />
           </Box>
         ) : (
           <AutoLogin />
