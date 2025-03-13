@@ -58,7 +58,7 @@ const ReminderModal: React.FC<ReminderModalProps> = ({ open, onClose, onSubmit, 
           />
           <TextField
             label="Start Date"
-            type="datetime-local"
+            type="datetime"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
             fullWidth
