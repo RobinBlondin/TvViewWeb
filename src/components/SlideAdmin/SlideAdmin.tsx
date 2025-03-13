@@ -68,7 +68,7 @@ const SlideAdmin: React.FC = () => {
   return (
     <>
       <Box className="sa-main-container">
-        <Container className="sa-content-container">
+        <Container className="sa-content-container" sx={{backgroundColor: "background.paper", border: "2px solid", borderRadius: "20px"}}>
           {slides?.map((slide) => (
             <SlideCard
               key={slide.id}
@@ -87,7 +87,7 @@ const SlideAdmin: React.FC = () => {
             color="primary"
             startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{ mb: 2, borderRadius: 50, fontWeight: "bold" }}
+            sx={{ mb: 2, borderRadius: 50, fontWeight: "bold", backgroundColor: "primary.main" }}
           >
             Add New Slide
           </Button>
@@ -95,7 +95,7 @@ const SlideAdmin: React.FC = () => {
       </Box>
 
       <Modal open={open} onClose={handleClose}>
-        <Box className="modal-box">
+        <Box className="modal-box" sx={{backgroundColor: "background.paper"}}>
           <Container className="modal-header-container">
             <Typography variant="h5">
               Upload New Slide

@@ -1,11 +1,11 @@
 import "./App.css";
-import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
-import HeaderSidebar from "./components/HeaderSidebar/HeaderSidebar";
-import SlideAdmin from "./components/SlideAdmin/SlideAdmin";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AutoLogin from "./configuration/AutoLogin";
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
+import AdminReminders from "./components/AdminReminders/AdminReminders";
+import SlideAdmin from "./components/SlideAdmin/SlideAdmin";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -53,10 +53,11 @@ function App() {
 
   const theme = createTheme({
     palette: {
-      primary: { main: "#6b9080" },
-      secondary: { main: "#a4c3b2" },
-      background: { default: "#eaf4f4" },
-      text: { primary: "#6b9080", secondary: "#a4c3b2" },
+      primary: { main: "#d90429" },
+      secondary: { main: "#000000" },
+      background: { default: "#FFFFFF" },
+      text: { primary: "#000000", secondary: "#000000" },
+
     },
   });
 
@@ -68,7 +69,6 @@ function App() {
         <CssBaseline />
         {token ? (
           <Box className="outer-content-container">
-            <HeaderSidebar />
             <SlideAdmin />
           </Box>
         ) : (

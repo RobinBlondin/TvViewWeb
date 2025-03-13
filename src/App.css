@@ -1,11 +1,10 @@
 .outer-content-container {
   display: flex;
-  align-items: start;
-  justify-content: start;
+  align-items: center;
+  justify-content: center;
   height: 100vh !important;
   width: 100vw !important;
   padding: 0;
-  margin-top: 5em !important
 }
 
 .content-container {
@@ -14,4 +13,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.MuiButton-root:focus {
+  outline: none;
 }

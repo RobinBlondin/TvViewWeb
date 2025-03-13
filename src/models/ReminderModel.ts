@@ -1,15 +1,11 @@
 export class ReminderModel {
     id: string | null;
-    title: string;
     description: string;
-    startDate: Date;
-    expiryDate: Date;
+    expiryDate: string;
 
-    constructor(id: string | null = null, title: string, description: string, startDate: Date, expiryDate: Date) {
+    constructor(id: string | null = null, description: string, expiryDate: string) {
         this.id = id;
-        this.title = title;
         this.description = description;
-        this.startDate = startDate;
         this.expiryDate = expiryDate;
     }
 
