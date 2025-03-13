@@ -33,3 +33,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.MuiButton-root:focus {
+  outline: none;
+}

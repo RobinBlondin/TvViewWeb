@@ -12,49 +12,26 @@ import { createReminder, deleteReminderById, getAllReminders } from '../../servi
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
   const [description, setDescription] = useState<string | null>(null)
-  const [expiryDate, setExpiryDate] = useState<Dayjs | null | undefined>(dayjs());
-  const [nextExpiryDate, setNextExpiryDate] = useState<Date>()
+  const [expiryDate, setExpiryDate] = useState<Date>();
 
   useEffect(() => {
     const fetchData = async () => {
       const events = await getAllReminders();
-      console.log(updatedReminders);
       setReminders(events);
     };
     fetchData();
 
-    const updatedReminders = deleteExpiredReminders(reminders)
-    const nextExpiryDate = updatedReminders.length > 0 ? updatedReminders[0].expiryDate : null;
-      setNextExpiryDate(new Date(nextExpiryDate!));
-      
-
-
   }, []);
-
-  useEffect(() => {
-    const millisecondsToNextExpiry = nextExpiryDate ? dayjs().diff(nextExpiryDate) : 0;
-    const intervalId = setTimeout(() => {
-      const updatedReminders = deleteExpiredReminders(reminders);
-
-      const nextExpiryDate = updatedReminders.length > 0 ? updatedReminders[0].expiryDate : null;
-      if(nextExpiryDate) {;
-        setNextExpiryDate(new Date(nextExpiryDate!))
-      };
-      setReminders(updatedReminders);
-
-    }, millisecondsToNextExpiry);
-
-    return () => clearInterval(intervalId);
-  }, [nextExpiryDate]);
 
   const handleDescriptionChange = (info: any) => {
     setDescription(info.target.value)
   }
 
   const handleEndChange = (info: any) => {
-    setExpiryDate(info.target.value)
+    const date = new Date(info);
+    setExpiryDate(date);
   }
-
+ 
   const handleSubmitReminder = () => {
     if (!description || !expiryDate) {
       return;
@@ -66,7 +43,7 @@ const AdminReminders: React.FC = () => {
     });
 
     setDescription(null);
-    setExpiryDate(dayjs());
+    setExpiryDate(new Date());
   };
 
   const handleDeleteReminder = (id: string) => {
@@ -78,38 +55,9 @@ const AdminReminders: React.FC = () => {
 
 
 
-  const formatDate = (dateInput: Date) => {
-    const dateStr = dateInput.toString();
-
-    const [date, time] = dateStr.split("T");
-    const [hour, minute] = time.split(":")
-    return `${date} ${hour}:${minute}`;
+  const formatDate = (isoString: string) => {
+    return new Date(isoString).toLocaleString();
   };
-
-  const deleteExpiredReminders = (reminders: ReminderModel[]) => {
-    const currentDate = dayjs().toDate();
-
-    if(reminders.length <= 0) {
-      return reminders;
-    }
-
-    const expiredReminders = reminders.filter((reminder) => {
-      return new Date(reminder.expiryDate) < currentDate;
-    });
-
-    const updatedReminders = reminders.filter((reminder) => {
-      return new Date(reminder.expiryDate) > currentDate;
-    });
-
-    console.log("Expired reminders: ", expiredReminders);
-    console.log("Updated reminders: ", updatedReminders);
-
-    expiredReminders.forEach((reminder) => {
-      deleteReminderById(reminder.id!);
-    });
-
-    return updatedReminders;
-  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -130,15 +78,20 @@ const AdminReminders: React.FC = () => {
             value={description? description : ""}
           />
           <DateTimePicker  
-            value={expiryDate}
+            value={dayjs(expiryDate || new Date())}
+            ampm={false}
             onChange={(info) => handleEndChange(info)}
             label="Expiry Date"
           />
 
-          <Button variant="contained" color="primary" onClick={handleSubmitReminder} sx={{ marginBottom: 4, borderRadius: "0 10px 0 10px" }}>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleSubmitReminder} 
+            sx={{ marginBottom: 4, borderRadius: "0 10px 0 10px" }}>
               <AddIcon />
               Add Reminder
-            </Button>
+          </Button>
         </Container>
       
       <Box 
@@ -165,7 +118,7 @@ const AdminReminders: React.FC = () => {
                 {reminders.map((reminder) => (
                   <TableRow key={reminder.id}>
                     <TableCell>{reminder.description}</TableCell>
-                    <TableCell>{reminder.expiryDate}</TableCell>
+                    <TableCell>{formatDate(reminder.expiryDate)}</TableCell>
                     <TableCell>
                       <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
                         <DeleteIcon color="error"/>

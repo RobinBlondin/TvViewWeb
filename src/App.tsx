@@ -69,7 +69,7 @@ function App() {
         <CssBaseline />
         {token ? (
           <Box className="outer-content-container">
-            <AdminReminders />
+            <SlideAdmin />
           </Box>
         ) : (
           <AutoLogin />
