@@ -5,10 +5,10 @@ import { SlideModel } from "../../models/SlideModel";
 import { createSlide, getAllSlides } from "../../service/slideService";
 import SlideCard from "./components/SlideCard";
 import { uploadFile } from "../../service/fileUploadService";
-import './SlideAdmin.css'
+import './AdminSlides.css'
 import ImageIcon from '@mui/icons-material/Image'
 
-const SlideAdmin: React.FC = () => {
+const AdminSlides: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
   const [open, setOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -161,4 +161,4 @@ const SlideAdmin: React.FC = () => {
   );
 };
 
-export default SlideAdmin;
+export default AdminSlides;

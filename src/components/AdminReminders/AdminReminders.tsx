@@ -4,7 +4,7 @@ import { Box, Button, Container, IconButton, Table, TableBody, TableCell, TableC
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { ReminderModel } from '../../models/ReminderModel';
 import { createReminder, deleteReminderById, getAllReminders } from '../../service/reminderService';
