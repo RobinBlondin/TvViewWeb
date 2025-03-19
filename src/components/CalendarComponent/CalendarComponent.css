@@ -1,0 +1,87 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    width: 100% !important;    
+    height: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: radial-gradient(circle at top, #633b19, #1a0e06, #000000);
+    border-radius: 10px !important;
+    font-family: Kanit, sans-serif;
+}
+
+.days-container, .dates-container, .events-container {
+    display: flex;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.days-container, .dates-container {
+    height: 15%;
+}
+
+.events-container {
+    height: 70%;
+    gap: 0.3em;
+}
+
+.events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.day, .date {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.day {
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.date {
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.events {
+    width: 100% !important;
+    height: 100%;
+    padding: 0.2em 0 !important;
+}
+
+.event {
+    width: 100%;
+    height: 4em;
+    background-color: rgba(110, 155, 245, 0.8);
+    border-radius: 8px;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.event-time, .event-title {
+    font-size: 0.75em;
+    padding: 0.2em 0.5em !important;
+    color: white;
+}
+
+.event-time {
+    height: 25%;
+}
+
+.event-title {
+    font-size: 0.8em;
+    font-weight: 600;
+    line-height: normal;
+}
