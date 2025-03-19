@@ -1,14 +1,10 @@
-import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import "./App.css";
-import AdminSlides from "./components/AdminSlides/AdminSlides";
+import CalendarComponent from "./components/CalendarComponent/CalendarComponent";
 import AutoLogin from "./configuration/AutoLogin";
-import { DepartureModel } from "./models/DepartureModel";
-import { getBusDepartures, getTrainDepartures } from "./service/departureService";
-import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
-import AdminReminders from "./components/AdminReminders/AdminReminders";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -16,10 +12,6 @@ const ACCESS_TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ACCESS_TOKEN_STORAG
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
-  const [departures, setDepartures] = useState<DepartureModel[]>([]);
-  const [trigger, setTrigger] = useState<boolean>(false);
-
-
 
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
@@ -38,7 +30,7 @@ function App() {
     if (!newToken || isJwtExpired(newToken)) {
       localStorage.removeItem(TOKEN_STORAGE_KEY);
       localStorage.removeItem(ACCESS_TOKEN_STORAGE_KEY)
-      setToken(null); 
+      setToken(null);  
     } else if (newToken !== token) {
       setToken(newToken);
     }
@@ -58,16 +50,6 @@ function App() {
     };
   }, [token]);
 
-  const fetchDepartures = async () => {
-    const deps = trigger? await getTrainDepartures() : await getBusDepartures();
-      if (deps) setDepartures(deps);
-  }
-  
-  setInterval(async () => {
-    await fetchDepartures();
-    setTrigger(!trigger)
-  }, 10000);
-
   const theme = createTheme({
     palette: {
       primary: { main: "#d90429" },
@@ -78,21 +60,22 @@ function App() {
     },
   });
 
-  console.log(token)
-
   return (
+    <Box className="outer-content-container">
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
-          <Box className="outer-content-container">
-            <CommuteComponent departures={departures} />
-          </Box>
+          <Container className="content-container">
+            <CalendarComponent />
+          </Container>
+          
         ) : (
           <AutoLogin />
         )}
       </ThemeProvider>
     </GoogleOAuthProvider>
+    </Box>
   );
 }
 
