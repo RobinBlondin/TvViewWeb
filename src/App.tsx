@@ -6,6 +6,10 @@ import "./App.css";
 import CalendarComponent from "./components/CalendarComponent/CalendarComponent";
 import AutoLogin from "./configuration/AutoLogin";
 import SlideComponent from "./components/SlideComponent/SlideComponent";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminReminders from "./components/AdminReminders/AdminReminders";
+import AdminSlides from "./components/AdminSlides/AdminSlides";
+import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -62,13 +66,21 @@ function App() {
   });
 
   return (
+    <BrowserRouter>
     <Box className="outer-content-container">
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
           <Container className="content-container">
-            <SlideComponent />
+            <Routes>
+              <Route path="/" />
+              <Route path="/reminders" element={<AdminReminders />} />
+              <Route path="/slides" element={<AdminSlides />} />
+              <Route path="/slides-show" element={<SlideComponent />} />
+              <Route path="/calendar" element={<CalendarComponent />} />
+              <Route path="/commute" element={<CommuteComponent departures={[]} />} />
+            </Routes>
           </Container>
           
         ) : (
@@ -77,6 +89,7 @@ function App() {
       </ThemeProvider>
     </GoogleOAuthProvider>
     </Box>
+    </BrowserRouter>
   );
 }
 
