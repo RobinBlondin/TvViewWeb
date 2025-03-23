@@ -8,7 +8,7 @@ export const uploadFile = (file: File): Promise<string> => {
 
     return apiClient.post(`${API_BASE_URL}/upload`, formData, {
         headers: {
-            "Content-Type": "multipart/form-data", // This is optional! Axios sets it automatically.
+            "Content-Type": "multipart/form-data",
         },
     }).then((res) => res.data);
 };
