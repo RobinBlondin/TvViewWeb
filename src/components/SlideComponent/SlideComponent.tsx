@@ -2,12 +2,14 @@ import { Container } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { SlideModel } from '../../models/SlideModel';
 import { getAllSlides } from '../../service/slideService';
+import useWebSocket from 'react-use-websocket';
 
 const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
-  const [socketSignalReceived, setSocketSignalReceived] = useState<boolean>(false);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const { lastMessage } = useWebSocket("ws://localhost:8080/ws")
 
+  
   useEffect(() => {
     console.log("fetching slides");
     const fetchSlides = async () => {
@@ -17,27 +19,25 @@ const SlideComponent: React.FC = () => {
     };
 
     fetchSlides();
-  }, [socketSignalReceived]);
+  }, [lastMessage]);
 
   useEffect(() => {
-    let intervalId: number;
+    let intervalId: any;
 
     if (slides.length > 0) {
-      console.log("Setting interval");
       intervalId = setInterval(() => {
-        console.log(currentIndex);
         setCurrentIndex(prevIndex => (prevIndex + 1) % slides.length);
-      }, 10000);
+      }, 3000);
     }
 
-    // Cleanup interval on component unmount
     return () => {
       if (intervalId) {
         clearInterval(intervalId);
       }
     };
-  }, [slides]); // Only re-run the effect if `slides` changes
+  }, [slides]);
 
+  
   return (
     <Container
       className="main-container"
