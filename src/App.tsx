@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CalendarComponent from "./components/CalendarComponent/CalendarComponent";
 import AutoLogin from "./configuration/AutoLogin";
+import SlideComponent from "./components/SlideComponent/SlideComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -67,7 +68,7 @@ function App() {
         <CssBaseline />
         {token ? (
           <Container className="content-container">
-            <CalendarComponent />
+            <SlideComponent />
           </Container>
           
         ) : (
