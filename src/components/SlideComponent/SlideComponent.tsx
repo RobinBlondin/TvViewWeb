@@ -44,7 +44,11 @@ const SlideComponent: React.FC = () => {
       sx={{
         width: "100%",
         height: "100%",
+        borderRadius: "1em",
         backgroundImage: `url(${slides[currentIndex] ? slides[currentIndex].url : ""})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
       }}
     >
     </Container>
