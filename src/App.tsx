@@ -10,6 +10,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminReminders from "./components/AdminReminders/AdminReminders";
 import AdminSlides from "./components/AdminSlides/AdminSlides";
 import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
+import { DepartureModel } from "./models/DepartureModel";
+import { getBusDepartures } from "./service/departureService";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -17,6 +19,7 @@ const ACCESS_TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ACCESS_TOKEN_STORAG
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
+  const [departures, setDepartures] = useState<DepartureModel[]>([])
 
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
@@ -55,6 +58,12 @@ function App() {
     };
   }, [token]);
 
+  useEffect(() => {
+    getBusDepartures().then((data) => {
+      if (data) setDepartures(data)
+    })
+  }, [])
+
   const theme = createTheme({
     palette: {
       primary: { main: "#d90429" },
@@ -79,7 +88,7 @@ function App() {
               <Route path="/slides" element={<AdminSlides />} />
               <Route path="/slides-show" element={<SlideComponent />} />
               <Route path="/calendar" element={<CalendarComponent />} />
-              <Route path="/commute" element={<CommuteComponent departures={[]} />} />
+              <Route path="/commute" element={<CommuteComponent departures={departures} />} />
             </Routes>
           </Container>
           
