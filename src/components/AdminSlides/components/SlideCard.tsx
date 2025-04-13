@@ -16,8 +16,9 @@ interface SlideCardProps {
 
 const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, setSlides}) => {
 
-    const handleDelete = () => {
-        deleteSlideById(id);
+    const handleDelete = async () => {
+        console.log("deleting slide with id:", id)
+        await deleteSlideById(id);
         const newSlides = slides.filter(slide => slide.id !== id);
         setSlides(newSlides);
     }

@@ -27,7 +27,7 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
 
   return (
     <Box>
-        <TableContainer className="table-container" sx={{ border: "1px solid", borderRadius: "5px"}}>
+        <TableContainer className="table-container" sx={{ border: "1px solid", borderRadius: "0.5em"}}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow sx={{width: "100%", backgroundColor: "rgba(100, 250, 113, 0.7)", color: "#FFFFFF"}}>
@@ -37,12 +37,13 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {departures.map((dep, index) => (
-                  <TableRow key={index} sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF"}}>
-                    <TableCell>{fixLineName(dep.name)}</TableCell>
-                    <TableCell>{dep.direction}</TableCell>
+                { [0, 1, 2, 3, 4].map((index) => (
+                  
+                  <TableRow sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF"}} key={index}>
+                    <TableCell>{ departures[index]? fixLineName(departures[index].name) : "---"}</TableCell>
+                    <TableCell>{departures[index] ? departures[index].direction : "---"}</TableCell>
                     <TableCell>
-                        {formatTimeAndCountMinutesLeft(dep.time)}
+                        {departures[index]? formatTimeAndCountMinutesLeft(departures[index].time) : "---"}
                     </TableCell>
                   </TableRow>
                 ))}

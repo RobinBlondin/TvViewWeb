@@ -13,11 +13,12 @@ const CalendarComponent: React.FC = () => {
       const events = await getAllCalendarEvents()
       setEvents(events)
     }
-    fetchEvents();
+    fetchEvents()
+    const interval = setInterval(fetchEvents, 1000 * 60 * 5)
+    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
-    console.log(events);
     if(events) {
       const eventsMap = new Map()
       events.forEach((event) => {
@@ -51,13 +52,13 @@ const CalendarComponent: React.FC = () => {
   return (
     <Container className="calendar-container">
         <Container className="days-container">
-            <Container className="day">S</Container>
-            <Container className="day">M</Container>
-            <Container className="day">T</Container>
-            <Container className="day">W</Container>
-            <Container className="day">T</Container>
-            <Container className="day">F</Container>
-            <Container className="day">S</Container>
+            <Container className="day">SUN</Container>
+            <Container className="day">MON</Container>
+            <Container className="day">TUE</Container>
+            <Container className="day">WED</Container>
+            <Container className="day">THU</Container>
+            <Container className="day">FRI</Container>
+            <Container className="day">SAT</Container>
         </Container>
         <Container className="dates-container">
             {

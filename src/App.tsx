@@ -5,6 +5,14 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CalendarComponent from "./components/CalendarComponent/CalendarComponent";
 import AutoLogin from "./configuration/AutoLogin";
+import SlideComponent from "./components/SlideComponent/SlideComponent";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AdminReminders from "./components/AdminReminders/AdminReminders";
+import AdminSlides from "./components/AdminSlides/AdminSlides";
+import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
+import { DepartureModel } from "./models/DepartureModel";
+import { getBusDepartures } from "./service/departureService";
+import TvView from "./components/TvView/TvView";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -12,6 +20,7 @@ const ACCESS_TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ACCESS_TOKEN_STORAG
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
+  const [departures, setDepartures] = useState<DepartureModel[]>([])
 
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
@@ -50,32 +59,80 @@ function App() {
     };
   }, [token]);
 
+  useEffect(() => {
+    getBusDepartures().then((data) => {
+      if (data) setDepartures(data)
+    })
+  }, [])
+
   const theme = createTheme({
     palette: {
       primary: { main: "#d90429" },
       secondary: { main: "#000000" },
       background: { default: "#FFFFFF" },
       text: { primary: "#000000", secondary: "#000000" },
-
     },
   });
 
   return (
-    <Box className="outer-content-container">
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {token ? (
-          <Container className="content-container">
-            <CalendarComponent />
-          </Container>
-          
-        ) : (
-          <AutoLogin />
-        )}
-      </ThemeProvider>
-    </GoogleOAuthProvider>
-    </Box>
+    <BrowserRouter>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {token ? (
+            <Routes>
+              {/* Regular routes with container */}
+              <Route path="/" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    {/* Your home component here */}
+                  </Container>
+                </Box>
+              } />
+              <Route path="/reminders" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <AdminReminders />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/slides" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <AdminSlides />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/slides-show" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <SlideComponent />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/calendar" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <CalendarComponent />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/commute" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <CommuteComponent departures={departures} />
+                  </Container>
+                </Box>
+              } />
+              
+              <Route path="/tvview" element={<TvView />} />
+            </Routes>
+          ) : (
+            <AutoLogin />
+          )}
+        </ThemeProvider>
+      </GoogleOAuthProvider>
+    </BrowserRouter>
   );
 }
 
