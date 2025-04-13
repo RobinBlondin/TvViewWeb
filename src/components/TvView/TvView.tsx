@@ -6,6 +6,7 @@ import SlideComponent from '../SlideComponent/SlideComponent';
 import './TvView.css';
 import { DepartureModel } from '../../models/DepartureModel';
 import { getBusDepartures } from '../../service/departureService';
+import ReminderComponent from '../ReminderComponent/ReminderComponent';
 
 const TvView: React.FC = () => {
     const [departures, setDepartures] = useState<DepartureModel[]>([]);
@@ -41,15 +42,15 @@ const TvView: React.FC = () => {
      
             <Box sx={{ 
                 width: '100%',
-                height: '73%'
+                height: '60%'
             }}>
                 <CalendarComponent />
             </Box>
             <Box sx={{
                 width: '100%',
-                height: '27'
+                height: '40%'
             }}>
-                <CommuteComponent departures={departures}/>
+                <ReminderComponent />
             </Box>
         </Box>
       <Box sx={{ 
