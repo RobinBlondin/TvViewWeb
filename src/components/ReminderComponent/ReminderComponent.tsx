@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { ReminderModel } from "../../models/ReminderModel";
+import { getAllReminders, getReminderById, updateReminder } from "../../service/reminderService";
+import Checkbox from "@mui/material/Checkbox/Checkbox";
+import Container from "@mui/material/Container/Container";
 
 const ReminderList = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
-  const [completed, setCompleted] = useState<string[]>([]);
 
   useEffect(() => {
     fetchReminders();
@@ -13,9 +13,8 @@ const ReminderList = () => {
 
   const fetchReminders = async () => {
     try {
-      const response 
-      const data: Reminder[] = await response.json();
-      setReminders(data);
+      const response = await getAllReminders()
+      setReminders(response);
     } catch (error) {
       console.error("Failed to fetch reminders:", error);
     }
@@ -23,37 +22,40 @@ const ReminderList = () => {
 
   const handleCheck = async (id: string | null) => {
     if (!id) return;
-    setCompleted((prev) => [...prev, id]);
-    
-    try {
-      await fetch(`/api/reminders/${id}`, { method: "DELETE" }); // Adjust API endpoint
-    } catch (error) {
-      console.error("Failed to delete reminder:", error);
-    }
+    const reminder = await getReminderById(id);
+    reminder.done = true;
+    await updateReminder(reminder)
+
+    fetchReminders();
   };
 
-  const isExpired = (expiryDate: string) => new Date(expiryDate) < new Date();
-
   return (
-    <div className="p-4 max-w-lg mx-auto">
-      <h2 className="text-xl font-semibold mb-4">Reminders</h2>
-      <ul className="space-y-2">
+    <Container sx={{ width: "100%", height: "100%", backgroundColor: "#B098A4", padding: "1em", borderRadius: "0.5em"}}>
         {reminders.map((reminder) => (
-          <li
+          <Container
             key={reminder.id}
-            className={`flex items-center gap-3 p-2 border rounded-lg ${
-              completed.includes(reminder.id!) ? "line-through text-gray-500" : ""
-            }`}
+            onClick={() => handleCheck(reminder.id)}
+            sx={{
+              textDecoration: reminder.done ? 'line-through' : 'none',
+              color: reminder.done ? 'gray' : 'black',
+              display: 'flex',
+              alignItems: 'center',
+              padding: "0 !important",
+              gap: "1em",
+              fontSize: "1.5em"
+            }}
           >
             <Checkbox
-              checked={completed.includes(reminder.id!)}
-              onCheckedChange={() => handleCheck(reminder.id)}
+              checked={reminder.done}
+              disabled={reminder.done}
+              size="large"
+              onChange={() => handleCheck(reminder.id)}
+              sx={{ width: "2em", color: reminder.done ? "gray !important" : "black !important"}}
             />
             <span>{reminder.description}</span>
-          </li>
+          </Container>
         ))}
-      </ul>
-    </div>
+    </Container>
   );
 };
 
