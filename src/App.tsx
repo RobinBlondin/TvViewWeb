@@ -12,6 +12,7 @@ import AdminSlides from "./components/AdminSlides/AdminSlides";
 import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
 import { DepartureModel } from "./models/DepartureModel";
 import { getBusDepartures } from "./service/departureService";
+import TvView from "./components/TvView/TvView";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -70,34 +71,67 @@ function App() {
       secondary: { main: "#000000" },
       background: { default: "#FFFFFF" },
       text: { primary: "#000000", secondary: "#000000" },
-
     },
   });
 
   return (
     <BrowserRouter>
-    <Box className="outer-content-container">
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {token ? (
-          <Container className="content-container">
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {token ? (
             <Routes>
-              <Route path="/" />
-              <Route path="/reminders" element={<AdminReminders />} />
-              <Route path="/slides" element={<AdminSlides />} />
-              <Route path="/slides-show" element={<SlideComponent />} />
-              <Route path="/calendar" element={<CalendarComponent />} />
-              <Route path="/commute" element={<CommuteComponent departures={departures} />} />
+              {/* Regular routes with container */}
+              <Route path="/" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    {/* Your home component here */}
+                  </Container>
+                </Box>
+              } />
+              <Route path="/reminders" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <AdminReminders />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/slides" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <AdminSlides />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/slides-show" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <SlideComponent />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/calendar" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <CalendarComponent />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/commute" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <CommuteComponent departures={departures} />
+                  </Container>
+                </Box>
+              } />
+              
+              <Route path="/tvview" element={<TvView />} />
             </Routes>
-          </Container>
-          
-        ) : (
-          <AutoLogin />
-        )}
-      </ThemeProvider>
-    </GoogleOAuthProvider>
-    </Box>
+          ) : (
+            <AutoLogin />
+          )}
+        </ThemeProvider>
+      </GoogleOAuthProvider>
     </BrowserRouter>
   );
 }
