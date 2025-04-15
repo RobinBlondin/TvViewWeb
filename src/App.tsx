@@ -13,6 +13,8 @@ import CommuteComponent from "./components/CommuteComponent/CommuteComponent";
 import { DepartureModel } from "./models/DepartureModel";
 import { getBusDepartures } from "./service/departureService";
 import TvView from "./components/TvView/TvView";
+import ReminderComponent from "./components/ReminderComponent/ReminderComponent";
+import { HighwayBridgeComponent } from "./components/HighwayBridgeComponent/HighwayBridgeComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -81,18 +83,17 @@ function App() {
           <CssBaseline />
           {token ? (
             <Routes>
-              {/* Regular routes with container */}
-              <Route path="/" element={
-                <Box className="outer-content-container">
-                  <Container className="content-container">
-                    {/* Your home component here */}
-                  </Container>
-                </Box>
-              } />
               <Route path="/reminders" element={
                 <Box className="outer-content-container">
                   <Container className="content-container">
                     <AdminReminders />
+                  </Container>
+                </Box>
+              } />
+              <Route path="/reminders-show" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <ReminderComponent />
                   </Container>
                 </Box>
               } />
@@ -124,8 +125,15 @@ function App() {
                   </Container>
                 </Box>
               } />
+              <Route path="/highway" element={
+                <Box className="outer-content-container">
+                  <Container className="content-container">
+                    <HighwayBridgeComponent />
+                  </Container>
+                </Box>
+              } />
               
-              <Route path="/tvview" element={<TvView />} />
+              <Route path="/" element={<TvView />} />
             </Routes>
           ) : (
             <AutoLogin />

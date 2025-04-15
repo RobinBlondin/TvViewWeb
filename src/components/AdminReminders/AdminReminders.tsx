@@ -12,7 +12,6 @@ import { createReminder, deleteReminderById, getAllReminders } from '../../servi
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
   const [description, setDescription] = useState<string | null>(null)
-  const [expiryDate, setExpiryDate] = useState<Date>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,24 +25,18 @@ const AdminReminders: React.FC = () => {
   const handleDescriptionChange = (info: any) => {
     setDescription(info.target.value)
   }
-
-  const handleEndChange = (info: any) => {
-    const date = new Date(info);
-    setExpiryDate(date);
-  }
  
   const handleSubmitReminder = () => {
-    if (!description || !expiryDate) {
+    if (!description) {
       return;
     }
 
-    const reminder = new ReminderModel(null, description, expiryDate.toISOString());
+    const reminder = new ReminderModel(null, description, false);
     createReminder(reminder).then((reminder) => {
       setReminders([...reminders, reminder])
     });
 
     setDescription(null);
-    setExpiryDate(new Date());
   };
 
   const handleDeleteReminder = (id: string) => {
@@ -51,12 +44,6 @@ const AdminReminders: React.FC = () => {
 
     const updatedReminders = reminders.filter((reminder) => reminder.id !== id);
     setReminders(updatedReminders);
-  };
-
-
-
-  const formatDate = (isoString: string) => {
-    return new Date(isoString).toLocaleString();
   };
 
   return (
@@ -76,12 +63,6 @@ const AdminReminders: React.FC = () => {
             variant="outlined" 
             onChange={(info) => handleDescriptionChange(info)}
             value={description? description : ""}
-          />
-          <DateTimePicker  
-            value={dayjs(expiryDate || new Date())}
-            ampm={false}
-            onChange={(info) => handleEndChange(info)}
-            label="Expiry Date"
           />
 
           <Button 
@@ -110,7 +91,7 @@ const AdminReminders: React.FC = () => {
               <TableHead>
                 <TableRow sx={{width: "100%"}}>
                 <TableCell sx={{width: "60%", fontWeight: "bold"}}>Description</TableCell>
-                  <TableCell sx={{width: "30%", fontWeight: "bold"}}>Expiry Date</TableCell>
+                  <TableCell sx={{width: "30%", fontWeight: "bold"}}>Done</TableCell>
                   <TableCell sx={{width: "10%", fontWeight: "bold"}}>Actions</TableCell>
                 </TableRow>
               </TableHead>
@@ -118,7 +99,7 @@ const AdminReminders: React.FC = () => {
                 {reminders.map((reminder) => (
                   <TableRow key={reminder.id}>
                     <TableCell>{reminder.description}</TableCell>
-                    <TableCell>{formatDate(reminder.expiryDate)}</TableCell>
+                    <TableCell>{reminder.done ? "Yes" : "No"}</TableCell>
                     <TableCell>
                       <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
                         <DeleteIcon color="error"/>

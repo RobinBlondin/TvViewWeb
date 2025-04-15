@@ -52,13 +52,13 @@ const CalendarComponent: React.FC = () => {
   return (
     <Container className="calendar-container">
         <Container className="days-container">
-            <Container className="day">SUN</Container>
-            <Container className="day">MON</Container>
-            <Container className="day">TUE</Container>
-            <Container className="day">WED</Container>
-            <Container className="day">THU</Container>
-            <Container className="day">FRI</Container>
-            <Container className="day">SAT</Container>
+            <Container className="day">S</Container>
+            <Container className="day">M</Container>
+            <Container className="day">T</Container>
+            <Container className="day">W</Container>
+            <Container className="day">T</Container>
+            <Container className="day">F</Container>
+            <Container className="day">S</Container>
         </Container>
         <Container className="dates-container">
             {
@@ -69,8 +69,8 @@ const CalendarComponent: React.FC = () => {
                           <Container 
                             sx={{
                               backgroundColor: "rgba(252, 123, 3, 0.7)", 
-                              width: "1.75em", 
-                              height: "1.75em", 
+                              width: "1.5em", 
+                              height: "1.5em", 
                               borderRadius: "50%", 
                               display: "flex", 
                               justifyContent: "center", 

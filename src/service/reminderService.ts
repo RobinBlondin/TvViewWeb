@@ -15,6 +15,10 @@ export const deleteReminderById = async (id: string) => {
     apiClient.delete(`${API_BASE_URL}/delete/${id}`)
 }
 
+export const deleteFinishedReminders = async () => {
+    apiClient.delete(`${API_BASE_URL}/delete/done`)
+}
+
 export const createReminder = async (reminderModel: ReminderModel): Promise<ReminderModel> => {
     return apiClient.post(`${API_BASE_URL}/create`, reminderModel).then((res) => res.data)
 }

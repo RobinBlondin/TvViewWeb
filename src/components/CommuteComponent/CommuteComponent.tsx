@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { DepartureModel } from '../../models/DepartureModel';
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import React from 'react';
+import { DepartureModel } from '../../models/DepartureModel';
 
 interface CommuteComponentProps {
     departures: DepartureModel[];
@@ -26,20 +26,20 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
 
 
   return (
-    <Box>
-        <TableContainer className="table-container" sx={{ border: "1px solid", borderRadius: "0.5em"}}>
+    <Box sx={{ width: "100%", height: "100%", flex: 1, flexShrink: 1}}>
+        <TableContainer className="table-container" sx={{height: "100%", borderRadius: "0.3em 0.3em 0 0"}}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
-                <TableRow sx={{width: "100%", backgroundColor: "rgba(100, 250, 113, 0.7)", color: "#FFFFFF"}}>
-                <TableCell sx={{width: "20%", fontWeight: "bold"}}>Line</TableCell>
+                <TableRow sx={{width: "100%", height: "calc(100% / 6)", backgroundColor: "rgba(100, 250, 113, 0.7)", color: "#FFFFFF"}}>
+                  <TableCell sx={{width: "20%", fontWeight: "bold"}}>Line</TableCell>
                   <TableCell sx={{width: "60%", fontWeight: "bold"}}>Destination</TableCell>
                   <TableCell sx={{width: "20%", fontWeight: "bold"}}>Time</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                { [0, 1, 2, 3, 4].map((index) => (
+                { [0, 1, 2, 3, 4, 5].map((index) => (
                   
-                  <TableRow sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF"}} key={index}>
+                  <TableRow sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF", height: "calc(100% / 6)"}} key={index}>
                     <TableCell>{ departures[index]? fixLineName(departures[index].name) : "---"}</TableCell>
                     <TableCell>{departures[index] ? departures[index].direction : "---"}</TableCell>
                     <TableCell>
