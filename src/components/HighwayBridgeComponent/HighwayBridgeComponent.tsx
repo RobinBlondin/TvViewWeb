@@ -23,7 +23,8 @@ export const HighwayBridgeComponent: React.FC = () => {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        height: '100%'
+        height: '100%',
+        flex: 1
       }}>
         <Typography>No upcoming bridge openings scheduled</Typography>
       </Container>
@@ -33,6 +34,8 @@ export const HighwayBridgeComponent: React.FC = () => {
   const firstOpening = bridgeOpenings[0];
 
   const formatTime = (time: string) => {
+    if(!time || time === "") return "---"
+
     const date = new Date(time);
     return date.toLocaleString('sv', {
       month: 'long',
@@ -47,20 +50,24 @@ export const HighwayBridgeComponent: React.FC = () => {
       padding: '0 !important',
       height: '100% !important',
       width: '100%',
-      overflow: 'auto'
+      overflow: 'auto',
     }}>
       <Paper elevation={3} sx={{ 
         padding: '1.5em',
-        background: 'rgba(255, 255, 255, 0.8)',
-        borderRadius: '0.5em'
+        background: 'inherit',
+        borderRadius: '0.5em, 0.5em 0 0',
+        height: "100%",
+        flex: 1,
+        color: "#f2a9a0"
       }}>
         <Typography variant="h5" sx={{ 
+          color: 'inhert',
           display: 'flex', 
           alignItems: 'center', 
           gap: '0.5em',
           marginBottom: '0.5em'
         }}>
-          <AccountBalance color="primary" />
+          <AccountBalance sx={{ color: 'white'}} />
           Next Bridge Opening
         </Typography>
         
