@@ -26,7 +26,7 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
 
 
   return (
-    <Box sx={{ width: "100%", height: "100%"}}>
+    <Box sx={{ width: "100%", height: "100%", flex: 1, flexShrink: 1}}>
         <TableContainer className="table-container" sx={{height: "100%", borderRadius: "0.3em 0.3em 0 0"}}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
