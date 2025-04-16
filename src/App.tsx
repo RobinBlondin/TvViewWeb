@@ -15,6 +15,7 @@ import { getBusDepartures } from "./service/departureService";
 import TvView from "./components/TvView/TvView";
 import ReminderComponent from "./components/ReminderComponent/ReminderComponent";
 import { HighwayBridgeComponent } from "./components/HighwayBridgeComponent/HighwayBridgeComponent";
+import Navbar from "./components/Navbar/Navbar";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
@@ -85,7 +86,8 @@ function App() {
             <Routes>
               <Route path="/reminders" element={
                 <Box className="outer-content-container">
-                  <Container className="content-container">
+                  <Navbar />
+                  <Container maxWidth={false} className="content-container">
                     <AdminReminders />
                   </Container>
                 </Box>
@@ -99,7 +101,8 @@ function App() {
               } />
               <Route path="/slides" element={
                 <Box className="outer-content-container">
-                  <Container className="content-container">
+                  <Navbar />
+                  <Container maxWidth={false} className="content-container">
                     <AdminSlides />
                   </Container>
                 </Box>
