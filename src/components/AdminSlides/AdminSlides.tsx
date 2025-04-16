@@ -68,7 +68,7 @@ const AdminSlides: React.FC = () => {
   return (
     <>
       <Box className="sa-main-container">
-        <Container className="sa-content-container" sx={{backgroundColor: "background.paper", border: "2px solid", borderRadius: "20px"}}>
+        <Container className="sa-content-container" sx={{ borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc'}}>
           {slides?.map((slide) => (
             <SlideCard
               key={slide.id}
@@ -84,10 +84,9 @@ const AdminSlides: React.FC = () => {
         <Container className="sa-button-container">
           <Button
             variant="contained"
-            color="primary"
             startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{ mb: 2, borderRadius: 50, fontWeight: "bold", backgroundColor: "primary.main" }}
+            sx={{ borderRadius: 50, fontWeight: "bold", backgroundColor: "#6552D0", color: "#FFF" }}
           >
             Add New Slide
           </Button>

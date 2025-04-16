@@ -1,7 +1,14 @@
+#root {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .outer-content-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: radial-gradient(circle at top, #6e3a40, #4c2b2f, #2e1a1e);
   height: 100vh !important;
   width: 100vw !important;
   padding: 0 !important;
@@ -9,21 +16,21 @@
 }
 
 .content-container {
-  width: 80%;
-  height: 80%;
+  width: 100% !important;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px !important;
+  border-radius: 0.5em !important;
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 2em 0 0 0 !important;
 
 }
 
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 0.4em;
+  height: 0.4em;
 }
 
 ::-webkit-scrollbar-track {
@@ -31,8 +38,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.5em;
 }
 
 ::-webkit-scrollbar-thumb:hover {

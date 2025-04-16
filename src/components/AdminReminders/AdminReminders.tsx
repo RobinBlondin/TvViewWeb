@@ -1,8 +1,23 @@
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Box, Button, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid2,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  TextField,
+  Typography,
+  Paper
+} from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
@@ -19,17 +34,14 @@ const AdminReminders: React.FC = () => {
       setReminders(events);
     };
     fetchData();
-
   }, []);
 
   const handleDescriptionChange = (info: any) => {
     setDescription(info.target.value)
   }
- 
+
   const handleSubmitReminder = () => {
-    if (!description) {
-      return;
-    }
+    if (!description) return;
 
     const reminder = new ReminderModel(null, description, false);
     createReminder(reminder).then((reminder) => {
@@ -41,78 +53,77 @@ const AdminReminders: React.FC = () => {
 
   const handleDeleteReminder = (id: string) => {
     deleteReminderById(id);
-
-    const updatedReminders = reminders.filter((reminder) => reminder.id !== id);
-    setReminders(updatedReminders);
+    setReminders(reminders.filter((reminder) => reminder.id !== id));
   };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <Box sx={{ 
-      display: "flex", 
-      justifyContent: "start", 
-      alignItems: "start", 
-      height: "80%", 
-      width: "75%", 
-      gap: 3 
-   }}>
-      
-        <Container sx={{ width: "30%", display: "flex", flexDirection: "column", justifyContent: "start", margin: 0, gap: 2, padding: 3, backgroundColor: "background.paper", borderRadius: "20px 0 20px 20px", border: "2px solid" }}>
-          <TextField 
-            label="Description" 
-            variant="outlined" 
-            onChange={(info) => handleDescriptionChange(info)}
-            value={description? description : ""}
-          />
+      <Box sx={{ p: 4, borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc', minHeight: '76%', maxHeight: '76%', minWidth: '85%', overflow: 'scroll' }}>
+        <Grid2 container spacing={4} justifyContent="center">
+          
+          <Grid2 sx={{width: "35%"}}>
+            <Card elevation={3} sx={{background: '#fbe2dc'}}>
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  Add Reminder
+                </Typography>
+                <TextField
+                  fullWidth
+                  label="Description"
+                  variant="outlined"
+                  value={description || ''}
+                  onChange={handleDescriptionChange}
+                  sx={{ mb: 2 }}
+                />
+                <Button
+                  fullWidth
+                  variant="contained"
+                  sx={{background: "#6552D0"}}
+                  startIcon={<AddIcon />}
+                  onClick={handleSubmitReminder}
+                >
+                  Add Reminder
+                </Button>
+              </CardContent>
+            </Card>
+          </Grid2>
 
-          <Button 
-            variant="contained" 
-            color="primary" 
-            onClick={handleSubmitReminder} 
-            sx={{ marginBottom: 4, borderRadius: "0 10px 0 10px" }}>
-              <AddIcon />
-              Add Reminder
-          </Button>
-        </Container>
-      
-      <Box 
-        className="reminders-container"
-        sx={{ 
-          padding: 5, 
-          border: "2px solid", 
-          backgroundColor: "background.paper", 
-          borderRadius: "0 20px 20px 20px",
-          minHeight: "75%",
-          width: "70%",
-        }}>
-        
-          <TableContainer className="table-container" sx={{ border: "1px solid", borderRadius: "5px"}}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow sx={{width: "100%"}}>
-                <TableCell sx={{width: "60%", fontWeight: "bold"}}>Description</TableCell>
-                  <TableCell sx={{width: "30%", fontWeight: "bold"}}>Done</TableCell>
-                  <TableCell sx={{width: "10%", fontWeight: "bold"}}>Actions</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {reminders.map((reminder) => (
-                  <TableRow key={reminder.id}>
-                    <TableCell>{reminder.description}</TableCell>
-                    <TableCell>{reminder.done ? "Yes" : "No"}</TableCell>
-                    <TableCell>
-                      <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
-                        <DeleteIcon color="error"/>
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        
+          <Grid2 sx={{width: "60%", background: '#fbe2dc'}}>
+            <Card elevation={3}>
+              <CardContent sx={{background: '#fbe2dc'}}>
+                <Typography variant="h6" gutterBottom>
+                  Reminders
+                </Typography>
+                <TableContainer component={Paper}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell sx={{fontWeight: 600}}>Description</TableCell>
+                        <TableCell sx={{fontWeight: 600}}>Done</TableCell>
+                        <TableCell sx={{fontWeight: 600}}>Actions</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {reminders.map((reminder) => (
+                        <TableRow key={reminder.id}>
+                          <TableCell sx={{width: '80%'}}>{reminder.description}</TableCell>
+                          <TableCell sx={{width: '10%'}}>{reminder.done ? "Yes" : "No"}</TableCell>
+                          <TableCell sx={{width: '10%'}}>
+                            <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
+                              <DeleteIcon color="error" />
+                            </IconButton>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </Card>
+          </Grid2>
+
+        </Grid2>
       </Box>
-    </Box>
     </LocalizationProvider>
   );
 };

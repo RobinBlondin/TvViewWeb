@@ -23,7 +23,7 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
         setSlides(newSlides);
     }
     return (
-        <Card sx={{ width: 250, height: 350 , border: "0.5px solid lightgray", borderRadius: 3, boxShadow: 3, backgroundColor: "#FFFFFF", transition: "0.3s", "&:hover": { boxShadow: 6 } }}>
+        <Card sx={{ width: 250, height: 350 , border: "0.5px solid black", borderRadius: 3, boxShadow: 3, backgroundColor: "#FFFFFF", transition: "0.3s", "&:hover": { boxShadow: 6 } }}>
         <CardMedia
           component="img"
           height="180"
@@ -31,7 +31,7 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
           alt="Uploaded Image"
           sx={{ objectFit: "cover" }}
         />
-        <CardContent className='sc-card-content'>
+        <CardContent className='sc-card-content' sx={{background: '#fbe2dc'}}>
           <Container className="text-container">
             <Typography variant="body2" color="text.primary">
               <strong>Uploaded:</strong> {timestamp}
