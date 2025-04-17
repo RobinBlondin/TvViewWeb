@@ -58,11 +58,11 @@ const AdminReminders: React.FC = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box sx={{ p: 4, borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc', minHeight: '76%', maxHeight: '76%', minWidth: '85%', overflow: 'scroll' }}>
+      <Box sx={{ p: 4, borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc', minHeight: '76%', maxHeight: '76%', minWidth: '85%', overflow: 'auto' }}>
         <Grid2 container spacing={4} justifyContent="center">
           
           <Grid2 sx={{width: "35%"}}>
-            <Card elevation={3} sx={{background: '#fbe2dc'}}>
+            <Card elevation={3} sx={{background: '#DAD4CF'}}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
                   Add Reminder
@@ -73,12 +73,12 @@ const AdminReminders: React.FC = () => {
                   variant="outlined"
                   value={description || ''}
                   onChange={handleDescriptionChange}
-                  sx={{ mb: 2 }}
+                  sx={{ mb: 2, background: '#FFFFFF'}}
                 />
                 <Button
                   fullWidth
                   variant="contained"
-                  sx={{background: "#6552D0"}}
+                  sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, color: '2e1a1e', fontWeight: 'bold'}}
                   startIcon={<AddIcon />}
                   onClick={handleSubmitReminder}
                 >
@@ -88,7 +88,7 @@ const AdminReminders: React.FC = () => {
             </Card>
           </Grid2>
 
-          <Grid2 sx={{width: "60%", background: '#fbe2dc'}}>
+          <Grid2 sx={{width: "60%", background: '#DAD4CF', borderRadius: '0.5em'}}>
             <Card elevation={3}>
               <CardContent sx={{background: '#fbe2dc'}}>
                 <Typography variant="h6" gutterBottom>
