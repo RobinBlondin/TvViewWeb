@@ -86,7 +86,7 @@ const AdminSlides: React.FC = () => {
             variant="contained"
             startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{ borderRadius: 50, fontWeight: "bold", backgroundColor: "#6552D0", color: "#FFF" }}
+            sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, color: 'DAD4CF', fontWeight: 'bold'}}
           >
             Add New Slide
           </Button>
@@ -94,14 +94,14 @@ const AdminSlides: React.FC = () => {
       </Box>
 
       <Modal open={open} onClose={handleClose}>
-        <Box className="modal-box" sx={{backgroundColor: "background.paper"}}>
+        <Box className="modal-box" sx={{backgroundColor: "#DAD4CF"}}>
           <Container className="modal-header-container">
             <Typography variant="h5">
               Upload New Slide
             </Typography>
           </Container>
           <Container className="modal-input-container" sx={{padding: ""}}>
-            <Button variant="outlined" color="primary" sx={{borderRadius: 50, border: "2px solid", fontWeight: "bold"}} onClick={triggerFileInput}>
+            <Button variant="outlined" sx={{color: "#8A6A5B", ":hover": { color: '#A98A74' }, borderRadius: 50, border: "2px solid", fontWeight: "bold"}} onClick={triggerFileInput}>
             <input
               type="file"
               accept="image/*"
@@ -139,18 +139,16 @@ const AdminSlides: React.FC = () => {
           <Container className="modal-button-container">
             <Button
               variant="contained"
-              color="primary"
               onClick={handleSave}
-              sx={{borderRadius: 50, fontWeight: "bold", width: "25%", height: "85%"}}
+              sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, borderRadius: 50, fontWeight: "bold", width: "25%", height: "85%"}}
             >
               Save
             </Button>
 
             <Button
               variant="outlined"
-              color="primary"
               onClick={handleClose}
-              sx={{borderRadius: 50, border: "2px solid", fontWeight: "bold", height: "85%"}}            >
+              sx={{color: "#8A6A5B", ":hover": { color: '#A98A74' }, borderRadius: 50, border: "2px solid", fontWeight: "bold", height: "85%"}}            >
               Cancel
             </Button>
           </Container>
