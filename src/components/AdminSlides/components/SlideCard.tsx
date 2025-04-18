@@ -23,7 +23,7 @@ const SlideCard: React.FC<SlideCardProps> = ({url, id, name, timestamp, slides, 
         setSlides(newSlides);
     }
     return (
-        <Card sx={{ width: 250, height: 350 , border: "1px solid black", borderRadius: 3, backgroundColor: "#E8E3DF", transition: "0.3s", "&:hover": { boxShadow: 6 } }}>
+        <Card sx={{ border: "1px solid black", borderRadius: 3, backgroundColor: "#E8E3DF", transition: "0.3s", "&:hover": { boxShadow: 6 } }} className="card-container">
         <CardMedia
           component="img"
           height="180"

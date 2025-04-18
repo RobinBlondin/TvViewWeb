@@ -19,9 +19,10 @@
   min-width: 85%;
   padding: 1em 0 0 0;
   margin: 0 !important;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-  box-sizing: border-box */
+
+  @media screen and (max-width: 553px) {
+    justify-content: center;
+  }
 }
 
 .sa-button-container {
