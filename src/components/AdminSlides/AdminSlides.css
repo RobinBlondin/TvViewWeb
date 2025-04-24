@@ -18,9 +18,9 @@
 .sa-content-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px 16px;
   overflow-y: scroll;
-  height: 629px;
+  height: 740px;
   min-width: 85%;
   padding: 8px 0 0 0;
   margin: 0 !important;
@@ -30,7 +30,7 @@
   }
 
   @media screen and (max-height: 780px) {
-    height: 500px;
+    height: 90%;
   }
 }
 
