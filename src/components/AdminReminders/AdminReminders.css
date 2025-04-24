@@ -1,0 +1,69 @@
+.main-container {
+    align-items: start;
+    padding: 10px; 
+    border-top: 1px solid #fbe2dc;
+    border-bottom: 1px solid #fbe2dc;
+    height: 800px;
+    overflow: auto;
+    width: 75%;
+}
+
+.add-reminder-grid {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.add-reminder-content {
+    background: #DAD4CF;
+}
+
+.reminder-grid {
+    width: 100%;
+    background: #DAD4CF;
+    border-radius: 0.5em;
+}
+
+.reminder-content {
+    background: #fbe2dc;
+}
+
+.title-cell {
+    font-weight: 600;
+}
+
+.desc-cell {
+    width: 80%;
+}
+
+.other-cell {
+    width: 10%;
+}
+
+.text-field {
+    background: #FFFFFF !important;
+    margin-bottom: 10px !important;
+}
+
+.add-button {
+    background: #8A6A5B !important;
+    font-weight: bold !important;
+}
+
+.add-button:hover {
+    background: #A98A74 !important;
+}
+
+@media screen and (max-width: 703px) {
+    .main-container {
+        height: 80%;
+        padding-left: 2px;
+        padding-right: 2px;
+        width: 95%;
+        margin-top: 1em;
+    }
+
+    .add-reminder-grid, .reminder-grid {
+        width: 100%;
+    }
+}
