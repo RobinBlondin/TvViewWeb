@@ -46,7 +46,7 @@ export const HighwayBridgeComponent: React.FC = () => {
     });
   };
   return (
-    <Container sx={{ 
+    <Container className='main-container' sx={{ 
       padding: '0 !important',
       height: '100% !important',
       width: '100%',

@@ -1,0 +1,15 @@
+.main-container {
+    padding: 0 !important;
+    height: 100% !important;
+    width: 100%;
+    overflow: auto;
+}
+
+.content-container {
+    padding: 1.5em !important;
+    background: inherit !important;
+    border-radius: 0.5em, 0.5em 0 0 !important;
+    height: 100%;
+    flex: 1 !important;
+    color: #f2a9a0 !important; 
+}
