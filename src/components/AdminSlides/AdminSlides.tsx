@@ -68,7 +68,7 @@ const AdminSlides: React.FC = () => {
   return (
     <>
       <Box className="sa-main-container">
-        <Container className="sa-content-container" sx={{ borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc'}}>
+        <Container className="sa-content-container">
           {slides?.map((slide) => (
             <SlideCard
               key={slide.id}
@@ -83,10 +83,10 @@ const AdminSlides: React.FC = () => {
         </Container>
         <Container className="sa-button-container">
           <Button
+            className="add-button"
             variant="contained"
             startIcon={<AddIcon />}
             onClick={handleOpen}
-            sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, color: 'DAD4CF', fontWeight: 'bold'}}
           >
             Add New Slide
           </Button>
@@ -100,8 +100,8 @@ const AdminSlides: React.FC = () => {
               Upload New Slide
             </Typography>
           </Container>
-          <Container className="modal-input-container" sx={{padding: ""}}>
-            <Button variant="outlined" sx={{color: "#8A6A5B", ":hover": { color: '#A98A74' }, borderRadius: 50, border: "2px solid", fontWeight: "bold"}} onClick={triggerFileInput}>
+          <Container className="modal-input-container">
+            <Button className="choose-image-button" variant="outlined" onClick={triggerFileInput}>
             <input
               type="file"
               accept="image/*"
@@ -116,17 +116,9 @@ const AdminSlides: React.FC = () => {
             <Container
               className="preview-box"
               sx={{
-                background: previewUrl ? `url(${previewUrl})` : '',
+                background: previewUrl ? `url(${previewUrl})` : '#888',
                 backgroundSize: previewUrl ? 'cover' : 'initial', 
-                backgroundPosition: previewUrl ? 'center' : 'initial', 
-                width: "100%",
-                height: "15em",
-                display: 'flex',
-                justifyContent: 'center',
-                margin: 0,
-                alignItems: 'center',
-                border: '1px solid #ddd',
-                backgroundColor: previewUrl ? '' : '#lightgray'
+                backgroundPosition: previewUrl ? 'center' : 'initial'
               }}
             >
               {selectedFile === null ? (
@@ -138,17 +130,17 @@ const AdminSlides: React.FC = () => {
           </Container>  
           <Container className="modal-button-container">
             <Button
+              className="save-button"
               variant="contained"
               onClick={handleSave}
-              sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, borderRadius: 50, fontWeight: "bold", width: "25%", height: "85%"}}
             >
               Save
             </Button>
 
             <Button
+              className="cancel-button"
               variant="outlined"
-              onClick={handleClose}
-              sx={{color: "#8A6A5B", ":hover": { color: '#A98A74' }, borderRadius: 50, border: "2px solid", fontWeight: "bold", height: "85%"}}            >
+              onClick={handleClose}>
               Cancel
             </Button>
           </Container>
