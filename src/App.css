@@ -21,7 +21,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5em !important;
   padding: 0 !important;
 
   @media screen and (max-width: 703px) {
