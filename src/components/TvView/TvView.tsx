@@ -1,23 +1,11 @@
 import { Box } from '@mui/material';
-import React, { use, useEffect, useState } from 'react';
+import React from 'react';
 import CalendarComponent from '../CalendarComponent/CalendarComponent';
-import CommuteComponent from '../CommuteComponent/CommuteComponent';
+import ReminderComponent from '../ReminderComponent/ReminderComponent';
 import SlideComponent from '../SlideComponent/SlideComponent';
 import './TvView.css';
-import { DepartureModel } from '../../models/DepartureModel';
-import { getBusDepartures } from '../../service/departureService';
-import ReminderComponent from '../ReminderComponent/ReminderComponent';
 
 const TvView: React.FC = () => {
-    const [departures, setDepartures] = useState<DepartureModel[]>([]);
-
-    useEffect(() => {
-        getBusDepartures().then((response) => {
-            setDepartures(response);
-        }
-        );
-    }, [])
-
 
   return (
     <Box sx={{
