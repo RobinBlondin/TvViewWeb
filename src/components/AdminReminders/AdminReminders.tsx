@@ -7,6 +7,7 @@ import {
   CardContent,
   Grid2,
   IconButton,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -14,15 +15,14 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography,
-  Paper
+  Typography
 } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { ReminderModel } from '../../models/ReminderModel';
 import { createReminder, deleteReminderById, getAllReminders } from '../../service/reminderService';
+import './AdminReminders.css'
 
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
@@ -58,27 +58,27 @@ const AdminReminders: React.FC = () => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box sx={{ p: 4, borderTop: "1px solid #fbe2dc", borderBottom: '1px solid #fbe2dc', minHeight: '76%', maxHeight: '76%', minWidth: '85%', overflow: 'auto' }}>
-        <Grid2 container spacing={4} justifyContent="center">
+      <Box className="main-container">
+        <Grid2 container spacing={4} className='grid-content-container'>
           
-          <Grid2 sx={{width: "35%"}}>
-            <Card elevation={3} sx={{background: '#DAD4CF'}}>
-              <CardContent>
+          <Grid2 className="add-reminder-grid">
+            <Card elevation={3}>
+              <CardContent className="add-reminder-content">
                 <Typography variant="h6" gutterBottom>
                   Add Reminder
                 </Typography>
                 <TextField
                   fullWidth
+                  className="text-field"
                   label="Description"
                   variant="outlined"
                   value={description || ''}
                   onChange={handleDescriptionChange}
-                  sx={{ mb: 2, background: '#FFFFFF'}}
                 />
                 <Button
                   fullWidth
+                  className="add-button"
                   variant="contained"
-                  sx={{background: "#8A6A5B", ":hover": { background: '#A98A74' }, color: '2e1a1e', fontWeight: 'bold'}}
                   startIcon={<AddIcon />}
                   onClick={handleSubmitReminder}
                 >
@@ -88,9 +88,9 @@ const AdminReminders: React.FC = () => {
             </Card>
           </Grid2>
 
-          <Grid2 sx={{width: "60%", background: '#DAD4CF', borderRadius: '0.5em'}}>
+          <Grid2 className="reminder-grid">
             <Card elevation={3}>
-              <CardContent sx={{background: '#fbe2dc'}}>
+              <CardContent className="reminder-content">
                 <Typography variant="h6" gutterBottom>
                   Reminders
                 </Typography>
@@ -98,17 +98,17 @@ const AdminReminders: React.FC = () => {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell sx={{fontWeight: 600}}>Description</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Done</TableCell>
-                        <TableCell sx={{fontWeight: 600}}>Actions</TableCell>
+                        <TableCell className="title-cell">Description</TableCell>
+                        <TableCell className="title-cell">Done</TableCell>
+                        <TableCell className="title-cell">Actions</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {reminders.map((reminder) => (
                         <TableRow key={reminder.id}>
-                          <TableCell sx={{width: '80%'}}>{reminder.description}</TableCell>
-                          <TableCell sx={{width: '10%'}}>{reminder.done ? "Yes" : "No"}</TableCell>
-                          <TableCell sx={{width: '10%'}}>
+                          <TableCell className="desc-cell">{reminder.description}</TableCell>
+                          <TableCell className="other-cell">{reminder.done ? "Yes" : "No"}</TableCell>
+                          <TableCell className="other-cell">
                             <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
                               <DeleteIcon color="error" />
                             </IconButton>
