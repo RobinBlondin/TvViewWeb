@@ -1,0 +1,27 @@
+.live-stream-container {
+    border-radius: 0.5em !important;
+    min-width: 100% !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex: 1 !important;
+    flex-grow: 1;
+    justify-content: center !important;
+    align-items: center !important;
+    border: none !important;
+}
+
+.stream-frame {
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0.3em 0.3em 0 0 !important;
+}
+/* 
+.main-container {
+    min-width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(circle at right, #6e3a40, #4c2b2f, #2e1a1e) !important;
+    flex: 1;
+    border: none !important;
+    border-radius: 0.5em !important;
+    padding: 0 !important;
+} */
