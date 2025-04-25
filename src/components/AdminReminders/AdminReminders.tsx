@@ -55,7 +55,7 @@ const AdminReminders: React.FC = () => {
   };
 
   return (
-    <Box className="main-container">
+    <Box className="ar-main-container">
       <Grid2 container spacing={4} className='grid-content-container'>
         
         <Grid2 className="add-reminder-grid">

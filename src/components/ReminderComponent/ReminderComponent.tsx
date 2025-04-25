@@ -10,6 +10,7 @@ import { getBusDepartures, getTrainDepartures } from "../../service/departureSer
 import { getAllReminders, getReminderById, updateReminder } from "../../service/reminderService";
 import CommuteComponent from "../CommuteComponent/CommuteComponent";
 import { HighwayBridgeComponent } from "../HighwayBridgeComponent/HighwayBridgeComponent";
+import './ReminderComponent.css'
 
 const ReminderList = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
@@ -89,71 +90,42 @@ const ReminderList = () => {
   };
 
   const LiveCamStream = () => (
-    <Container
-      className="test"
-      sx={{
-        borderRadius: "0.5em",
-        width: "100%",
-        height: "100%",
-        padding: "0 !important",
-        display: "flex",
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Container className="live-stream-container">
       <iframe
+        className="stream-frame"
         width="100%"
         height="100%"
-        src="https://www.youtube.com/embed/og8bbxl0iW8?autoplay=1&mute=1"
+        src="https://www.youtube.com/embed/F0GOOP82094?autoplay=1&mute=1"
         title="Live Camera"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        style={{ border: "none", padding: '0 !important', borderRadius: '0.5em'}}
       />
     </Container>
   );
-  
 
   return (
-    <Container sx={{ width: "100%", height: "100%", background: 'radial-gradient(circle at right, #6e3a40, #4c2b2f, #2e1a1e)'
-      , padding: "0 !important", borderRadius: "0.5em"}}>
+    <Container className="reminder-container">
   <Container
-    className="reminderList"
-    sx={{
-      display: 'flex',
-      justifyContent: 'start',
-      flexDirection: 'column',
-      alignItems: 'start',
-      flex: 1,
-      overflow: "hidden",
-      padding: component === "remindersList" && reminders.length > 0 ? "1em 0 0 0 !important": "0 !important",
-      fontSize: "1.5em",
-      height: "90%",
-    }}>
+    className="reminder-list"
+    sx={{ padding: component === "remindersList" && reminders.length > 0 ? "1em 0 0 0 !important": "0 !important" }}>
     {component === "remindersList" ? reminders.length > 0 ? (
       reminders.map((reminder) => (
         <Container
+          className="reminder-line"
           key={reminder.id}
           onClick={!reminder.done? () => handleCheck(reminder.id) : undefined}
           sx={{
             textDecoration: reminder.done ? 'line-through' : 'none',
             color: reminder.done ? 'gray' : 'black',
-            display: 'flex',
-            alignItems: 'center',
-            padding: "0 0 0 0.5em !important",
-            gap: "0.2em",
-            fontSize: "1em",
-            zIndex: 1,
           }}
         >
           <Checkbox
+            className="reminder-checkbox"
             checked={reminder.done}
             disabled={reminder.done}
             size="large"
             onChange={() => handleCheck(reminder.id)}
             sx={{
-              width: "2em",
               color: reminder.done ? "#7a5b5b !important" : "#f2c1b6 !important",
               '&.Mui-checked': {
                 color: reminder.done ? "#7a5b5b !important" : "#f2a9a0 !important",
@@ -163,7 +135,7 @@ const ReminderList = () => {
         </Container>
       ))
     ) : ( <LiveCamStream /> ) : loading ? (
-      <Container sx={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%"}}>
+      <Container className="reminder-loading-container">
         <CircularProgress />
       </Container>
     ) : departures.length > 0 ? (
@@ -171,35 +143,22 @@ const ReminderList = () => {
     ) : component === "bridge" ? (
       <HighwayBridgeComponent />
      ) : (
-      <Container sx={{display: "flex", alignItems: "center", justifyContent: "center", height: "100%"}}>
+      <Container className="no-departures-container">
         No departures in near time
       </Container>
     )}
   </Container>
   
-  <Container
-    sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      flexDirection: 'row',
-      alignItems: 'center',
-      padding: "0 !important",
-      gap: "1em",
-      fontSize: "1.5em",
-      height: "10%",
-      backgroundColor: "rgba(0, 0, 0, 0.3)",
-      color: '#f2a9a0'
-    }}>
-    <IconButton sx={{ color: "#f2a9a0" }} 
- size="large" onClick={() => handleCommuteClick("bus")}>
+  <Container className="reminder-button-container">
+    <IconButton className="reminder-button" size="large" onClick={() => handleCommuteClick("bus")}>
       <DirectionsBus />
     </IconButton>
     
-    <IconButton sx={{ color: "#f2a9a0" }} size="large" onClick={() => handleCommuteClick("train")}>
+    <IconButton className="reminder-button" size="large" onClick={() => handleCommuteClick("train")}>
       <Train />
     </IconButton>
     
-    <IconButton sx={{ color: "#f2a9a0" }} size="large" onClick={() => handleBridgeClick()}>
+    <IconButton className="reminder-button" size="large" onClick={() => handleBridgeClick()}>
       <AccountBalance />
     </IconButton>
   </Container>

@@ -122,7 +122,7 @@ const AdminSlides: React.FC = () => {
               }}
             >
               {selectedFile === null ? (
-                <ImageIcon sx={{ color: 'white', fontSize: "3em" }} />
+                <ImageIcon className="broken-image-icon" />
               ) : (
                 <></>
               )}

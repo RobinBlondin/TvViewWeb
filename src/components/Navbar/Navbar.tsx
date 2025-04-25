@@ -23,24 +23,24 @@ const Navbar = () => {
         }}
       >
         <Box
-          className='button-container'
+          className='navbar-button-container'
         >
           <Button
-            className="nav-button"
+            className="navbar-button"
             component={Link}
             to="/slides"
           >
             Slides
           </Button>
           <Button
-            className="nav-button"
+            className="navbar-button"
             component={Link}
             to="/reminders"
           >
             Reminders
           </Button>
           <Button
-            className="nav-button"
+            className="navbar-button"
             component={Link}
             to="/"
           >

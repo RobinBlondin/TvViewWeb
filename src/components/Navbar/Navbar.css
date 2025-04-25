@@ -1,4 +1,4 @@
-.button-container {
+.navbar-button-container {
     display: flex;
     gap: 2em;
     justify-content: center;
@@ -6,7 +6,7 @@
     flex-grow: 1;
 }
 
-.nav-button {
+.navbar-button {
     font-size: 1.3em !important; 
     font-weight: 600 !important;
     color: #DAD4CF !important;

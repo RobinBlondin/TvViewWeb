@@ -33,15 +33,8 @@ const SlideComponent: React.FC = () => {
 
   return (
     <Box
-      sx={{
-        width: '100%',
-        height: '100%',
-        backgroundImage: `url(${slides[currentIndex] ? slides[currentIndex].url : ""})`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        borderRadius: "0.5em",
-      }}
+      className="slide-container"
+      sx={{ backgroundImage: `url(${slides[currentIndex] ? slides[currentIndex].url : ""})` }}
     />
   );
 };

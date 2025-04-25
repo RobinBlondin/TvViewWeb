@@ -8,44 +8,16 @@ import './TvView.css';
 const TvView: React.FC = () => {
 
   return (
-    <Box sx={{
-      display: 'flex',
-      flexDirection: 'row',
-      width: '100vw',
-      height: '100vh',
-      overflow: 'hidden',
-      margin: 0,
-      padding: "0.5em",
-      gap: "0.5em"
-    }}>
-        <Box sx={{ 
-            width: '35%',
-            height: '100%',
-            position: 'relative',
-            gap: "0.5em",
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-        }}>
-     
-            <Box sx={{ 
-                width: '100%',
-                height: '60%'
-            }}>
+    <Box className="tv-view-container">
+        <Box className="tv-view-left-container">
+            <Box className="tv-view-calendar">
                 <CalendarComponent />
             </Box>
-            <Box sx={{
-                width: '100%',
-                height: '40%'
-            }}>
+            <Box className="tv-view-reminder">
                 <ReminderComponent />
             </Box>
         </Box>
-      <Box sx={{ 
-        width: '75%',
-        height: '100%',
-        position: 'relative'
-      }}>
+      <Box className="tv-view-slides">
         <SlideComponent />
       </Box>
     </Box>

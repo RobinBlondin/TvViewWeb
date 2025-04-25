@@ -1,10 +1,10 @@
-.main-container {
+.ar-main-container {
     align-items: start;
     border-top: 1px solid #fbe2dc;
     border-bottom: 1px solid #fbe2dc;
     height: 800px !important;
     overflow: auto;
-    max-width: 80% !important;
+    min-width: 80% !important;
     border-radius: 0 !important
 }
 
