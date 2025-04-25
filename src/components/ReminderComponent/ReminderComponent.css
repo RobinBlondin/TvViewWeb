@@ -1,0 +1,80 @@
+.live-stream-container {
+    border-radius: 0.5em 0.5em 0 0 !important;
+    min-width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex: 1 !important;
+    flex-grow: 1 !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.stream-frame {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    padding: 0 !important;
+    scale: 1.02 !important;
+    border-radius: 0.5em 0.5em 0 0 !important;
+    object-fit: cover !important;
+    border: none !important
+}
+
+.reminder-container {
+    min-width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(circle at right, #6e3a40, #4c2b2f, #2e1a1e) !important;
+    flex: 1 !important;
+    border-radius: 0.5em !important;
+    padding: 0 !important;
+    overflow: hidden;
+} 
+
+.reminder-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    flex: 1;
+    overflow: hidden;
+    font-size: 1.5em;
+    height: 90%;
+}
+
+.reminder-line {
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 0.5em !important;
+    gap: 0.2em;
+    font-size: 1em;
+    z-index: 1;
+}
+
+.reminder-checkbox {
+    width: 2em !important
+}
+
+.reminder-loading-container, .no-departures-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.reminder-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    padding: 0 !important;
+    font-size: 1.5em;
+    height: 10%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #f2a9a0;
+}
+
+.reminder-button {
+    color: #f2a9a0 !important;
+}

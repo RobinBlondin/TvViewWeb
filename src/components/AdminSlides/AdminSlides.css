@@ -10,9 +10,7 @@
   
   @media screen and (max-width: 1199px) {
     justify-content: start;
-    
   }
-
 }
 
 .sa-content-container {
@@ -21,9 +19,11 @@
   gap: 8px 16px;
   overflow-y: scroll;
   height: 740px;
-  min-width: 85%;
+  min-width: 80%;
   padding: 8px 0 0 0;
   margin: 0 !important;
+  border-top: 1px solid #fbe2dc;
+  border-bottom: 1px solid #fbe2dc;
 
   @media screen and (max-width: 1095px) {
     justify-content: center;
@@ -37,10 +37,19 @@
 .sa-button-container {
   margin: 0 !important;
   padding: 0 !important;
-  min-width: 85% !important;
-  max-width: 85% !important;
+  min-width: 80% !important;
   display: flex;
   justify-content: end;
+}
+
+.add-button {
+  background: #8A6A5B !important;
+  font-weight: bold !important;
+  color: #DAD4CF;
+}
+
+.add-button:hover {
+  background: #A98A74 !important;
 }
 
 @media screen and (max-width: 1199px) {
@@ -74,6 +83,7 @@
   height: 30em;
   padding: 0.5em 1em;
   margin: 0;
+  background-color: #DAD4CF;
   @media screen and (max-width: 500px) {
     width: 90%;
     height: 40%;
@@ -112,11 +122,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 12em;
   border-radius: 0.5em;
-  background-color: #888;
+  width: 100%;
+  height: 15em;
+  margin: 0 !important;
+  border: 1px solid #ddd
 }
 
+.save-button {
+  background: #8A6A5B !important;
+  font-weight: bold !important;
+  border-radius: 50px !important;
+  width: 25%;
+  height: 85%;
+}
+
+.save-button:hover {
+  background: #A98A74 !important;
+}
+
+.cancel-button {
+  height: 85%;
+  width: 25%;
+}
+
+.cancel-button, .choose-image-button {
+  color: #8A6A5B !important;
+  border: 2px solid !important;
+  font-weight: bold !important;
+  border-radius: 50px !important;
+}
+
+.cancel-button:hover, .choose-image-button:hover {
+  color: #A98A74 !important;
+}
 
 .preview-image {
   margin-top: 0.75em;
@@ -133,4 +172,9 @@
 
 .outlined-button {
   border: 2px solid;
+}
+
+.broken-image-icon {
+  color: white !important;
+  font-size: 3em !important;
 }

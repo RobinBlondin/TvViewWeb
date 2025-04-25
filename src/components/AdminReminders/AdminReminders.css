@@ -1,11 +1,15 @@
-.main-container {
+.ar-main-container {
     align-items: start;
-    padding: 10px; 
     border-top: 1px solid #fbe2dc;
     border-bottom: 1px solid #fbe2dc;
-    height: 800px;
+    height: 800px !important;
     overflow: auto;
-    width: 75%;
+    min-width: 80% !important;
+    border-radius: 0 !important
+}
+
+.grid-content-container {
+    padding: 1em 10em 1em 10em !important;
 }
 
 .add-reminder-grid {

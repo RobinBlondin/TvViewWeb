@@ -17,12 +17,10 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import React, { useEffect, useState } from 'react';
 import { ReminderModel } from '../../models/ReminderModel';
 import { createReminder, deleteReminderById, getAllReminders } from '../../service/reminderService';
-import './AdminReminders.css'
+import './AdminReminders.css';
 
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
@@ -57,74 +55,72 @@ const AdminReminders: React.FC = () => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Box className="main-container">
-        <Grid2 container spacing={4} className='grid-content-container'>
-          
-          <Grid2 className="add-reminder-grid">
-            <Card elevation={3}>
-              <CardContent className="add-reminder-content">
-                <Typography variant="h6" gutterBottom>
-                  Add Reminder
-                </Typography>
-                <TextField
-                  fullWidth
-                  className="text-field"
-                  label="Description"
-                  variant="outlined"
-                  value={description || ''}
-                  onChange={handleDescriptionChange}
-                />
-                <Button
-                  fullWidth
-                  className="add-button"
-                  variant="contained"
-                  startIcon={<AddIcon />}
-                  onClick={handleSubmitReminder}
-                >
-                  Add Reminder
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid2>
-
-          <Grid2 className="reminder-grid">
-            <Card elevation={3}>
-              <CardContent className="reminder-content">
-                <Typography variant="h6" gutterBottom>
-                  Reminders
-                </Typography>
-                <TableContainer component={Paper}>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell className="title-cell">Description</TableCell>
-                        <TableCell className="title-cell">Done</TableCell>
-                        <TableCell className="title-cell">Actions</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {reminders.map((reminder) => (
-                        <TableRow key={reminder.id}>
-                          <TableCell className="desc-cell">{reminder.description}</TableCell>
-                          <TableCell className="other-cell">{reminder.done ? "Yes" : "No"}</TableCell>
-                          <TableCell className="other-cell">
-                            <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
-                              <DeleteIcon color="error" />
-                            </IconButton>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </CardContent>
-            </Card>
-          </Grid2>
-
+    <Box className="ar-main-container">
+      <Grid2 container spacing={4} className='grid-content-container'>
+        
+        <Grid2 className="add-reminder-grid">
+          <Card elevation={3}>
+            <CardContent className="add-reminder-content">
+              <Typography variant="h6" gutterBottom>
+                Add Reminder
+              </Typography>
+              <TextField
+                fullWidth
+                className="text-field"
+                label="Description"
+                variant="outlined"
+                value={description || ''}
+                onChange={handleDescriptionChange}
+              />
+              <Button
+                fullWidth
+                className="add-button"
+                variant="contained"
+                startIcon={<AddIcon />}
+                onClick={handleSubmitReminder}
+              >
+                Add Reminder
+              </Button>
+            </CardContent>
+          </Card>
         </Grid2>
-      </Box>
-    </LocalizationProvider>
+
+        <Grid2 className="reminder-grid">
+          <Card elevation={3}>
+            <CardContent className="reminder-content">
+              <Typography variant="h6" gutterBottom>
+                Reminders
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell className="title-cell">Description</TableCell>
+                      <TableCell className="title-cell">Done</TableCell>
+                      <TableCell className="title-cell">Actions</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {reminders.map((reminder) => (
+                      <TableRow key={reminder.id}>
+                        <TableCell className="desc-cell">{reminder.description}</TableCell>
+                        <TableCell className="other-cell">{reminder.done ? "Yes" : "No"}</TableCell>
+                        <TableCell className="other-cell">
+                          <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
+                            <DeleteIcon color="error" />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </CardContent>
+          </Card>
+        </Grid2>
+
+      </Grid2>
+    </Box>
   );
 };
 

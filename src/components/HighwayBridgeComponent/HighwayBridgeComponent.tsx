@@ -3,6 +3,7 @@ import { Container, Typography, Paper, Divider } from '@mui/material';
 import { AccountBalance } from '@mui/icons-material';
 import { HighwayBridgeModel } from '../../models/HighwayBridgeModel';
 import { getHighwayBridgeOpenings } from '../../service/highwayBridgeService';
+import './HighwayBridgeComponent.css'
 
 export const HighwayBridgeComponent: React.FC = () => {
   const [bridgeOpenings, setBridgeOpenings] = useState<HighwayBridgeModel[]>([]);
@@ -19,13 +20,7 @@ export const HighwayBridgeComponent: React.FC = () => {
 
   if (bridgeOpenings.length === 0) {
     return (
-      <Container sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center', 
-        height: '100%',
-        flex: 1
-      }}>
+      <Container className="not-found-container">
         <Typography>No upcoming bridge openings scheduled</Typography>
       </Container>
     );
@@ -46,46 +41,30 @@ export const HighwayBridgeComponent: React.FC = () => {
     });
   };
   return (
-    <Container sx={{ 
-      padding: '0 !important',
-      height: '100% !important',
-      width: '100%',
-      overflow: 'auto',
+    <Container className='highway-container' sx={{ 
+      
     }}>
-      <Paper elevation={3} sx={{ 
-        padding: '1.5em',
-        background: 'inherit',
-        borderRadius: '0.5em, 0.5em 0 0',
-        height: "100%",
-        flex: 1,
-        color: "#f2a9a0"
-      }}>
-        <Typography variant="h5" sx={{ 
-          color: 'inhert',
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: '0.5em',
-          marginBottom: '0.5em'
-        }}>
+      <Paper elevation={3} className='highway-content-container'>
+        <Typography variant="h5" className='highway-title'>
           <AccountBalance sx={{ color: 'white'}} />
           Next Bridge Opening
         </Typography>
         
-        <Divider sx={{ margin: '1em 0' }} />
+        <Divider className='highway-divider' />
         
-        <Typography variant="h6" sx={{ marginBottom: '0.5em' }}>
+        <Typography variant="h6" className='highway-content-title'>
           {firstOpening.Alias}
         </Typography>
         
-        <Typography variant="body1" sx={{ marginBottom: '0.3em' }}>
+        <Typography variant="body1" className='highway-content-line'>
           <strong>Status:</strong> {firstOpening.Result}
         </Typography>
         
-        <Typography variant="body1" sx={{ marginBottom: '0.3em' }}>
+        <Typography variant="body1" className='highway-content-line'>
           <strong>Starts:</strong> {formatTime(firstOpening.StartTime)}
         </Typography>
         
-        <Typography variant="body1" sx={{ marginBottom: '0.3em' }}>
+        <Typography variant="body1" className='highway-content-line'>
           <strong>Ends:</strong> {formatTime(firstOpening.EndTime)}
         </Typography>
       </Paper>

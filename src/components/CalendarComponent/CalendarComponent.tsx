@@ -66,16 +66,7 @@ const CalendarComponent: React.FC = () => {
                     return (
                         <Container key={index} className="date">
                           {date.getDate() === new Date().getDate() ?
-                          <Container 
-                            sx={{
-                              backgroundColor: "rgba(252, 123, 3, 0.7)", 
-                              width: "1.5em", 
-                              height: "1.5em", 
-                              borderRadius: "50%", 
-                              display: "flex", 
-                              justifyContent: "center", 
-                              alignItems: "center"
-                            }}>{date.getDate()}</Container> : date.getDate()}
+                          <Container className='marked-date'>{date.getDate()}</Container> : date.getDate()}
                         </Container>
                     )
                 })
@@ -83,7 +74,7 @@ const CalendarComponent: React.FC = () => {
         </Container>
         <Container className="events-container">
               {
-              getDatesOfCurrentWeekFromSundayToSaturday().map((date, index) => {
+              getDatesOfCurrentWeekFromSundayToSaturday().map((_, index) => {
                 return (
                   <Container key={index} className="events">
                     {
