@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const TOKEN_STORAGE_KEY = import.meta.env.VITE_GOOGLE_ID_TOKEN_STORAGE_KEY;
+const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN;
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
