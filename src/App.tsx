@@ -30,6 +30,10 @@ function App() {
   };
 
   useEffect(() => {
+    if(!localStorage.getItem("preLoginPath")) {
+      localStorage.setItem("preLoginPath", window.location.pathname)
+    }
+
     if (window.location.search.includes("code=")) {
     
       if (!sessionStorage.getItem("oauthProcessed")) {
@@ -62,11 +66,10 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
-          <>
-            {location.pathname !== '/' && <Navbar />}
             <Routes>
               <Route path="/reminders" element={
                 <Box className="outer-content-container">
+                  <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminReminders />
                   </Container>
@@ -74,6 +77,7 @@ function App() {
               } />
               <Route path="/slides" element={
                 <Box className="outer-content-container">
+                  <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminSlides />
                   </Container>
@@ -81,9 +85,9 @@ function App() {
               } />
               <Route path="/" element={<TvView />} />
             </Routes>
-          </>
+        
         ) : (
-          <AutoLogin isTvView={location.pathname === '/'} initialPath={window.location.href} />
+          <AutoLogin isTvView={localStorage.getItem("preLoginPath") === '/'} initialPath={window.location.href} />
         )}
       </ThemeProvider>
     </GoogleOAuthProvider>
