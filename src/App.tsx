@@ -2,7 +2,7 @@ import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/ma
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AdminReminders from "./components/AdminReminders/AdminReminders";
 import AdminSlides from "./components/AdminSlides/AdminSlides";
@@ -15,7 +15,6 @@ const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN
 
 function App() {
   const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
-  const location = useLocation();
 
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
@@ -34,14 +33,6 @@ function App() {
       localStorage.setItem("preLoginPath", window.location.pathname)
     }
 
-    if (window.location.search.includes("code=")) {
-    
-      if (!sessionStorage.getItem("oauthProcessed")) {
-        window.history.replaceState({}, document.title, window.location.pathname);
-        sessionStorage.setItem("oauthProcessed", "true");
-      }
-    }
-  
     const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY);
   
     if (currentToken && !isJwtExpired(currentToken)) {

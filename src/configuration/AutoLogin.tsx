@@ -65,6 +65,7 @@ const AutoLogin: React.FC<{ isTvView: boolean, initialPath: string }> = ({ isTvV
       window.location.href = localStorage.getItem("initialPath") || "/";
       
       localStorage.removeItem("initialPath")
+      
 
     } catch (error) {
       console.error("Token exchange failed:", error);
@@ -73,11 +74,11 @@ const AutoLogin: React.FC<{ isTvView: boolean, initialPath: string }> = ({ isTvV
   };
 
   useEffect(() => {
+    localStorage.removeItem("preLoginPath")
     if(localStorage.getItem("loginProcessStarted")) {
       return;
     }
 
-    console.log("PATH", initialPath)
     if(!localStorage.getItem("initialPath")) {
       localStorage.setItem("initialPath", initialPath)
     }
