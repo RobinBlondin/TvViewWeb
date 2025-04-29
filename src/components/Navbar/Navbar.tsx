@@ -10,7 +10,7 @@ const Navbar = () => {
     <AppBar
       position="static"
       sx={{
-        background: 'rgba(0, 0, 0, 0.4)',
+        background: 'rgba(0, 0, 0, 0.2)',
         color: '#FFFFFF'
       }}
     >
