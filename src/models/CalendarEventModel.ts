@@ -14,5 +14,4 @@ export class CalendarEventModel {
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
 }
