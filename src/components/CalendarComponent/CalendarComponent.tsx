@@ -49,6 +49,17 @@ const CalendarComponent: React.FC = () => {
     return dates
   }
 
+  const getEventColor = (index: number) => {
+    const colors = [
+      'rgba(46, 134, 222, 0.85)',
+      'rgba(40, 180, 99, 0.85)',
+      'rgba(175, 122, 197, 0.85)',
+      'rgba(231, 76, 60, 0.85)',
+      'rgba(23, 165, 137, 0.85)',
+    ];
+    return colors[index % colors.length];
+  };
+
   return (
     <Container className="calendar-container">
         <Container className="days-container">
@@ -74,13 +85,17 @@ const CalendarComponent: React.FC = () => {
         </Container>
         <Container className="events-container">
               {
-              getDatesOfCurrentWeekFromSundayToSaturday().map((_, index) => {
+              getDatesOfCurrentWeekFromSundayToSaturday().map((_, i) => {
                 return (
-                  <Container key={index} className="events">
+                  <Container key={i} className="events">
                     {
-                      eventsMap.get(index)?.map((event, index) => {
+                      eventsMap.get(i)?.map((event, j) => {
                         return (
-                          <Container key={index} className="event">
+                          <Container 
+                            key={j} 
+                            className="event" 
+                            sx={{ background: getEventColor(i-j) }} lang="sv"
+                          >
                             <Container className="event-time">{new Date(event.startTime).toTimeString().substring(0, 5)}</Container>
                             <Container className="event-title">{event.title}</Container>
                           </Container>

@@ -1,5 +1,5 @@
 import { AccountBalance, DirectionsBus, Train } from "@mui/icons-material";
-import { CircularProgress, IconButton } from "@mui/material";
+import { CircularProgress, IconButton, Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import Container from "@mui/material/Container/Container";
 import { useEffect, useState } from "react";
@@ -105,9 +105,18 @@ const ReminderList = () => {
 
   return (
     <Container className="reminder-container">
+      { component === "remindersList" && 
+        <Container className="reminder-title">
+          <Typography fontSize="1.5em">KOM IHÅG!</Typography>
+        </Container> 
+      }
   <Container
     className="reminder-list"
-    sx={{ padding: component === "remindersList" && reminders.length > 0 ? "1em 0 0 0 !important": "0 !important" }}>
+    sx={{ 
+      maxHeight: component === "remindersList" ? "80%" : "90%",
+      minHeight: component === "remindersList" ? "80%" : "90%",
+      overflow: component === "remindersList" ? "auto" : "hidden",
+      padding: "0 !important" }}>
     {component === "remindersList" ? reminders.length > 0 ? (
       reminders.map((reminder) => (
         <Container
@@ -131,7 +140,7 @@ const ReminderList = () => {
                 color: reminder.done ? "#7a5b5b !important" : "#f2a9a0 !important",
               }}}
           />
-          <span style={{ color: reminder.done ? "#8a7777" : "#fbe2dc"}}>{reminder.description}</span>
+          <span className="line-text" style={{ color: reminder.done ? "#8a7777" : "#fbe2dc"}}>{reminder.description}</span>
         </Container>
       ))
     ) : ( <LiveCamStream /> ) : loading ? (

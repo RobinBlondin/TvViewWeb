@@ -36,7 +36,7 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
 
   return (
     <Box className="commute-container">
-        <TableContainer className="table-container">
+        <TableContainer className="table-container" >
             <Table className="table" aria-label="simple table">
               <TableHead>
                 <TableRow className="table-row title-row">
@@ -46,8 +46,8 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                { [0, 1, 2, 3, 4].map((index) => (
-                  <TableRow className="table-row" sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF"}} key={index}>
+                { [0, 1, 2, 3, 4, 5].map((index) => (
+                  <TableRow className="table-row" sx={{backgroundColor: index % 2 === 0 ? "white" : "rgba(100, 250, 113, 0.7)", color: index % 2 === 0 ? "#000000" : "#FFFFFF" }} key={index}>
                     <TableCell className="table-cell">{ filteredDepartures[index]? fixLineName(filteredDepartures[index].name) : "---"}</TableCell>
                     <TableCell className="table-cell">{filteredDepartures[index] ? filteredDepartures[index].direction : "---"}</TableCell>
                     <TableCell className="table-cell">

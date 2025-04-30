@@ -46,8 +46,8 @@ export const HighwayBridgeComponent: React.FC = () => {
     }}>
       <Paper elevation={3} className='highway-content-container'>
         <Typography variant="h5" className='highway-title'>
-          <AccountBalance sx={{ color: 'white'}} />
-          Next Bridge Opening
+          <AccountBalance sx={{ color: 'inherit'}} />
+          Nästa Broöppning
         </Typography>
         
         <Divider className='highway-divider' />

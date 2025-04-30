@@ -22,8 +22,8 @@
 
 .marked-date {
     background-color: rgba(252, 123, 3, 0.7) !important;
-    width: 1.5em !important;
-    height: 1.5em !important;
+    width: 1.7em !important;
+    height: 1.7em !important;
     border-radius: 50px !important; 
     display: flex;
     justify-content: center; 
@@ -41,15 +41,16 @@
 
 .events-container {
     height: 70%;
-    gap: 1em;
 }
 
 .events {
     display: flex;
     flex-direction: column;
-    gap: 0.75em;
-    padding: 0 !important;
-    margin: 0 !important;
+    gap: 0.2em;
+    padding: 0.1em !important;
+    margin: 0.5em 0 0 0 !important;
+    width: calc(100% / 7) !important;
+    height: 100%;
 }
 
 .day, .date {
@@ -71,34 +72,32 @@
     font-weight: 700;
 }
 
-.events {
-    width: calc(100% / 7) !important;
-    height: 100%;
-    padding: 0.2em 0 !important;
-}
-
 .event {
     width: 100%;
-    min-height: 4em;
     height: auto;
-    background-color: rgba(110, 155, 245, 0.8);
-    border-radius: 8px;
+    border-radius: 0.5em !important;
     margin: 0 !important;
-    padding: 0.3em 0 0.3em 0 !important;
+    padding: 0.4em 0.3em !important;
+    
 }
 
 .event-time, .event-title {
-    font-size: 0.75em;
-    padding: 0.2em 0.5em !important;
+    font-size: 1em;
+    font-weight: 600;
+    padding: 0 !important;
     color: white;
+    line-height: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens:auto;
 }
 
 .event-time {
-    height: 25%;
+    height: 30%;
 }
 
 .event-title {
-    font-size: 0.8em;
-    font-weight: 600;
+    font-size: 1em;
+    font-weight: 500;
     line-height: normal;
 }

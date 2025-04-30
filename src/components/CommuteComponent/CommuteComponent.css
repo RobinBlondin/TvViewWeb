@@ -1,23 +1,32 @@
 .commute-container {
-    flex: 1 !important;
-    flex-grow: 1 !important;
-    min-width: 100% !important;
-    height: 100% !important;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0.5em 0.5em 0 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+  }
+  
+  .table-container {
+    width: 100%;
+    height: 100%;
     padding: 0 !important;
-    border-radius: 0.5em 0.5em 0 0 !important;
-}
-
-.table-container {
-    height: 100%; 
-}
+    border-radius: 0.5em 0.5em 0 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    overflow: hidden;
+  }
 
 .table {
-    height: 100%;
+    width: 100%;
 }
 
 .table-row {
     width: 100%;
-    height: calc(100% / 7) !important;
+    line-height: 2em !important;
 }
 
 .title-row {
@@ -28,6 +37,7 @@
 .table-cell {
     font-size: 0.7em !important;
     padding-left: 1em !important;
+    line-height: 0.5em !important;
 }
 
 .table-cell-title {
