@@ -116,7 +116,7 @@ const ReminderList = () => {
       maxHeight: component === "remindersList" ? "80%" : "90%",
       minHeight: component === "remindersList" ? "80%" : "90%",
       overflow: component === "remindersList" ? "auto" : "hidden",
-      padding: "0 !important" }}>
+      padding: component  === "remindersList" ? "0.5em 0 0 0 !important" : "0 !important"}}>
     {component === "remindersList" ? reminders.length > 0 ? (
       reminders.map((reminder) => (
         <Container
