@@ -1,7 +1,9 @@
 import axios from "axios";
 import { WeatherModel } from "../models/WeatherModel";
 
-const url = "https://api.open-meteo.com/v1/forecast?latitude=58.9&longitude=17.5&current&current=windspeed_10m&current=temperature_2m&current=weather_code"
+const latitude = 58.9;
+const longitude = 17.5;
+const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current&current=windspeed_10m&current=temperature_2m&current=weather_code&daily=sunrise&daily=sunset`;
 
 const apiClient = axios.create({
   headers: {
@@ -10,11 +12,13 @@ const apiClient = axios.create({
 });
 
 export const getWeatherData = async (): Promise<WeatherModel> => {
-    return apiClient.get(url).then((res) => res.data.current).then((data) => {
+    return apiClient.get(weatherUrl).then((res) => res.data).then((data) => {
         const weatherModel = new WeatherModel(
-            data.temperature_2m,
-            data.windspeed_10m,
-            data.weather_code
+            data.current.temperature_2m,
+            data.current.windspeed_10m,
+            data.current.weather_code,
+            data.daily.sunrise[0],
+            data.daily.sunset[0]
         );
         return weatherModel;
     }
