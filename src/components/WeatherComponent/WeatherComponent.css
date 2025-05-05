@@ -1,0 +1,8 @@
+.weather-icon {
+    image-rendering: auto;
+    width: 3em;
+    height: 3em;
+    object-fit: contain;
+    scale: 2; /* Zoom in */
+  }
+  
