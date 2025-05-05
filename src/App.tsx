@@ -9,6 +9,7 @@ import AdminSlides from "./components/AdminSlides/AdminSlides";
 import Navbar from "./components/Navbar/Navbar";
 import TvView from "./components/TvView/TvView";
 import AutoLogin from "./configuration/AutoLogin";
+import ClockComponent from "./components/ClockComponent/ClockComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN
@@ -71,6 +72,15 @@ function App() {
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminSlides />
+                  </Container>
+                </Box>
+              } />
+
+              <Route path="/clock" element={
+                <Box className="outer-content-container">
+                  <Navbar />
+                  <Container maxWidth={false} className="content-container">
+                    <ClockComponent />
                   </Container>
                 </Box>
               } />
