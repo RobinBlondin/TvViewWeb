@@ -5,4 +5,17 @@
     background-size: cover !important;
     background-repeat: no-repeat !important;
     border-radius: 0.5em !important; 
+    position: relative !important;
+}
+
+.slide-time-container {
+    margin: 0 !important;
+    width: auto !important;
+
+    height: 100px !important;
+    position: absolute !important;
+    bottom: 2.5% !important;
+    right: 5% !important;
+    padding: 0 !important;
+ 
 }

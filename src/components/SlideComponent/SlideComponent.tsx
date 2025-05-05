@@ -1,9 +1,10 @@
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { SlideModel } from '../../models/SlideModel';
 import { getAllSlides } from '../../service/slideService';
 import useWebSocket from 'react-use-websocket';
 import './SlideComponent.css';
+import ClockComponent from '../ClockComponent/ClockComponent';
 
 const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
@@ -35,7 +36,11 @@ const SlideComponent: React.FC = () => {
     <Box
       className="slide-container"
       sx={{ backgroundImage: `url(${slides[currentIndex] ? slides[currentIndex].url : ""})` }}
-    />
+    >
+      <Container className="slide-time-container">
+          <ClockComponent />
+      </Container>
+    </Box>
   );
 };
 
