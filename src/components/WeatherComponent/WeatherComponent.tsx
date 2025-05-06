@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getWeatherData } from '../../service/weatherService';
 import { WeatherModel } from '../../models/WeatherModel';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { WeatherMap } from './WeatherMap';
 import './WeatherComponent.css'
 
@@ -40,7 +40,7 @@ const WeatherComponent: React.FC = () => {
         fetchWeaterData();
         setInterval(() => {
             fetchWeaterData();
-        }, 1000 * 60 );
+        }, 1000 * 60 * 15);
     }, [])
 
     useEffect(() => {
@@ -54,20 +54,17 @@ const WeatherComponent: React.FC = () => {
                 display: "flex", 
                 justifyContent: "center",
                 alignItems: "center", 
-                flexDirection: "column", 
-                color: "white", 
-                fontSize: "3em"
+                color: "white",
+                padding: "0 !important"
             }}
         >
-            <img src={weatherIcon} alt="" className="weather-icon"/>
-            
-            <div>{weatherData?.temperature }°C</div>
-            <div>Wind speed: { displayWindSpeedAsMeterPerSecond( weatherData?.windSpeed) }m/s</div>
-            <div>Weather code: { weatherData?.weatherCode }</div>
-            <div>Weather desc: { weatherDesc }</div>
-
-            
-
+            <Container sx={{ height: '100%', width: "auto", display: "flex", flexDirection: "column"}}>
+                <img src={weatherIcon} alt="" className="weather-icon"/>
+                <Typography sx={{fontSize: "5em", fontWeight: 600, lineHeight: 1}}>
+                    {weatherData?.temperature }°C
+                </Typography>
+                <Typography sx={{fontSize: "2em", fontWeight: 500}}>{ displayWindSpeedAsMeterPerSecond( weatherData?.windSpeed) }m/s</Typography>
+            </Container>
         </Container>
     )
 }
