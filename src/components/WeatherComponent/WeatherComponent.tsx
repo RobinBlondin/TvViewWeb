@@ -9,7 +9,7 @@ import './WeatherComponent.css'
 const WeatherComponent: React.FC = () => {
     const [weatherData, setWeatherData] = useState<WeatherModel>()
     const [weatherIcon, setWeatherIcon] = useState<string>()
-    const [weatherDesc, setWeatherDesc] = useState<string>()
+    // const [weatherDesc, setWeatherDesc] = useState<string>()
 
     const fetchWeaterData = async () => {
         await getWeatherData().then(data => setWeatherData(data));
@@ -18,10 +18,10 @@ const WeatherComponent: React.FC = () => {
     const updateWeatherIcon = (weatherCode: number | undefined) => {
         if(!isSunSet()) {
             setWeatherIcon(WeatherMap[weatherCode || "0"]?.day?.image)
-            setWeatherDesc(WeatherMap[weatherCode || "0"]?.day?.description)
+            // setWeatherDesc(WeatherMap[weatherCode || "0"]?.day?.description)
         } else {
             setWeatherIcon(WeatherMap[weatherCode || "0"]?.night?.image)
-            setWeatherDesc(WeatherMap[weatherCode || "0"]?.night?.description)
+            // setWeatherDesc(WeatherMap[weatherCode || "0"]?.night?.description)
         }
     }
 
