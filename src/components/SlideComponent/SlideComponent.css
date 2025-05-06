@@ -11,11 +11,21 @@
 .slide-time-container {
     margin: 0 !important;
     width: auto !important;
-
     height: 100px !important;
     position: absolute !important;
-    bottom: 2.5% !important;
-    right: 5% !important;
+    bottom: 2em !important;
+    right: 2em !important;
+    padding: 0 !important;
+ 
+}
+
+.slide-weather-container {
+    margin: 0 !important;
+    width: auto !important;
+    height: 100px !important;
+    position: absolute !important;
+    bottom: 14em !important;
+    left: 1em !important;
     padding: 0 !important;
  
 }
