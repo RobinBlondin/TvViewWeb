@@ -1,0 +1,9 @@
+.weather-icon {
+    image-rendering: auto;
+    width: 10em;
+    height: 10em;
+    object-fit: contain;
+    scale: 1;
+    margin-left: -2em;
+  }
+  

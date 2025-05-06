@@ -5,4 +5,27 @@
     background-size: cover !important;
     background-repeat: no-repeat !important;
     border-radius: 0.5em !important; 
+    position: relative !important;
+}
+
+.slide-time-container {
+    margin: 0 !important;
+    width: auto !important;
+    height: 100px !important;
+    position: absolute !important;
+    bottom: 2em !important;
+    right: 2em !important;
+    padding: 0 !important;
+ 
+}
+
+.slide-weather-container {
+    margin: 0 !important;
+    width: auto !important;
+    height: 100px !important;
+    position: absolute !important;
+    bottom: 14em !important;
+    left: 1em !important;
+    padding: 0 !important;
+ 
 }
