@@ -9,7 +9,6 @@ import './WeatherComponent.css'
 const WeatherComponent: React.FC = () => {
     const [weatherData, setWeatherData] = useState<WeatherModel>()
     const [weatherIcon, setWeatherIcon] = useState<string>()
-    // const [weatherDesc, setWeatherDesc] = useState<string>()
 
     const fetchWeaterData = async () => {
         await getWeatherData().then(data => setWeatherData(data));
@@ -18,15 +17,32 @@ const WeatherComponent: React.FC = () => {
     const updateWeatherIcon = (weatherCode: number | undefined) => {
         if(!isSunSet()) {
             setWeatherIcon(WeatherMap[weatherCode || "0"]?.day?.image)
-            // setWeatherDesc(WeatherMap[weatherCode || "0"]?.day?.description)
         } else {
             setWeatherIcon(WeatherMap[weatherCode || "0"]?.night?.image)
-            // setWeatherDesc(WeatherMap[weatherCode || "0"]?.night?.description)
         }
     }
 
-    const displayWindSpeedAsMeterPerSecond = (speed: number | undefined): number => {
-        return Math.round((speed || 0 / 3.6) * 10) / 10
+    const setDegreeToDirection = (degree: number  | undefined): string => {
+        if(!degree) return "";
+
+        if(degree >= 335 && degree <= 25 ) {
+            return "↓"
+        } else if (degree >= 290 && degree < 335) {
+            return "↘︎"
+        } else if (degree >= 250 && degree < 290) {
+            return "→"
+        } else if (degree >= 205 && degree < 250) {
+            return "↗︎"
+        } else if (degree >= 155 && degree < 205) {
+            return "↑"
+        } else if (degree >= 110 && degree < 155) {
+            return "↖︎"
+        } else if (degree >= 70 && degree < 110) {
+            return "←"
+        } else {
+            return "↙︎"
+        }
+
     }
 
     const isSunSet = (): boolean => {
@@ -46,8 +62,6 @@ const WeatherComponent: React.FC = () => {
     useEffect(() => {
         updateWeatherIcon(weatherData?.weatherCode)
     }, [weatherData])
-
-    
    
     return (
         <Container sx={{ 
@@ -55,15 +69,42 @@ const WeatherComponent: React.FC = () => {
                 justifyContent: "center",
                 alignItems: "center", 
                 color: "white",
-                padding: "0 !important"
+                padding: "0 !important",
+
             }}
         >
             <Container sx={{ height: '100%', width: "auto", display: "flex", flexDirection: "column"}}>
                 <img src={weatherIcon} alt="" className="weather-icon"/>
+                <Container sx={{display: "flex", alignItems: "end", justifyContent: "start", padding: "0 !important", gap: "0.5em"}}>
+                    <img src="src/assets/icons/weather/percipitation.png" alt="" style={{width: "1.5em"}} />
+                    <Typography 
+                        sx={{
+                            fontSize: "1.3em", 
+                            fontWeight: 500, 
+                            lineHeight: 1,
+                            color: "lightgray"
+                        }}
+                    >
+                        Nedb: {weatherData?.precipitation}mm
+                    </Typography>
+                </Container>
+                
                 <Typography sx={{fontSize: "5em", fontWeight: 600, lineHeight: 1}}>
                     {weatherData?.temperature }°C
                 </Typography>
-                <Typography sx={{fontSize: "2em", fontWeight: 500}}>{ displayWindSpeedAsMeterPerSecond( weatherData?.windSpeed) }m/s</Typography>
+                <Container sx={{display: "flex", alignItems: "center", justifyContent: "start", padding: "0 !important", gap: "0.5em"}}>
+                    <img src="src/assets/icons/weather/wind.svg" alt="" style={{width: "3em"}} />
+                    <Typography 
+                        sx={{
+                            fontSize: "1.5em", 
+                            fontWeight: 500, 
+                            lineHeight: 1, 
+                            color: "lightgray"
+                        }}
+                    >
+                        { `${setDegreeToDirection(weatherData?.windDirection)} ${ weatherData?.windSpeed}m/s` }
+                    </Typography>
+                </Container>
             </Container>
         </Container>
     )

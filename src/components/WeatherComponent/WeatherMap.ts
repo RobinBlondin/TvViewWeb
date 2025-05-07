@@ -15,282 +15,282 @@ type TimeOfDay = {
 export const WeatherMap: WeatherMapType = {
 	"0":{
 		"day":{
-			"description":"Sunny",
-			"image":"http://openweathermap.org/img/wn/01d@2x.png"
+			"description":"Soligt",
+			"image":"src/assets/icons/weather/clear-day.svg"
 		},
 		"night":{
-			"description":"Clear",
-			"image":"http://openweathermap.org/img/wn/01n@2x.png"
+			"description":"Klart",
+			"image":"src/assets/icons/weather/clear-night.svg"
 		}
 	},
 	"1":{
 		"day":{
-			"description":"Mainly Sunny",
-			"image":"http://openweathermap.org/img/wn/01d@2x.png"
+			"description":"Soligt",
+			"image":"src/assets/icons/weather/clear-day.svg"
 		},
 		"night":{
-			"description":"Mainly Clear",
-			"image":"http://openweathermap.org/img/wn/01n@2x.png"
+			"description":"Klart",
+			"image":"src/assets/icons/weather/clear-night.svg"
 		}
 	},
 	"2":{
 		"day":{
-			"description":"Partly Cloudy",
-			"image":"http://openweathermap.org/img/wn/02d@2x.png"
+			"description":"Molnigt",
+			"image":"src/assets/icons/weather/cloudy-2-day.svg"
 		},
 		"night":{
-			"description":"Partly Cloudy",
-			"image":"http://openweathermap.org/img/wn/02n@2x.png"
+			"description":"Molnigt",
+			"image":"src/assets/icons/weather/cloudy-2-night.svg"
 		}
 	},
 	"3":{
 		"day":{
-			"description":"Cloudy",
-			"image":"http://openweathermap.org/img/wn/03d@2x.png"
+			"description":"Molnigt",
+			"image":"src/assets/icons/weather/cloudy.svg"
 		},
 		"night":{
-			"description":"Cloudy",
-			"image":"http://openweathermap.org/img/wn/03n@2x.png"
+			"description":"Molnigt",
+			"image":"src/assets/icons/weather/cloudy.svg"
 		}
 	},
 	"45":{
 		"day":{
-			"description":"Foggy",
-			"image":"http://openweathermap.org/img/wn/50d@2x.png"
+			"description":"Dimma",
+			"image":"src/assets/icons/weather/fog.svg"
 		},
 		"night":{
-			"description":"Foggy",
-			"image":"http://openweathermap.org/img/wn/50n@2x.png"
+			"description":"Dimma",
+			"image":"src/assets/icons/weather/fog.svg"
 		}
 	},
 	"48":{
 		"day":{
-			"description":"Rime Fog",
-			"image":"http://openweathermap.org/img/wn/50d@2x.png"
+			"description":"Dimma",
+			"image":"src/assets/icons/weather/fog.svg"
 		},
 		"night":{
-			"description":"Rime Fog",
-			"image":"http://openweathermap.org/img/wn/50n@2x.png"
+			"description":"Dimma",
+			"image":"src/assets/icons/weather/fog.svg"
 		}
 	},
 	"51":{
 		"day":{
-			"description":"Light Drizzle",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		},
 		"night":{
-			"description":"Light Drizzle",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		}
 	},
 	"53":{
 		"day":{
-			"description":"Drizzle",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		},
 		"night":{
-			"description":"Drizzle",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		}
 	},
 	"55":{
 		"day":{
-			"description":"Heavy Drizzle",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		},
 		"night":{
-			"description":"Heavy Drizzle",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		}
 	},
 	"56":{
 		"day":{
-			"description":"Light Freezing Drizzle",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Underkylt Regn",
+			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
 		},
 		"night":{
-			"description":"Light Freezing Drizzle",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Underkylt Regn",
+			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
 		}
 	},
 	"57":{
 		"day":{
-			"description":"Freezing Drizzle",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Underkylt Regn",
+			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
 		},
 		"night":{
-			"description":"Freezing Drizzle",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Underkylt Regn",
+			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
 		}
 	},
 	"61":{
 		"day":{
-			"description":"Light Rain",
-			"image":"http://openweathermap.org/img/wn/10d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		},
 		"night":{
-			"description":"Light Rain",
-			"image":"http://openweathermap.org/img/wn/10n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		}
 	},
 	"63":{
 		"day":{
-			"description":"Rain",
-			"image":"http://openweathermap.org/img/wn/10d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		},
 		"night":{
-			"description":"Rain",
-			"image":"http://openweathermap.org/img/wn/10n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		}
 	},
 	"65":{
 		"day":{
-			"description":"Heavy Rain",
-			"image":"http://openweathermap.org/img/wn/10d@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		},
 		"night":{
-			"description":"Heavy Rain",
-			"image":"http://openweathermap.org/img/wn/10n@2x.png"
+			"description":"Regn",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		}
 	},
 	"66":{
 		"day":{
-			"description":"Light Freezing Rain",
-			"image":"http://openweathermap.org/img/wn/10d@2x.png"
+			"description":"Snöblandat Regn",
+			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
 		},
 		"night":{
-			"description":"Light Freezing Rain",
-			"image":"http://openweathermap.org/img/wn/10n@2x.png"
+			"description":"Snöblandat Regn",
+			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
 		}
 	},
 	"67":{
 		"day":{
-			"description":"Freezing Rain",
-			"image":"http://openweathermap.org/img/wn/10d@2x.png"
+			"description":"Snöblandat Regn",
+			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
 		},
 		"night":{
-			"description":"Freezing Rain",
-			"image":"http://openweathermap.org/img/wn/10n@2x.png"
+			"description":"Snöblandat Regn",
+			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
 		}
 	},
 	"71":{
 		"day":{
-			"description":"Light Snow",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-1.svg"
 		},
 		"night":{
-			"description":"Light Snow",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-1.svg"
 		}
 	},
 	"73":{
 		"day":{
-			"description":"Snow",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-2.svg"
 		},
 		"night":{
-			"description":"Snow",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-2.svg"
 		}
 	},
 	"75":{
 		"day":{
-			"description":"Heavy Snow",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-3.svg"
 		},
 		"night":{
-			"description":"Heavy Snow",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-3.svg"
 		}
 	},
 	"77":{
 		"day":{
-			"description":"Snow Grains",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-3.svg"
 		},
 		"night":{
-			"description":"Snow Grains",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöfall",
+			"image":"src/assets/icons/weather/snowy-3.svg"
 		}
 	},
 	"80":{
 		"day":{
-			"description":"Light Showers",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		},
 		"night":{
-			"description":"Light Showers",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-1.svg"
 		}
 	},
 	"81":{
 		"day":{
-			"description":"Showers",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		},
 		"night":{
-			"description":"Showers",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-2.svg"
 		}
 	},
 	"82":{
 		"day":{
-			"description":"Heavy Showers",
-			"image":"http://openweathermap.org/img/wn/09d@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		},
 		"night":{
-			"description":"Heavy Showers",
-			"image":"http://openweathermap.org/img/wn/09n@2x.png"
+			"description":"Regnskurar",
+			"image":"src/assets/icons/weather/rainy-3.svg"
 		}
 	},
 	"85":{
 		"day":{
-			"description":"Light Snow Showers",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöbyar",
+			"image":"src/assets/icons/weather/snowy-1.svg"
 		},
 		"night":{
-			"description":"Light Snow Showers",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöbyar",
+			"image":"src/assets/icons/weather/snowy-1.svg"
 		}
 	},
 	"86":{
 		"day":{
-			"description":"Snow Showers",
-			"image":"http://openweathermap.org/img/wn/13d@2x.png"
+			"description":"Snöbyar",
+			"image":"src/assets/icons/weather/snowy-2.svg"
 		},
 		"night":{
-			"description":"Snow Showers",
-			"image":"http://openweathermap.org/img/wn/13n@2x.png"
+			"description":"Snöbyar",
+			"image":"src/assets/icons/weather/snowy-2.svg"
 		}
 	},
 	"95":{
 		"day":{
-			"description":"Thunderstorm",
-			"image":"http://openweathermap.org/img/wn/11d@2x.png"
+			"description":"Åskväder",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		},
 		"night":{
-			"description":"Thunderstorm",
-			"image":"http://openweathermap.org/img/wn/11n@2x.png"
+			"description":"Åskväder",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		}
 	},
 	"96":{
 		"day":{
-			"description":"Light Thunderstorms With Hail",
-			"image":"http://openweathermap.org/img/wn/11d@2x.png"
+			"description":"Åskväder med hagel",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		},
 		"night":{
-			"description":"Light Thunderstorms With Hail",
-			"image":"http://openweathermap.org/img/wn/11n@2x.png"
+			"description":"Åskväder med hagel",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		}
 	},
 	"99":{
 		"day":{
-			"description":"Thunderstorm With Hail",
-			"image":"http://openweathermap.org/img/wn/11d@2x.png"
+			"description":"Åskväder med hagel",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		},
 		"night":{
-			"description":"Thunderstorm With Hail",
-			"image":"http://openweathermap.org/img/wn/11n@2x.png"
+			"description":"Åskväder med hagel",
+			"image":"src/assets/icons/weather/thunderstorms.svg"
 		}
 	}
 }
