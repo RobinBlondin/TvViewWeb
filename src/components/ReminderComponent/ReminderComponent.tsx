@@ -10,7 +10,7 @@ import { getBusDepartures, getTrainDepartures } from "../../service/departureSer
 import { getAllReminders, getReminderById, updateReminder } from "../../service/reminderService";
 import CommuteComponent from "../CommuteComponent/CommuteComponent";
 import { HighwayBridgeComponent } from "../HighwayBridgeComponent/HighwayBridgeComponent";
-import './ReminderComponent.css'
+import './ReminderComponent.css';
 
 const ReminderList = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
@@ -30,23 +30,30 @@ const ReminderList = () => {
 
   const fetchReminders = async () => {
     try {
-      const response = await getAllReminders()
-      setReminders(response);
+      const response = await getAllReminders();
+      const sorted = sortRemindersByNotDone(response)
+      setReminders(sorted);
     } catch (error) {
       console.error("Failed to fetch reminders:", error);
     }
   };
 
   const handleCheck = async (id: string | null) => {
-   
     if (!id) return;
     const reminder = await getReminderById(id);
     reminder.done = true;
     await updateReminder(reminder)
-
     await fetchReminders();
     
   };
+
+  const sortRemindersByNotDone = (reminders: ReminderModel[]) => {
+    return reminders
+    .slice()
+    .sort((a, b) => (
+      (a.done === b.done ? 0 : a.done ? 1 : -1)
+    ))
+  }
 
   const handleCommuteClick = async (type: String) => {
     
@@ -107,7 +114,7 @@ const ReminderList = () => {
     <Container className="reminder-container">
       { component === "remindersList" && 
         <Container className="reminder-title">
-          <Typography fontSize="1.5em">KOM IHÅG!</Typography>
+          <Typography fontSize="1.5em">Checklista</Typography>
         </Container> 
       }
   <Container
