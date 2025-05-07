@@ -40,9 +40,9 @@ const CommuteComponent: React.FC<CommuteComponentProps> = ({departures}) => {
             <Table className="table" aria-label="simple table">
               <TableHead>
                 <TableRow className="table-row title-row">
-                  <TableCell className="table-cell table-cell-title">Line</TableCell>
+                  <TableCell className="table-cell table-cell-title">Linje</TableCell>
                   <TableCell className="table-cell table-cell-title destination">Destination</TableCell>
-                  <TableCell className="table-cell table-cell-title">Time</TableCell>
+                  <TableCell className="table-cell table-cell-title">Tid</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

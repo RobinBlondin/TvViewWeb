@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Typography, Paper, Divider } from '@mui/material';
+import { Container, Typography, Paper, Divider, CircularProgress } from '@mui/material';
 import { AccountBalance } from '@mui/icons-material';
 import { HighwayBridgeModel } from '../../models/HighwayBridgeModel';
 import { getHighwayBridgeOpenings } from '../../service/highwayBridgeService';
@@ -21,7 +21,7 @@ export const HighwayBridgeComponent: React.FC = () => {
   if (bridgeOpenings.length === 0) {
     return (
       <Container className="not-found-container">
-        <Typography>No upcoming bridge openings scheduled</Typography>
+        <CircularProgress />
       </Container>
     );
   }

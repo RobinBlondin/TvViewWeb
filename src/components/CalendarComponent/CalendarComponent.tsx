@@ -63,13 +63,13 @@ const CalendarComponent: React.FC = () => {
   return (
     <Container className="calendar-container">
         <Container className="days-container">
-            <Container className="day">S</Container>
-            <Container className="day">M</Container>
-            <Container className="day">T</Container>
-            <Container className="day">W</Container>
-            <Container className="day">T</Container>
-            <Container className="day">F</Container>
-            <Container className="day">S</Container>
+            <Container className="day">Sön</Container>
+            <Container className="day">Mån</Container>
+            <Container className="day">Tis</Container>
+            <Container className="day">Ons</Container>
+            <Container className="day">Tor</Container>
+            <Container className="day">Fre</Container>
+            <Container className="day">Lör</Container>
         </Container>
         <Container className="dates-container">
             {
