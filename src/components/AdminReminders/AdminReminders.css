@@ -2,10 +2,10 @@
     align-items: start;
     border-top: 1px solid #fbe2dc;
     border-bottom: 1px solid #fbe2dc;
-    height: 800px !important;
+    height: 80% !important;
     overflow: auto;
     min-width: 80% !important;
-    border-radius: 0 !important
+    border-radius: 0 !important;
 }
 
 .grid-content-container {
@@ -59,12 +59,14 @@
 }
 
 @media screen and (max-width: 703px) {
-    .main-container {
-        height: 80%;
-        padding-left: 2px;
-        padding-right: 2px;
-        width: 95%;
+    .ar-main-container {
+        height: 95% !important;
+        width: 100%;
         margin-top: 1em;
+    }
+
+    .grid-content-container {
+        padding: 0.5em 1em !important;
     }
 
     .add-reminder-grid, .reminder-grid {
