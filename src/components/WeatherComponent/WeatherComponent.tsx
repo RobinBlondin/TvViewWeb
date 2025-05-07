@@ -76,7 +76,7 @@ const WeatherComponent: React.FC = () => {
             <Container sx={{ height: '100%', width: "auto", display: "flex", flexDirection: "column"}}>
                 <img src={weatherIcon} alt="" className="weather-icon"/>
                 <Container sx={{display: "flex", alignItems: "end", justifyContent: "start", padding: "0 !important", gap: "0.5em"}}>
-                    <img src="public/icons/percipitation.png" alt="" style={{width: "1.5em"}} />
+                    <img src="/icons/percipitation.png" alt="" style={{width: "1.5em"}} />
                     <Typography 
                         sx={{
                             fontSize: "1.3em", 
@@ -93,7 +93,7 @@ const WeatherComponent: React.FC = () => {
                     {weatherData?.temperature }°C
                 </Typography>
                 <Container sx={{display: "flex", alignItems: "center", justifyContent: "start", padding: "0 !important", gap: "0.5em"}}>
-                    <img src="public/icons/wind.svg" alt="" style={{width: "3em"}} />
+                    <img src="/icons/wind.svg" alt="" style={{width: "3em"}} />
                     <Typography 
                         sx={{
                             fontSize: "1.5em", 
