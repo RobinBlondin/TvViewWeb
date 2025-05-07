@@ -16,281 +16,281 @@ export const WeatherMap: WeatherMapType = {
 	"0":{
 		"day":{
 			"description":"Soligt",
-			"image":"src/assets/icons/weather/clear-day.svg"
+			"image":"public/icons/clear-day.svg"
 		},
 		"night":{
 			"description":"Klart",
-			"image":"src/assets/icons/weather/clear-night.svg"
+			"image":"public/icons/clear-night.svg"
 		}
 	},
 	"1":{
 		"day":{
 			"description":"Soligt",
-			"image":"src/assets/icons/weather/clear-day.svg"
+			"image":"public/icons/clear-day.svg"
 		},
 		"night":{
 			"description":"Klart",
-			"image":"src/assets/icons/weather/clear-night.svg"
+			"image":"public/icons/clear-night.svg"
 		}
 	},
 	"2":{
 		"day":{
 			"description":"Molnigt",
-			"image":"src/assets/icons/weather/cloudy-2-day.svg"
+			"image":"public/icons/cloudy-2-day.svg"
 		},
 		"night":{
 			"description":"Molnigt",
-			"image":"src/assets/icons/weather/cloudy-2-night.svg"
+			"image":"public/icons/cloudy-2-night.svg"
 		}
 	},
 	"3":{
 		"day":{
 			"description":"Molnigt",
-			"image":"src/assets/icons/weather/cloudy.svg"
+			"image":"public/icons/cloudy.svg"
 		},
 		"night":{
 			"description":"Molnigt",
-			"image":"src/assets/icons/weather/cloudy.svg"
+			"image":"public/icons/cloudy.svg"
 		}
 	},
 	"45":{
 		"day":{
 			"description":"Dimma",
-			"image":"src/assets/icons/weather/fog.svg"
+			"image":"public/icons/fog.svg"
 		},
 		"night":{
 			"description":"Dimma",
-			"image":"src/assets/icons/weather/fog.svg"
+			"image":"public/icons/fog.svg"
 		}
 	},
 	"48":{
 		"day":{
 			"description":"Dimma",
-			"image":"src/assets/icons/weather/fog.svg"
+			"image":"public/icons/fog.svg"
 		},
 		"night":{
 			"description":"Dimma",
-			"image":"src/assets/icons/weather/fog.svg"
+			"image":"public/icons/fog.svg"
 		}
 	},
 	"51":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		}
 	},
 	"53":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		}
 	},
 	"55":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		}
 	},
 	"56":{
 		"day":{
 			"description":"Underkylt Regn",
-			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
+			"image":"public/icons/rainy-and-sleet-mix.svg"
 		},
 		"night":{
 			"description":"Underkylt Regn",
-			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
+			"image":"public/icons/rainy-and-sleet-mix.svg"
 		}
 	},
 	"57":{
 		"day":{
 			"description":"Underkylt Regn",
-			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
+			"image":"public/icons/rainy-and-sleet-mix.svg"
 		},
 		"night":{
 			"description":"Underkylt Regn",
-			"image":"src/assets/icons/weather/rainy-and-sleet-mix.svg"
+			"image":"public/icons/rainy-and-sleet-mix.svg"
 		}
 	},
 	"61":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		}
 	},
 	"63":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		}
 	},
 	"65":{
 		"day":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		},
 		"night":{
 			"description":"Regn",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		}
 	},
 	"66":{
 		"day":{
 			"description":"Snöblandat Regn",
-			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
+			"image":"public/icons/rain-and-snow-mix.svg"
 		},
 		"night":{
 			"description":"Snöblandat Regn",
-			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
+			"image":"public/icons/rain-and-snow-mix.svg"
 		}
 	},
 	"67":{
 		"day":{
 			"description":"Snöblandat Regn",
-			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
+			"image":"public/icons/rain-and-snow-mix.svg"
 		},
 		"night":{
 			"description":"Snöblandat Regn",
-			"image":"src/assets/icons/weather/rain-and-snow-mix.svg"
+			"image":"public/icons/rain-and-snow-mix.svg"
 		}
 	},
 	"71":{
 		"day":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-1.svg"
+			"image":"public/icons/snowy-1.svg"
 		},
 		"night":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-1.svg"
+			"image":"public/icons/snowy-1.svg"
 		}
 	},
 	"73":{
 		"day":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-2.svg"
+			"image":"public/icons/snowy-2.svg"
 		},
 		"night":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-2.svg"
+			"image":"public/icons/snowy-2.svg"
 		}
 	},
 	"75":{
 		"day":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-3.svg"
+			"image":"public/icons/snowy-3.svg"
 		},
 		"night":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-3.svg"
+			"image":"public/icons/snowy-3.svg"
 		}
 	},
 	"77":{
 		"day":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-3.svg"
+			"image":"public/icons/snowy-3.svg"
 		},
 		"night":{
 			"description":"Snöfall",
-			"image":"src/assets/icons/weather/snowy-3.svg"
+			"image":"public/icons/snowy-3.svg"
 		}
 	},
 	"80":{
 		"day":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		},
 		"night":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-1.svg"
+			"image":"public/icons/rainy-1.svg"
 		}
 	},
 	"81":{
 		"day":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		},
 		"night":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-2.svg"
+			"image":"public/icons/rainy-2.svg"
 		}
 	},
 	"82":{
 		"day":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		},
 		"night":{
 			"description":"Regnskurar",
-			"image":"src/assets/icons/weather/rainy-3.svg"
+			"image":"public/icons/rainy-3.svg"
 		}
 	},
 	"85":{
 		"day":{
 			"description":"Snöbyar",
-			"image":"src/assets/icons/weather/snowy-1.svg"
+			"image":"public/icons/snowy-1.svg"
 		},
 		"night":{
 			"description":"Snöbyar",
-			"image":"src/assets/icons/weather/snowy-1.svg"
+			"image":"public/icons/snowy-1.svg"
 		}
 	},
 	"86":{
 		"day":{
 			"description":"Snöbyar",
-			"image":"src/assets/icons/weather/snowy-2.svg"
+			"image":"public/icons/snowy-2.svg"
 		},
 		"night":{
 			"description":"Snöbyar",
-			"image":"src/assets/icons/weather/snowy-2.svg"
+			"image":"public/icons/snowy-2.svg"
 		}
 	},
 	"95":{
 		"day":{
 			"description":"Åskväder",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		},
 		"night":{
 			"description":"Åskväder",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		}
 	},
 	"96":{
 		"day":{
 			"description":"Åskväder med hagel",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		},
 		"night":{
 			"description":"Åskväder med hagel",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		}
 	},
 	"99":{
 		"day":{
 			"description":"Åskväder med hagel",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		},
 		"night":{
 			"description":"Åskväder med hagel",
-			"image":"src/assets/icons/weather/thunderstorms.svg"
+			"image":"public/icons/thunderstorms.svg"
 		}
 	}
 }
