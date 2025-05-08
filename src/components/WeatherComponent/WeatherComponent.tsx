@@ -44,7 +44,6 @@ const WeatherComponent: React.FC = () => {
         } else {
             return "↙︎"
         }
-
     }
 
     const isSunSet = (): boolean => {
