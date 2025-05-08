@@ -12,12 +12,14 @@ import CommuteComponent from "../CommuteComponent/CommuteComponent";
 import { HighwayBridgeComponent } from "../HighwayBridgeComponent/HighwayBridgeComponent";
 import './ReminderComponent.css';
 
+const WS_URL = import.meta.env.VITE_WS_URL
+
 const ReminderList = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
   const [component, setComponent] = useState<string>("remindersList");
   const [departures, setDepartures] = useState<DepartureModel[]>([]);
   const [timeoutId, setTimeoutId] = useState<number>();
-  const { lastMessage } = useWebSocket("ws://localhost:8080/ws");
+  const { lastMessage } = useWebSocket(WS_URL);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

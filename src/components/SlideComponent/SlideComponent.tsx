@@ -7,10 +7,12 @@ import './SlideComponent.css';
 import ClockComponent from '../ClockComponent/ClockComponent';
 import WeatherComponent from '../WeatherComponent/WeatherComponent';
 
+const WS_URL = import.meta.env.VITE_WS_URL
+
 const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { lastMessage } = useWebSocket("ws://localhost:8080/ws");
+  const { lastMessage } = useWebSocket(WS_URL);
 
   useEffect(() => {
     const fetchSlides = async () => {
