@@ -11,7 +11,9 @@ const WeatherComponent: React.FC = () => {
     const [weatherIcon, setWeatherIcon] = useState<string>()
 
     const fetchWeaterData = async () => {
-        await getWeatherData().then(data => setWeatherData(data));
+        await getWeatherData().then(data => {
+            setWeatherData(data)
+        });
     }
 
     const updateWeatherIcon = (weatherCode: number | undefined) => {
@@ -70,11 +72,12 @@ const WeatherComponent: React.FC = () => {
                 alignItems: "center", 
                 color: "white",
                 padding: "0 !important",
+                marginTop: weatherData && weatherData.weatherCode > 1 && weatherData.weatherCode < 4 ? "2em": "0"
 
             }}
         >
             <Container sx={{ height: '100%', width: "auto", display: "flex", flexDirection: "column"}}>
-                <img src={weatherIcon} alt="" className="weather-icon"/>
+                <img src={weatherIcon} alt="" className="weather-icon" style={{ marginBottom: weatherData && (weatherData.weatherCode > 1 && weatherData.weatherCode < 4) ? "-2em": "0"}} />
                 <Container sx={{display: "flex", alignItems: "end", justifyContent: "start", padding: "0 !important", gap: "0.5em"}}>
                     <img src="/icons/percipitation.png" alt="" style={{width: "1.5em"}} />
                     <Typography 
