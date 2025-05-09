@@ -20,7 +20,6 @@ function App() {
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
     try {
-      console.log("Token", token)
       const decoded: any = jwtDecode(token);
       const currentTime = Math.floor(Date.now() / 1000);
       return decoded.exp ? decoded.exp < currentTime : true;

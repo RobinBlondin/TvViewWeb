@@ -27,7 +27,7 @@ const ReminderList = () => {
   }, []);
 
   useEffect(() => {
-    if(lastMessage?.data !== 'reminders') return 
+    if(lastMessage && lastMessage.data !== 'reminders') return 
 
     fetchReminders();
   }, [lastMessage]);
