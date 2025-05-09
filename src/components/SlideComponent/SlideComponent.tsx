@@ -14,17 +14,22 @@ const SlideComponent: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const { lastMessage } = useWebSocket(WS_URL);
   const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+  const [updateSlides, setUpdateSlides] = useState<boolean>(false)
 
 
   useEffect(() => {
-    if(lastMessage && lastMessage.data !== 'slides') return 
-    
     const fetchSlides = async () => {
       await getAllSlides().then(response => {
         setSlides(response);
       });
     };
     fetchSlides();
+  }, [updateSlides])
+
+  useEffect(() => {
+    if(lastMessage && lastMessage.data === 'slides') {
+      setUpdateSlides(!updateSlides)
+    }
   }, [lastMessage]);
 
   useEffect(() => {

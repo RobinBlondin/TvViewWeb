@@ -2,7 +2,7 @@ import { AccountBalance, DirectionsBus, Train } from "@mui/icons-material";
 import { CircularProgress, IconButton, Typography } from "@mui/material";
 import Checkbox from "@mui/material/Checkbox/Checkbox";
 import Container from "@mui/material/Container/Container";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useWebSocket from "react-use-websocket";
 import { DepartureModel } from "../../models/DepartureModel";
 import { ReminderModel } from "../../models/ReminderModel";
@@ -21,16 +21,23 @@ const ReminderList = () => {
   const [timeoutId, setTimeoutId] = useState<number>();
   const { lastMessage } = useWebSocket(WS_URL);
   const [loading, setLoading] = useState(false);
+  const [updateReminders, setUpdateReminders] = useState<boolean>(false)
 
-  useEffect(() => {
-    fetchReminders();
-  }, []);
 
-  useEffect(() => {
-    if(lastMessage && lastMessage.data !== 'reminders') return 
+    useEffect(() => {
+      const fetchReminders = async () => {
+        await getAllReminders().then(response => {
+          setReminders(response);
+        });
+      };
+      fetchReminders();
+    }, [updateReminders])
 
-    fetchReminders();
-  }, [lastMessage]);
+    useEffect(() => {
+      if(lastMessage && lastMessage.data === 'reminders') {
+        setUpdateReminders(!updateReminders)
+      }
+    }, [lastMessage]);
 
   const fetchReminders = async () => {
     try {
@@ -100,23 +107,23 @@ const ReminderList = () => {
     }, 15000);
   };
 
-  const LiveCamStream = () => (
+  const LiveCamStream = useMemo(() => (
     <Container className="live-stream-container">
       <iframe
         className="stream-frame"
         width="100%"
         height="100%"
-        src="https://www.youtube.com/embed/F0GOOP82094?autoplay=1&mute=1"
+        src="https://www.youtube.com/embed/XsOU8JnEpNM?autoplay=1&mute=1"
         title="Live Camera"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
     </Container>
-  );
+  ), []);
 
   return (
     <Container className="reminder-container">
-      { component === "remindersList" && 
+      { component === "remindersList" && reminders.length > 0 &&
         <Container className="reminder-title">
           <Typography fontSize="1.5em">Checklista</Typography>
         </Container> 
@@ -124,10 +131,10 @@ const ReminderList = () => {
   <Container
     className="reminder-list"
     sx={{ 
-      maxHeight: component === "remindersList" ? "80%" : "90%",
-      minHeight: component === "remindersList" ? "80%" : "90%",
-      overflow: component === "remindersList" ? "auto" : "hidden",
-      padding: component  === "remindersList" ? "0.5em 0 0 0 !important" : "0 !important"}}>
+      maxHeight: component === "remindersList" && reminders.length > 0 ? "80%" : "90%",
+      minHeight: component === "remindersList" && reminders.length > 0 ? "80%" : "90%",
+      overflow: component === "remindersList" && reminders.length > 0 ? "auto" : "hidden",
+      padding: component  === "remindersList" && reminders.length > 0 ? "0.5em 0 0 0 !important" : "0 !important"}}>
     {component === "remindersList" ? reminders.length > 0 ? (
       reminders.map((reminder) => (
         <Container
@@ -154,7 +161,7 @@ const ReminderList = () => {
           <span className="line-text" style={{ color: reminder.done ? "#8a7777" : "#fbe2dc"}}>{reminder.description}</span>
         </Container>
       ))
-    ) : ( <LiveCamStream /> ) : loading ? (
+    ) : ( LiveCamStream ) : loading ? (
       <Container className="reminder-loading-container">
         <CircularProgress />
       </Container>
