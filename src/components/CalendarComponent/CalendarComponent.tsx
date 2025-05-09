@@ -37,17 +37,23 @@ const CalendarComponent: React.FC = () => {
   }, [events])
 
   const getDatesOfCurrentWeekFromSundayToSaturday = () => {
-    const dates = []
-    const today = new Date()
-    const day = today.getDay()
-    const diff = today.getDate() - day
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(today)
-      date.setDate(diff + i)
-      dates.push(date)
-    }
-    return dates
+  const dates = []
+  const today = new Date()
+  const day = today.getDay()
+  
+  const startOfWeek = new Date(today)
+  startOfWeek.setDate(today.getDate() - day)
+  startOfWeek.setHours(0, 0, 0, 0)
+
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(startOfWeek)
+    date.setDate(startOfWeek.getDate() + i)
+    dates.push(date)
   }
+
+  return dates
+}
+
 
   const getEventColor = (index: number) => {
     const colors = [
