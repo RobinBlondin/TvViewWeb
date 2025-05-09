@@ -2,7 +2,7 @@
     width: 100% !important;
     height: 100% !important;
     background-position: center !important;
-    background-size: cover !important;
+    background-size: contain !important;
     background-repeat: no-repeat !important;
     border-radius: 0.5em !important; 
     position: relative !important;

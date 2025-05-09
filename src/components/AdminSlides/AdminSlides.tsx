@@ -117,7 +117,7 @@ const AdminSlides: React.FC = () => {
               className="preview-box"
               sx={{
                 background: previewUrl ? `url(${previewUrl})` : '#888',
-                backgroundSize: previewUrl ? 'cover' : 'initial', 
+                backgroundSize: previewUrl ? 'contain' : 'initial', 
                 backgroundPosition: previewUrl ? 'center' : 'initial'
               }}
             >
