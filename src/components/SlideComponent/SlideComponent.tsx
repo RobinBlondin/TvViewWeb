@@ -13,6 +13,8 @@ const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const { lastMessage } = useWebSocket(WS_URL);
+  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+
 
   useEffect(() => {
     const fetchSlides = async () => {
@@ -35,10 +37,23 @@ const SlideComponent: React.FC = () => {
     };
   }, [slides]);
 
+  useEffect(() => {
+    if (slides.length > 0 && slides[currentIndex]?.url) {
+      const img = new Image();
+      img.onload = () => {
+        setIsLandscape(img.naturalWidth >= img.naturalHeight);
+      };
+      img.src = slides[currentIndex].url;
+    }
+  }, [currentIndex, slides]);
+
   return (
     <Box
       className="slide-container"
-      sx={{ background: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${slides[currentIndex] ? slides[currentIndex].url : ""})` }}
+      sx={{ 
+        background: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${slides[currentIndex] ? slides[currentIndex].url : ""})`,
+        backgroundSize: isLandscape == null ? 'initial' : isLandscape ? 'cover' : 'contain'
+      }}
     >
       <Container className="slide-time-container">
           <ClockComponent />
