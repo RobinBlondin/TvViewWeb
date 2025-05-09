@@ -17,6 +17,8 @@ const SlideComponent: React.FC = () => {
 
 
   useEffect(() => {
+    if(lastMessage?.data !== 'slides') return 
+    
     const fetchSlides = async () => {
       await getAllSlides().then(response => {
         setSlides(response);
