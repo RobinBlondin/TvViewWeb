@@ -8,7 +8,6 @@ import AdminReminders from "./components/AdminReminders/AdminReminders";
 import AdminSlides from "./components/AdminSlides/AdminSlides";
 import Navbar from "./components/Navbar/Navbar";
 import TvView from "./components/TvView/TvView";
-import WeatherComponent from "./components/WeatherComponent/WeatherComponent";
 import AutoLogin from "./configuration/AutoLogin";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
@@ -71,15 +70,6 @@ function App() {
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminSlides />
-                  </Container>
-                </Box>
-              } />
-
-              <Route path="/weather" element={
-                <Box className="outer-content-container">
-                  <Navbar />
-                  <Container maxWidth={false} className="content-container">
-                    <WeatherComponent />
                   </Container>
                 </Box>
               } />
