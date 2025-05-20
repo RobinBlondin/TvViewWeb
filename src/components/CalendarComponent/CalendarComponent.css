@@ -21,8 +21,8 @@
 
 .marked-date {
     background-color: rgba(252, 123, 3, 0.7) !important;
-    width: 70px !important;
-    height: 70px !important;
+    width: 75px !important;
+    height: 75px !important;
     border-radius: 50px !important; 
     display: flex;
     justify-content: center; 
