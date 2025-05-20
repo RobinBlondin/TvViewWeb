@@ -1,54 +1,89 @@
-# React + TypeScript + Vite
+# TV View Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React 19 + TypeScript frontend built with Vite, designed to work with the companion TV View API backend https://github.com/RobinBlondin/TvViewAPI.  
+This app handles user authentication via Google OAuth2, displays calendar events, public transport info, highway bridge openings, weather data and supports file uploads and reminders.
 
-Currently, two official plugins are available:
+##  Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19
+- Vite 6.2.0
+- TypeScript 5.7.2
+- Google OAuth2
+- WebSockets
+- REST API integration with Spring Boot backend
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- A running instance of the TV View API backend
+- `.env` file in your project root (see below)
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root of your project:
+
+#### `.env.example`
+
+```env
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+VITE_GOOGLE_CLIENT_SECRET=your_google_client_secret
+VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY=googleAccessToken
+
+VITE_API_BASE_URL=http://localhost:8080 or other if backend is set up differently
+VITE_BASE_URL=http://localhost:5173
+VITE_GOOGLE_CLIENT_REDIRECT_URI=http://localhost:5173 or other if other is set at Google cloud console.
+
+VITE_JWT_TOKEN=token
+VITE_WS_URL=ws://localhost:8080/ws or other if backend is set up differently
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation & Run
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Install dependencies:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+The app should now be running at:  
+**http://localhost:5173**
+
+---
+
+## Authentication Flow
+
+- The frontend handles **Google OAuth2 login** using the Google authorization flow.
+- After login, it retrieves the **authorization code** and sends it to the backend `/auth/google` endpoint.
+- The backend exchanges the code for a Google ID token and a **custom JWT token (`tv_token`)**, which is then stored and used for authenticated API requests.
+
+---
+
+## WebSocket Support
+
+This project connects to a WebSocket server at:
+
+```
+VITE_WS_URL=ws://localhost:8080/ws
+```
+
+Used for real-time updates like reminders and slide images.
+
+---
+
+## Notes
+
+- This frontend is tightly coupled with the TV View API backend. Be sure to run both simultaneously for full functionality.
+- Authentication tokens are stored using localStorage.
+- Add UI framework or CSS styling notes here if needed (e.g., Tailwind, MUI, etc.).
