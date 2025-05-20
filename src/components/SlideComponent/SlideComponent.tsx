@@ -55,21 +55,50 @@ const SlideComponent: React.FC = () => {
   }, [currentIndex, slides]);
 
   return (
-    <Box
-      className="slide-container"
-      sx={{ 
-        background: `linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url(${slides[currentIndex] ? slides[currentIndex].url : ""})`,
-        backgroundSize: isLandscape == null ? 'initial' : isLandscape ? 'cover' : 'contain'
-      }}
-    >
-      <Container className="slide-time-container">
-          <ClockComponent />
-      </Container>
+    <Box className="slide-container">
+      <div className="slide-gradient-overlay" />
+      {slides[currentIndex]?.url && !isLandscape && (
+        <>
+          <div
+            className="slide-blur-bg"
+            style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+          />
+        </>
+      )}
 
-      <Container className="slide-weather-container">
-        <WeatherComponent />
-      </Container>
-    </Box>
+  
+      {slides[currentIndex]?.url && isLandscape && (
+        <div
+          className="slide-cover"
+          style={{
+            backgroundImage: `url(${slides[currentIndex].url})`
+          }}
+        />
+      )}
+
+
+      {slides[currentIndex]?.url && !isLandscape && (
+        <>
+          <div
+            className="slide-blur-bg"
+            style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
+          />
+          <img
+            className="slide-image"
+            src={slides[currentIndex].url}
+            alt="slide"
+          />
+        </>
+      )}
+
+  <Container className="slide-time-container">
+    <ClockComponent />
+  </Container>
+
+  <Container className="slide-weather-container">
+    <WeatherComponent />
+  </Container>
+</Box>
   );
 };
 
