@@ -57,7 +57,7 @@ export const HighwayBridgeComponent: React.FC = () => {
         </Typography>
         
         <Typography variant="body1" className='highway-content-line'>
-          <strong>Status:</strong> {firstOpening.Result}
+          <strong>Status:</strong> {firstOpening.Result === "No planned" ? "---" : firstOpening.Result}
         </Typography>
         
         <Typography variant="body1" className='highway-content-line'>
