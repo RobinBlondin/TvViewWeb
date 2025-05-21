@@ -76,27 +76,27 @@
     height: auto;
     border-radius: 0.5em !important;
     margin: 0 !important;
-    padding: 0.5em 0.3em 1.3em 0.5em !important;
+    padding: 8px 4px 8px 8px !important;
     
 }
 
 .event-time, .event-title {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 600;
     padding: 0 !important;
     color: white;
-    line-height: normal;
+    line-height: 1;
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens:auto;
 }
 
 .event-time {
-    height: 30%;
+    height: 25px;
 }
 
 .event-title {
-    font-size: 1em;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
 }
