@@ -1,7 +1,15 @@
 # TV View Frontend
+A React 19 + TypeScript frontend built with Vite, designed to work with the companion TvViewApi backend: https://github.com/RobinBlondin/TvViewAPI.
+The app handles Google OAuth2 authentication and displays calendar events, public transport info, bridge openings, weather data, and more.
 
-A React 19 + TypeScript frontend built with Vite, designed to work with the companion TV View API backend https://github.com/RobinBlondin/TvViewAPI.  
-This app handles user authentication via Google OAuth2, displays calendar events, public transport info, highway bridge openings, weather data and supports file uploads and reminders.
+It’s designed to run on a screen mounted in a family home, acting as a central hub for daily information.
+Family members can:
+
+ - See upcoming events synced with Google Calendar
+ - View live local traffic, commute and weather updates
+ - Upload reminders from their devices that can be checked off on-screen
+ - Upload images from their devices that appear in a rotating slideshow on-screen
+
 
 ##  Technologies Used
 
