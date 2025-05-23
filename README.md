@@ -10,6 +10,9 @@ Family members can:
  - Upload reminders from their devices that can be checked off on-screen
  - Upload images from their devices that appear in a rotating slideshow on-screen
 
+![image](https://github.com/user-attachments/assets/d82792b4-5d2b-474e-9bc2-323f28f5b7a5)
+
+
 
 ##  Technologies Used
 
