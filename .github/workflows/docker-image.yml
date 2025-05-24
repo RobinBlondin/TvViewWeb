@@ -49,3 +49,9 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/tvviewweb:latest
 
+      - name: Trigger VPS deploy hook
+        run: |
+          curl -X POST https://tvview.wassblondin.se/deploy \
+            -H "Authorization: Bearer ${{ secrets.VPS_WEBHOOK_TOKEN }}"
+
+
