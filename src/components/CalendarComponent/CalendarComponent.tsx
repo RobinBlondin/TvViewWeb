@@ -3,10 +3,14 @@ import React, { useEffect, useState } from 'react'
 import { CalendarEventModel } from '../../models/CalendarEventModel'
 import { getAllCalendarEvents } from '../../service/calendarService'
 import './CalendarComponent.css'
+import useWebSocket from 'react-use-websocket'
+
+const WS_URL = import.meta.env.VITE_WS_URL
 
 const CalendarComponent: React.FC = () => {
   const [events, setEvents] = useState<CalendarEventModel[]>()
   const [eventsMap, setEventsMap] = useState<Map<number, CalendarEventModel[]>>(new Map())
+  const { lastMessage } = useWebSocket(WS_URL);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -14,9 +18,7 @@ const CalendarComponent: React.FC = () => {
       setEvents(events)
     }
     fetchEvents()
-    const interval = setInterval(fetchEvents, 1000 * 60 * 5)
-    return () => clearInterval(interval)
-  }, [])
+  }, [lastMessage])
 
   useEffect(() => {
     if(events) {
