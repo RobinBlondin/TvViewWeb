@@ -24,7 +24,7 @@ const AutoLogin: React.FC<{ isTvView: boolean, initialPath: string }> = ({ isTvV
     authUrl.searchParams.append("client_id", GOOGLE_CLIENT_ID);
     authUrl.searchParams.append("redirect_uri", REDIRECT_URI);
     authUrl.searchParams.append("response_type", "code");
-    authUrl.searchParams.append("scope", "openid profile email");
+    authUrl.searchParams.append("scope", "openid profile email https://www.googleapis.com/auth/calendar");
     authUrl.searchParams.append("access_type", "offline");
     authUrl.searchParams.append("prompt", "consent");
     
