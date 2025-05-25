@@ -40,6 +40,7 @@ const AutoLogin: React.FC<{ isTvView: boolean, initialPath: string }> = ({ isTvV
         body: JSON.stringify({
           code: code,
           clientId: GOOGLE_CLIENT_ID,
+          scope: "openid profile email https://www.googleapis.com/auth/calendar",
           clientSecret: GOOGLE_CLIENT_SECRET,
           isTvView: isTvView,
           redirectUri: REDIRECT_URI
