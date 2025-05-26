@@ -65,7 +65,8 @@ const CalendarComponent: React.FC = () => {
       'rgba(231, 76, 60, 0.85)',
       'rgba(23, 165, 137, 0.85)',
     ];
-    return colors[index % colors.length];
+    const safeIndex = ((index % colors.length) + colors.length) % colors.length;
+    return colors[safeIndex];
   };
 
   return (
