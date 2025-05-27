@@ -33,7 +33,7 @@ const ClockComponent: React.FC = () => {
         >
             <Container 
                 className="clock-time-container"
-                sx={{ textAlign: "center", color: "white", fontSize: "7em", fontWeight: "600", padding: "0 !important", lineHeight: 1 }}
+                sx={{ textAlign: "center", color: "white", fontSize: "5em", fontWeight: "600", padding: "0 !important", lineHeight: 1 }}
             >
                 { currentTime }
             </Container>
