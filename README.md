@@ -36,6 +36,66 @@ Family members can:
 
 ---
 
+### Google Cloud Console Setup (Frontend Configuration)
+
+Before running the frontend application, you need to configure the Google Cloud Console project for OAuth2 authentication. This setup works in conjunction with the backend configuration.
+
+#### 1. Ensure Google Cloud Project is Set Up
+
+If you haven't already set up the Google Cloud project for the backend, follow these steps:
+
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the following APIs:
+   - Google Calendar API
+   - Google+ API (for profile information)
+
+#### 2. Configure OAuth2 Consent Screen (if not done)
+
+1. Navigate to **APIs & Services** > **OAuth consent screen**
+2. Choose **External** user type (unless you're using Google Workspace)
+3. Fill in the required information:
+   - App name: `TV View Web`
+   - User support email: Your email
+   - Developer contact information: Your email
+4. Add scopes:
+   - `openid`
+   - `profile`
+   - `email`
+   - `https://www.googleapis.com/auth/calendar`
+5. Add test users (your email addresses that will use the app)
+
+#### 3. Create Frontend OAuth2 Credentials
+
+1. Navigate to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **OAuth 2.0 Client IDs**
+3. Choose **Web application** as the application type
+4. Configure for the frontend:
+   - Name: `TV View Frontend`
+   - Authorized JavaScript origins:
+     ```
+     http://localhost:5173
+     https://your_domain (Optional)
+     ```
+   - Authorized redirect URIs (adjust ports as needed):
+     ```
+     http://localhost:5173
+     http://localhost:5173/auth/google
+     http://localhost:5173/slides
+     http://localhost:5173/reminders
+     https://your_domain (Optional)
+     https://your_domain/auth/google (Optional)
+     https://your_domain/slides (Optional)
+     https://your_domain/reminders (Optional)
+     ```
+
+5. Download the JSON credentials - you'll need the `client_id` and `client_secret` for your `.env` file
+
+**Note:** The frontend uses a different OAuth2 client than the backend. Make sure to create separate credentials for each or use the same credentials with properly configured origins and redirect URIs for both applications.
+
+---
+
+
 ## Environment Variables
 
 Create a `.env` file in the root of your project:
@@ -90,7 +150,7 @@ This project connects to a WebSocket server at:
 VITE_WS_URL=ws://localhost:8080/ws
 ```
 
-Used for real-time updates like reminders and slide images.
+Used for real-time updates like reminders, slide images and calendar events.
 
 ---
 
