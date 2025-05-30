@@ -1,5 +1,5 @@
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
   Button,
@@ -15,16 +15,20 @@ import {
   TableHead,
   TableRow,
   TextField,
-  Typography
-} from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { ReminderModel } from '../../models/ReminderModel';
-import { createReminder, deleteReminderById, getAllReminders } from '../../service/reminderService';
-import './AdminReminders.css';
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { ReminderModel } from "../../models/ReminderModel";
+import {
+  createReminder,
+  deleteReminderById,
+  getAllReminders,
+} from "../../service/reminderService";
+import "./AdminReminders.css";
 
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
-  const [description, setDescription] = useState<string | null>(null)
+  const [description, setDescription] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,15 +39,15 @@ const AdminReminders: React.FC = () => {
   }, []);
 
   const handleDescriptionChange = (info: any) => {
-    setDescription(info.target.value)
-  }
+    setDescription(info.target.value);
+  };
 
   const handleSubmitReminder = () => {
     if (!description) return;
 
     const reminder = new ReminderModel(null, description, false);
     createReminder(reminder).then((reminder) => {
-      setReminders([...reminders, reminder])
+      setReminders([...reminders, reminder]);
     });
 
     setDescription(null);
@@ -56,8 +60,7 @@ const AdminReminders: React.FC = () => {
 
   return (
     <Box className="ar-main-container">
-      <Grid2 container spacing={4} className='grid-content-container'>
-        
+      <Grid2 container spacing={4} className="grid-content-container">
         <Grid2 className="add-reminder-grid">
           <Card elevation={3}>
             <CardContent className="add-reminder-content">
@@ -69,7 +72,7 @@ const AdminReminders: React.FC = () => {
                 className="text-field"
                 label="Description"
                 variant="outlined"
-                value={description || ''}
+                value={description || ""}
                 onChange={handleDescriptionChange}
               />
               <Button
@@ -103,10 +106,16 @@ const AdminReminders: React.FC = () => {
                   <TableBody>
                     {reminders.map((reminder) => (
                       <TableRow key={reminder.id}>
-                        <TableCell className="desc-cell">{reminder.description}</TableCell>
-                        <TableCell className="other-cell">{reminder.done ? "Yes" : "No"}</TableCell>
+                        <TableCell className="desc-cell">
+                          {reminder.description}
+                        </TableCell>
                         <TableCell className="other-cell">
-                          <IconButton onClick={() => handleDeleteReminder(reminder.id!)}>
+                          {reminder.done ? "Yes" : "No"}
+                        </TableCell>
+                        <TableCell className="other-cell">
+                          <IconButton
+                            onClick={() => handleDeleteReminder(reminder.id!)}
+                          >
                             <DeleteIcon color="error" />
                           </IconButton>
                         </TableCell>
@@ -118,7 +127,6 @@ const AdminReminders: React.FC = () => {
             </CardContent>
           </Card>
         </Grid2>
-
       </Grid2>
     </Box>
   );

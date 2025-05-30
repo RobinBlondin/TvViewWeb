@@ -1,40 +1,41 @@
 .highway-container {
-    padding: 0 !important;
-    height: 100% !important;
-    width: 100% !important;
-    overflow: auto !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  overflow: auto !important;
 }
 
 .highway-content-container {
-    padding: 1.5em !important;
-    background: inherit !important;
-    border-radius: 0.5em, 0.5em 0 0 !important;
-    height: 100%;
-    flex: 1 !important;
-    color: #f2a9a0 !important; 
+  padding: 1.5em !important;
+  background: inherit !important;
+  border-radius:
+    0.5em,
+    0.5em 0 0 !important;
+  height: 100%;
+  flex: 1 !important;
+  color: #f2a9a0 !important;
 }
 
 .highway-title {
-    color: inherit !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 0.5em !important;
-    margin-bottom: 0.5em !important;
+  color: inherit !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5em !important;
+  margin-bottom: 0.5em !important;
 }
 
 .highway-content-title {
-    margin: 1em 0 !important;
+  margin: 1em 0 !important;
 }
 
 .highway-content-line {
-    margin-bottom: 0.3em !important;
+  margin-bottom: 0.3em !important;
 }
 
 .not-found-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 100% !important;
-    flex: 1 !important;
-
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  flex: 1 !important;
 }

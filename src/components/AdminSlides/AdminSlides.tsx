@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Container, Button, Modal, Box, Typography } from "@mui/material";
-import AddIcon from '@mui/icons-material/Add'
+import AddIcon from "@mui/icons-material/Add";
 import { SlideModel } from "../../models/SlideModel";
 import { createSlide, getAllSlides } from "../../service/slideService";
 import SlideCard from "./components/SlideCard";
 import { uploadFile } from "../../service/fileUploadService";
-import './AdminSlides.css'
-import ImageIcon from '@mui/icons-material/Image'
+import "./AdminSlides.css";
+import ImageIcon from "@mui/icons-material/Image";
 
 const AdminSlides: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
@@ -21,11 +21,11 @@ const AdminSlides: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if(!open) {
-      setSelectedFile(null)
-      setPreviewUrl(null)
+    if (!open) {
+      setSelectedFile(null);
+      setPreviewUrl(null);
     }
-  }, [open])
+  }, [open]);
 
   const handleOpen = () => setOpen(true);
 
@@ -44,23 +44,22 @@ const AdminSlides: React.FC = () => {
   };
 
   const handleSave = () => {
-    if(selectedFile) {
+    if (selectedFile) {
       uploadFile(selectedFile).then((url) => {
-        const slide = new SlideModel(null, url, null, null)
-        createSlide(slide).then(slide => {
-          setSlides([...slides, slide])
+        const slide = new SlideModel(null, url, null, null);
+        createSlide(slide).then((slide) => {
+          setSlides([...slides, slide]);
         });
-        
-      })
+      });
     } else {
-      console.log("File for upload does not exist")
+      console.log("File for upload does not exist");
     }
     setOpen(false);
-  }
+  };
 
   const triggerFileInput = () => {
-    const input = document.getElementById('fileInput')
-    if(input) {
+    const input = document.getElementById("fileInput");
+    if (input) {
       input.click();
     }
   };
@@ -94,31 +93,32 @@ const AdminSlides: React.FC = () => {
       </Box>
 
       <Modal open={open} onClose={handleClose}>
-        <Box className="modal-box" sx={{backgroundColor: "#DAD4CF"}}>
+        <Box className="modal-box" sx={{ backgroundColor: "#DAD4CF" }}>
           <Container className="modal-header-container">
-            <Typography variant="h5">
-              Upload New Slide
-            </Typography>
+            <Typography variant="h5">Upload New Slide</Typography>
           </Container>
           <Container className="modal-input-container">
-            <Button className="choose-image-button" variant="outlined" onClick={triggerFileInput}>
-            <input
-              type="file"
-              accept="image/*"
-              id="fileInput"
-              style={{ display: 'none' }}
-              onChange={handleFileChange}
-            />
-            Choose image
+            <Button
+              className="choose-image-button"
+              variant="outlined"
+              onClick={triggerFileInput}
+            >
+              <input
+                type="file"
+                accept="image/*"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={handleFileChange}
+              />
+              Choose image
             </Button>
 
-    
             <Container
               className="preview-box"
               sx={{
-                background: previewUrl ? `url(${previewUrl})` : '#888',
-                backgroundSize: previewUrl ? 'cover' : 'initial', 
-                backgroundPosition: previewUrl ? 'center' : 'initial'
+                background: previewUrl ? `url(${previewUrl})` : "#888",
+                backgroundSize: previewUrl ? "cover" : "initial",
+                backgroundPosition: previewUrl ? "center" : "initial",
               }}
             >
               {selectedFile === null ? (
@@ -127,7 +127,7 @@ const AdminSlides: React.FC = () => {
                 <></>
               )}
             </Container>
-          </Container>  
+          </Container>
           <Container className="modal-button-container">
             <Button
               className="save-button"
@@ -140,7 +140,8 @@ const AdminSlides: React.FC = () => {
             <Button
               className="cancel-button"
               variant="outlined"
-              onClick={handleClose}>
+              onClick={handleClose}
+            >
               Cancel
             </Button>
           </Container>

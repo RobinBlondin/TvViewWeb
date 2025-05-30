@@ -1,49 +1,49 @@
 #root {
-    min-width: 100vw !important;
-    min-height: 100vh !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: rgb(0, 0, 0);
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: rgb(0, 0, 0);
 }
 
 .tv-view-container {
-    display: flex;
-    flex-direction: row;
-    width: 100vw !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    padding: 0.5em !important;
-    margin: 0 !important;
-    gap: 0.5em !important;
+  display: flex;
+  flex-direction: row;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  padding: 0.5em !important;
+  margin: 0 !important;
+  gap: 0.5em !important;
 }
 
 .tv-view-left-container {
-    width: 35% !important;
-    height: 100% !important;
-    position: relative !important;
-    gap: 0.5em !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
+  width: 35% !important;
+  height: 100% !important;
+  position: relative !important;
+  gap: 0.5em !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
 }
 
-.tv-view-calendar, .tv-view-reminder {
-    width: 100% !important;
+.tv-view-calendar,
+.tv-view-reminder {
+  width: 100% !important;
 }
 
 .tv-view-calendar {
-    height: 60% !important;
+  height: 60% !important;
 }
 
 .tv-view-reminder {
-    height: 40% !important;
+  height: 40% !important;
 }
 
 .tv-view-slides {
-    width: 65% !important;
-    height: 100% !important;
-    position: relative !important;
+  width: 65% !important;
+  height: 100% !important;
+  position: relative !important;
 }
-

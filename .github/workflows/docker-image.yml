@@ -53,5 +53,3 @@ jobs:
         run: |
           curl -X POST https://tvview.wassblondin.se/deploy \
             -H "Authorization: Bearer ${{ secrets.VPS_WEBHOOK_TOKEN }}"
-
-

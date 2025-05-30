@@ -7,7 +7,7 @@
   width: 100% !important;
   height: 100% !important;
   gap: 1em;
-  
+
   @media screen and (max-width: 1199px) {
     justify-content: start;
   }
@@ -43,13 +43,13 @@
 }
 
 .add-button {
-  background: #8A6A5B !important;
+  background: #8a6a5b !important;
   font-weight: bold !important;
-  color: #DAD4CF;
+  color: #dad4cf;
 }
 
 .add-button:hover {
-  background: #A98A74 !important;
+  background: #a98a74 !important;
 }
 
 @media screen and (max-width: 1199px) {
@@ -63,7 +63,6 @@
     min-width: 100%;
     max-width: 100%;
   }
-
 }
 
 .modal-box {
@@ -83,18 +82,18 @@
   height: 30em;
   padding: 0.5em 1em;
   margin: 0;
-  background-color: #DAD4CF;
+  background-color: #dad4cf;
   @media screen and (max-width: 500px) {
     width: 90%;
     height: 40%;
-    
   }
 }
 
-.modal-header-container, .modal-button-container {
+.modal-header-container,
+.modal-button-container {
   height: 10%;
   width: 100%;
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 .modal-header-container {
@@ -114,7 +113,7 @@
 .modal-button-container {
   width: 50%;
   display: flex;
-  gap:0.5em;
+  gap: 0.5em;
   justify-content: end;
 }
 
@@ -126,11 +125,11 @@
   width: 100%;
   height: 15em;
   margin: 0 !important;
-  border: 1px solid #ddd
+  border: 1px solid #ddd;
 }
 
 .save-button {
-  background: #8A6A5B !important;
+  background: #8a6a5b !important;
   font-weight: bold !important;
   border-radius: 50px !important;
   width: 25%;
@@ -138,7 +137,7 @@
 }
 
 .save-button:hover {
-  background: #A98A74 !important;
+  background: #a98a74 !important;
 }
 
 .cancel-button {
@@ -146,15 +145,17 @@
   width: 25%;
 }
 
-.cancel-button, .choose-image-button {
-  color: #8A6A5B !important;
+.cancel-button,
+.choose-image-button {
+  color: #8a6a5b !important;
   border: 2px solid !important;
   font-weight: bold !important;
   border-radius: 50px !important;
 }
 
-.cancel-button:hover, .choose-image-button:hover {
-  color: #A98A74 !important;
+.cancel-button:hover,
+.choose-image-button:hover {
+  color: #a98a74 !important;
 }
 
 .preview-image {
@@ -165,7 +166,8 @@
   border-radius: 0.5em;
 }
 
-.outlined-button, .contained-button {
+.outlined-button,
+.contained-button {
   border-radius: 50px;
   font-weight: bold;
 }

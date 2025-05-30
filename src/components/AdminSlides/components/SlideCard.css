@@ -1,41 +1,40 @@
 .card-container {
-    border: 1px solid black !important;
-    border-radius: 0.5em !important;
-    background: #E8E3DF !important;
-    transition: 0.3s !important;
-    width: 250px;
-    height: 350px;
+  border: 1px solid black !important;
+  border-radius: 0.5em !important;
+  background: #e8e3df !important;
+  transition: 0.3s !important;
+  width: 250px;
+  height: 350px;
 }
 
 .card-container:hover {
-    box-shadow: 6 !important;
-    scale: 1.02 !important;
-    background: #928f8c !important;
+  box-shadow: 6 !important;
+  scale: 1.02 !important;
+  background: #928f8c !important;
 }
 
 .sc-card-content {
-    background: #DAD4CF !important;
-    padding: 1em 0.5em 0.5em 1em !important;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 50%;
+  background: #dad4cf !important;
+  padding: 1em 0.5em 0.5em 1em !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 50%;
 }
 .text-container {
-    padding: 0 !important;
-    display: flex;
-    flex-direction: column;
-    
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-button-container {
-    display: flex;
-    justify-content: end;
-    align-items: end;
-    padding: 0 !important;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  padding: 0 !important;
 }
 
 .card-delete-button {
-    color: #7C2C2C !important;
-    padding: 1em 0.5em 0em 0.5em !important
+  color: #7c2c2c !important;
+  padding: 1em 0.5em 0em 0.5em !important;
 }

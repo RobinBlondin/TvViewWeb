@@ -1,21 +1,19 @@
 # TV View Frontend
+
 A React 19 + TypeScript frontend built with Vite, designed to work with the companion TvViewApi backend: https://github.com/RobinBlondin/TvViewAPI.
 The app handles Google OAuth2 authentication and displays calendar events, public transport info, bridge openings, weather data, and more.
 
 It’s designed to run on a screen mounted in a family home, acting as a central hub for daily information.
 Family members can:
 
- - See upcoming events synced with Google Calendar
- - View live local traffic, commute and weather updates
- - Upload reminders from their devices that can be checked off on-screen
- - Upload images from their devices that appear in a rotating slideshow on-screen
+- See upcoming events synced with Google Calendar
+- View live local traffic, commute and weather updates
+- Upload reminders from their devices that can be checked off on-screen
+- Upload images from their devices that appear in a rotating slideshow on-screen
 
 ![image](https://github.com/user-attachments/assets/204e47a2-1538-49f7-91c7-66a22d1bfdb4)
 
-
-
-
-##  Technologies Used
+## Technologies Used
 
 - React 19
 - Vite 6.2.0
@@ -71,6 +69,7 @@ If you haven't already set up the Google Cloud project for the backend, follow t
 2. Click **Create Credentials** > **OAuth 2.0 Client IDs**
 3. Choose **Web application** as the application type
 4. Configure for the frontend:
+
    - Name: `TV View Frontend`
    - Authorized JavaScript origins:
      ```
@@ -94,7 +93,6 @@ If you haven't already set up the Google Cloud project for the backend, follow t
 **Note:** The frontend uses a different OAuth2 client than the backend. Make sure to create separate credentials for each or use the same credentials with properly configured origins and redirect URIs for both applications.
 
 ---
-
 
 ## Environment Variables
 

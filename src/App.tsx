@@ -1,4 +1,10 @@
-import { Box, Container, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import {
+  Box,
+  Container,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+} from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -11,10 +17,12 @@ import TvView from "./components/TvView/TvView";
 import AutoLogin from "./configuration/AutoLogin";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN
+const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN;
 
 function App() {
-  const [token, setToken] = useState<string | null>(localStorage.getItem(TOKEN_STORAGE_KEY));
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem(TOKEN_STORAGE_KEY),
+  );
 
   const isJwtExpired = (token: string | null) => {
     if (!token) return true;
@@ -28,19 +36,18 @@ function App() {
   };
 
   useEffect(() => {
-    if(!localStorage.getItem("preLoginPath")) {
-      localStorage.setItem("preLoginPath", window.location.pathname)
+    if (!localStorage.getItem("preLoginPath")) {
+      localStorage.setItem("preLoginPath", window.location.pathname);
     }
 
     const currentToken = localStorage.getItem(TOKEN_STORAGE_KEY);
-  
+
     if (currentToken && !isJwtExpired(currentToken)) {
       setToken(currentToken);
     } else {
       setToken(null);
     }
   }, []);
-  
 
   const theme = createTheme({
     palette: {
@@ -56,32 +63,40 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {token ? (
-            <Routes>
-              <Route path="/reminders" element={
+          <Routes>
+            <Route
+              path="/reminders"
+              element={
                 <Box className="outer-content-container">
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminReminders />
                   </Container>
                 </Box>
-              } />
-              <Route path="/slides" element={
+              }
+            />
+            <Route
+              path="/slides"
+              element={
                 <Box className="outer-content-container">
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
                     <AdminSlides />
                   </Container>
                 </Box>
-              } />
-              <Route path="/" element={<TvView />} />
-            </Routes>
-        
+              }
+            />
+            <Route path="/" element={<TvView />} />
+          </Routes>
         ) : (
-          <AutoLogin isTvView={localStorage.getItem("preLoginPath") === '/'} initialPath={window.location.href} />
+          <AutoLogin
+            isTvView={localStorage.getItem("preLoginPath") === "/"}
+            initialPath={window.location.href}
+          />
         )}
       </ThemeProvider>
     </GoogleOAuthProvider>
   );
-};
+}
 
 export default App;

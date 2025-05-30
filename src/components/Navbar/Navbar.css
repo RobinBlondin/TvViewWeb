@@ -1,18 +1,17 @@
 .navbar-button-container {
-    display: flex;
-    gap: 2em;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .navbar-button {
-    font-size: 1.3em !important; 
-    font-weight: 600 !important;
-    color: #DAD4CF !important;
+  font-size: 1.3em !important;
+  font-weight: 600 !important;
+  color: #dad4cf !important;
 
-    @media screen and (max-width: 500px) {
-        font-size: 1em !important;
-        
-    }
+  @media screen and (max-width: 500px) {
+    font-size: 1em !important;
+  }
 }

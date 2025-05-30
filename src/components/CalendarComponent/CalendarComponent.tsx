@@ -1,69 +1,70 @@
-import { Container } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { CalendarEventModel } from '../../models/CalendarEventModel'
-import { getAllCalendarEvents } from '../../service/calendarService'
-import './CalendarComponent.css'
-import useWebSocket from 'react-use-websocket'
+import { Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { CalendarEventModel } from "../../models/CalendarEventModel";
+import { getAllCalendarEvents } from "../../service/calendarService";
+import "./CalendarComponent.css";
+import useWebSocket from "react-use-websocket";
 
-const WS_URL = import.meta.env.VITE_WS_URL
+const WS_URL = import.meta.env.VITE_WS_URL;
 
 const CalendarComponent: React.FC = () => {
-  const [events, setEvents] = useState<CalendarEventModel[]>()
-  const [eventsMap, setEventsMap] = useState<Map<number, CalendarEventModel[]>>(new Map())
+  const [events, setEvents] = useState<CalendarEventModel[]>();
+  const [eventsMap, setEventsMap] = useState<Map<number, CalendarEventModel[]>>(
+    new Map(),
+  );
   const { lastMessage } = useWebSocket(WS_URL);
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const events = await getAllCalendarEvents()
-      setEvents(events)
-    }
-    fetchEvents()
-  }, [lastMessage])
+      const events = await getAllCalendarEvents();
+      setEvents(events);
+    };
+    fetchEvents();
+  }, [lastMessage]);
 
   useEffect(() => {
-    if(events) {
-      const eventsMap = new Map()
+    if (events) {
+      const eventsMap = new Map();
       events.forEach((event) => {
-        const date = new Date(event.startTime)
-        const dateKey = date.getDay()
-        if(eventsMap.has(dateKey)) {
-          const events = eventsMap.get(dateKey)
-          events?.push(event)
-          eventsMap.set(dateKey, events)
+        const date = new Date(event.startTime);
+        const dateKey = date.getDay();
+        if (eventsMap.has(dateKey)) {
+          const events = eventsMap.get(dateKey);
+          events?.push(event);
+          eventsMap.set(dateKey, events);
         } else {
-          eventsMap.set(dateKey, [event])
+          eventsMap.set(dateKey, [event]);
         }
-      })
-      setEventsMap(eventsMap)
+      });
+      setEventsMap(eventsMap);
     }
-  }, [events])
+  }, [events]);
 
   const getDatesOfCurrentWeekFromSundayToSaturday = () => {
-  const dates = []
-  const today = new Date()
-  const day = today.getDay()
-  
-  const startOfWeek = new Date(today)
-  startOfWeek.setDate(today.getDate() - day)
-  startOfWeek.setHours(0, 0, 0, 0)
+    const dates = [];
+    const today = new Date();
+    const day = today.getDay();
 
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(startOfWeek)
-    date.setDate(startOfWeek.getDate() + i)
-    dates.push(date)
-  }
+    const startOfWeek = new Date(today);
+    startOfWeek.setDate(today.getDate() - day);
+    startOfWeek.setHours(0, 0, 0, 0);
 
-  return dates
-}
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(startOfWeek.getDate() + i);
+      dates.push(date);
+    }
 
+    return dates;
+  };
 
   const getEventColor = (index: number) => {
     const colors = [
-      'rgba(46, 134, 222, 0.85)',
-      'rgba(40, 180, 99, 0.85)',
-      'rgba(175, 122, 197, 0.85)',
-      'rgba(231, 76, 60, 0.85)',
-      'rgba(23, 165, 137, 0.85)',
+      "rgba(46, 134, 222, 0.85)",
+      "rgba(40, 180, 99, 0.85)",
+      "rgba(175, 122, 197, 0.85)",
+      "rgba(231, 76, 60, 0.85)",
+      "rgba(23, 165, 137, 0.85)",
     ];
     const safeIndex = ((index % colors.length) + colors.length) % colors.length;
     return colors[safeIndex];
@@ -71,54 +72,53 @@ const CalendarComponent: React.FC = () => {
 
   return (
     <Container className="calendar-container">
-        <Container className="days-container">
-            <Container className="day">Sön</Container>
-            <Container className="day">Mån</Container>
-            <Container className="day">Tis</Container>
-            <Container className="day">Ons</Container>
-            <Container className="day">Tor</Container>
-            <Container className="day">Fre</Container>
-            <Container className="day">Lör</Container>
-        </Container>
-        <Container className="dates-container">
-            {
-                getDatesOfCurrentWeekFromSundayToSaturday().map((date, index) => {
-                    return (
-                        <Container key={index} className="date">
-                          {date.getDate() === new Date().getDate() ?
-                          <Container className='marked-date'>{date.getDate()}</Container> : date.getDate()}
-                        </Container>
-                    )
-                })
-            }
-        </Container>
-        <Container className="events-container">
-              {
-              getDatesOfCurrentWeekFromSundayToSaturday().map((_, i) => {
+      <Container className="days-container">
+        <Container className="day">Sön</Container>
+        <Container className="day">Mån</Container>
+        <Container className="day">Tis</Container>
+        <Container className="day">Ons</Container>
+        <Container className="day">Tor</Container>
+        <Container className="day">Fre</Container>
+        <Container className="day">Lör</Container>
+      </Container>
+      <Container className="dates-container">
+        {getDatesOfCurrentWeekFromSundayToSaturday().map((date, index) => {
+          return (
+            <Container key={index} className="date">
+              {date.getDate() === new Date().getDate() ? (
+                <Container className="marked-date">{date.getDate()}</Container>
+              ) : (
+                date.getDate()
+              )}
+            </Container>
+          );
+        })}
+      </Container>
+      <Container className="events-container">
+        {getDatesOfCurrentWeekFromSundayToSaturday().map((_, i) => {
+          return (
+            <Container key={i} className="events">
+              {eventsMap.get(i)?.map((event, j) => {
                 return (
-                  <Container key={i} className="events">
-                    {
-                      eventsMap.get(i)?.map((event, j) => {
-                        return (
-                          <Container 
-                            key={j} 
-                            className="event" 
-                            sx={{ background: getEventColor(i-j) }} lang="sv"
-                          >
-                            <Container className="event-time">{new Date(event.startTime).toTimeString().substring(0, 5)}</Container>
-                            <Container className="event-title">{event.title}</Container>
-                          </Container>
-                        )
-                      })
-                    }
+                  <Container
+                    key={j}
+                    className="event"
+                    sx={{ background: getEventColor(i - j) }}
+                    lang="sv"
+                  >
+                    <Container className="event-time">
+                      {new Date(event.startTime).toTimeString().substring(0, 5)}
+                    </Container>
+                    <Container className="event-title">{event.title}</Container>
                   </Container>
-                )
-              }
-              )
-            }
-        </Container>
+                );
+              })}
+            </Container>
+          );
+        })}
+      </Container>
     </Container>
-  )
-}
+  );
+};
 
-export default CalendarComponent
+export default CalendarComponent;

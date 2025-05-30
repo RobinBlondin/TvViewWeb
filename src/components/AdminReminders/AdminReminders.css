@@ -1,75 +1,76 @@
 .ar-main-container {
-    align-items: start;
-    border-top: 1px solid #fbe2dc;
-    border-bottom: 1px solid #fbe2dc;
-    height: 80% !important;
-    overflow: auto;
-    min-width: 80% !important;
-    border-radius: 0 !important;
+  align-items: start;
+  border-top: 1px solid #fbe2dc;
+  border-bottom: 1px solid #fbe2dc;
+  height: 80% !important;
+  overflow: auto;
+  min-width: 80% !important;
+  border-radius: 0 !important;
 }
 
 .grid-content-container {
-    padding: 1em 10em 1em 10em !important;
+  padding: 1em 10em 1em 10em !important;
 }
 
 .add-reminder-grid {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
 }
 
 .add-reminder-content {
-    background: #DAD4CF;
+  background: #dad4cf;
 }
 
 .reminder-grid {
-    width: 100%;
-    background: #DAD4CF;
-    border-radius: 0.5em;
+  width: 100%;
+  background: #dad4cf;
+  border-radius: 0.5em;
 }
 
 .reminder-content {
-    background: #fbe2dc;
+  background: #fbe2dc;
 }
 
 .title-cell {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .desc-cell {
-    width: 80%;
+  width: 80%;
 }
 
 .other-cell {
-    width: 10%;
+  width: 10%;
 }
 
 .text-field {
-    background: #FFFFFF !important;
-    margin-bottom: 10px !important;
+  background: #ffffff !important;
+  margin-bottom: 10px !important;
 }
 
 .add-button {
-    background: #8A6A5B !important;
-    font-weight: bold !important;
+  background: #8a6a5b !important;
+  font-weight: bold !important;
 }
 
 .add-button:hover {
-    background: #A98A74 !important;
+  background: #a98a74 !important;
 }
 
 @media screen and (max-width: 703px) {
-    .ar-main-container {
-        height: 95% !important;
-        width: 100%;
-        margin-top: 1em;
-    }
+  .ar-main-container {
+    height: 95% !important;
+    width: 100%;
+    margin-top: 1em;
+  }
 
-    .grid-content-container {
-        padding: 0.5em 1em !important;
-    }
+  .grid-content-container {
+    padding: 0.5em 1em !important;
+  }
 
-    .add-reminder-grid, .reminder-grid {
-        width: 100%;
-    }
+  .add-reminder-grid,
+  .reminder-grid {
+    width: 100%;
+  }
 }

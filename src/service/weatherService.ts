@@ -12,20 +12,23 @@ const apiClient = axios.create({
 });
 
 export const getWeatherData = async (): Promise<WeatherModel> => {
-    return apiClient.get(weatherUrl).then((res) => res.data).then((data) => {
-        const weatherModel = new WeatherModel(
-            data.current.temperature_2m,
-            data.current.windspeed_10m,
-            data.current.weather_code,
-            data.daily.sunrise[1],
-            data.daily.sunset[0],
-            data.daily.precipitation_sum[0],
-            data.current.wind_direction_10m
-        );
-        return weatherModel;
-    }
-    ).catch((error) => {
-        console.error("Error fetching weather data:", error);
-        throw error;
+  return apiClient
+    .get(weatherUrl)
+    .then((res) => res.data)
+    .then((data) => {
+      const weatherModel = new WeatherModel(
+        data.current.temperature_2m,
+        data.current.windspeed_10m,
+        data.current.weather_code,
+        data.daily.sunrise[1],
+        data.daily.sunset[0],
+        data.daily.precipitation_sum[0],
+        data.current.wind_direction_10m,
+      );
+      return weatherModel;
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+      throw error;
     });
-}
+};

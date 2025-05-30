@@ -1,102 +1,105 @@
 .calendar-container {
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;    
-    height: 100% !important;
-    min-width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0.5em !important;
-    background: radial-gradient(circle at top, #633b19, #1a0e06, #000000);
-    border-radius: 0.5em !important;
-    font-family: Kanit, sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0.5em !important;
+  background: radial-gradient(circle at top, #633b19, #1a0e06, #000000);
+  border-radius: 0.5em !important;
+  font-family: Kanit, sans-serif;
 }
 
-.days-container, .dates-container, .events-container {
-    display: flex;
-    width: 100%;
-    padding: 0 !important;
-    margin: 0 !important;
+.days-container,
+.dates-container,
+.events-container {
+  display: flex;
+  width: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .marked-date {
-    background-color: rgba(252, 123, 3, 0.7) !important;
-    width: 1.4em !important;
-    height: 1.4em !important;
-    border-radius: 50% !important;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+  background-color: rgba(252, 123, 3, 0.7) !important;
+  width: 1.4em !important;
+  height: 1.4em !important;
+  border-radius: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.days-container, .dates-container {
-    height: 10%;
+.days-container,
+.dates-container {
+  height: 10%;
 }
 
 .dates-container {
-    margin-bottom: 1em !important;
-
+  margin-bottom: 1em !important;
 }
 
 .events-container {
-    height: 70%;
+  height: 70%;
 }
 
 .events {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2em;
-    padding: 0.1em !important;
-    margin: 0.5em 0 0 0 !important;
-    width: calc(100% / 7) !important;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  padding: 0.1em !important;
+  margin: 0.5em 0 0 0 !important;
+  width: calc(100% / 7) !important;
+  height: 100%;
 }
 
-.day, .date {
-    width: calc(100% / 7) !important;
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    color: white;
+.day,
+.date {
+  width: calc(100% / 7) !important;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .day {
-    font-size: 2em;
-    font-weight: 500;
+  font-size: 2em;
+  font-weight: 500;
 }
 
 .date {
-    font-size: 3em;
-    font-weight: 700;
+  font-size: 3em;
+  font-weight: 700;
 }
 
 .event {
-    width: 100%;
-    height: auto;
-    border-radius: 0.5em !important;
-    margin: 0 !important;
-    padding: 8px 4px 8px 8px !important;
-    
+  width: 100%;
+  height: auto;
+  border-radius: 0.5em !important;
+  margin: 0 !important;
+  padding: 8px 4px 8px 8px !important;
 }
 
-.event-time, .event-title {
-    font-size: 16px;
-    font-weight: 600;
-    padding: 0 !important;
-    color: white;
-    line-height: 1;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    hyphens:auto;
+.event-time,
+.event-title {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0 !important;
+  color: white;
+  line-height: 1;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .event-time {
-    height: 25px;
+  height: 25px;
 }
 
 .event-title {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: normal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
 }

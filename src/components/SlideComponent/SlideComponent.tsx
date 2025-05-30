@@ -1,13 +1,13 @@
-import { Box, Container } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { SlideModel } from '../../models/SlideModel';
-import { getAllSlides } from '../../service/slideService';
-import useWebSocket from 'react-use-websocket';
-import './SlideComponent.css';
-import ClockComponent from '../ClockComponent/ClockComponent';
-import WeatherComponent from '../WeatherComponent/WeatherComponent';
+import { Box, Container } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { SlideModel } from "../../models/SlideModel";
+import { getAllSlides } from "../../service/slideService";
+import useWebSocket from "react-use-websocket";
+import "./SlideComponent.css";
+import ClockComponent from "../ClockComponent/ClockComponent";
+import WeatherComponent from "../WeatherComponent/WeatherComponent";
 
-const WS_URL = import.meta.env.VITE_WS_URL
+const WS_URL = import.meta.env.VITE_WS_URL;
 
 const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
@@ -18,16 +18,16 @@ const SlideComponent: React.FC = () => {
 
   useEffect(() => {
     const fetchSlides = async () => {
-      await getAllSlides().then(response => {
+      await getAllSlides().then((response) => {
         setSlides(response);
       });
     };
     fetchSlides();
-  }, [updateSlides])
+  }, [updateSlides]);
 
   useEffect(() => {
-    if(lastMessage && lastMessage.data === 'slides') {
-      setUpdateSlides(!updateSlides)
+    if (lastMessage && lastMessage.data === "slides") {
+      setUpdateSlides(!updateSlides);
     }
   }, [lastMessage]);
 
@@ -53,7 +53,6 @@ const SlideComponent: React.FC = () => {
     };
   }, [slides, currentIndex]);
 
-
   useEffect(() => {
     if (slides.length > 0 && slides[currentIndex]?.url) {
       const img = new Image();
@@ -64,21 +63,19 @@ const SlideComponent: React.FC = () => {
     }
   }, [currentIndex, slides]);
 
-
   return (
     <Box className="slide-container">
       <div className="slide-gradient-overlay" />
-      {slides[currentIndex]?.url && isLandscape  && (
+      {slides[currentIndex]?.url && isLandscape && (
         <div
           className="slide-cover"
           style={{
-            backgroundImage: `url(${slides[currentIndex].url})`
+            backgroundImage: `url(${slides[currentIndex].url})`,
           }}
         />
       )}
 
-
-      {slides[currentIndex]?.url && !isLandscape  && (
+      {slides[currentIndex]?.url && !isLandscape && (
         <>
           <div
             className="slide-blur-bg"
@@ -92,14 +89,14 @@ const SlideComponent: React.FC = () => {
         </>
       )}
 
-  <Container className="slide-time-container">
-    <ClockComponent />
-  </Container>
+      <Container className="slide-time-container">
+        <ClockComponent />
+      </Container>
 
-  <Container className="slide-weather-container">
-    <WeatherComponent />
-  </Container>
-</Box>
+      <Container className="slide-weather-container">
+        <WeatherComponent />
+      </Container>
+    </Box>
   );
 };
 
