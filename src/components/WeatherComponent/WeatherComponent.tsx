@@ -54,12 +54,9 @@ const WeatherComponent: React.FC = () => {
 
   useEffect(() => {
     fetchWeaterData();
-    setInterval(
-      () => {
-        fetchWeaterData();
-      },
-      1000 * 60 * 15,
-    );
+    setInterval(() => {
+      fetchWeaterData();
+    }, 1000 * 60 * 15);
   }, []);
 
   useEffect(() => {
@@ -76,7 +73,7 @@ const WeatherComponent: React.FC = () => {
         padding: "0 !important",
         marginTop:
           weatherData &&
-          weatherData.weatherCode > 1 &&
+          weatherData.weatherCode >= 0 &&
           weatherData.weatherCode < 4
             ? "2em"
             : "0",
@@ -97,7 +94,7 @@ const WeatherComponent: React.FC = () => {
           style={{
             marginBottom:
               weatherData &&
-              weatherData.weatherCode > 1 &&
+              weatherData.weatherCode >= 0 &&
               weatherData.weatherCode < 4
                 ? "0em"
                 : "0",
@@ -150,7 +147,9 @@ const WeatherComponent: React.FC = () => {
               color: "lightgray",
             }}
           >
-            {`${setDegreeToDirection(weatherData?.windDirection)} ${weatherData?.windSpeed}m/s`}
+            {`${setDegreeToDirection(weatherData?.windDirection)} ${
+              weatherData?.windSpeed
+            }m/s`}
           </Typography>
         </Container>
       </Container>
