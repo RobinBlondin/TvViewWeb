@@ -66,11 +66,9 @@ const WeatherComponent: React.FC = () => {
   return (
     <Container
       sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         color: "white",
         padding: "0 !important",
+        margin: "0 !important",
         marginTop:
           weatherData &&
           weatherData.weatherCode >= 0 &&
@@ -85,6 +83,7 @@ const WeatherComponent: React.FC = () => {
           width: "auto",
           display: "flex",
           flexDirection: "column",
+          margin: "0 !important",
         }}
       >
         <img

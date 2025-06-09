@@ -21,10 +21,11 @@
 }
 
 .slide-image {
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
   object-fit: contain;
   position: relative;
+  overflow: visible;
   z-index: 1;
   display: block;
   margin: 0 auto;
@@ -52,7 +53,7 @@
   pointer-events: none;
 }
 
-.slide-time-container {
+/* .slide-time-container {
   margin: 0 !important;
   width: auto !important;
   height: 100px !important;
@@ -72,4 +73,23 @@
   left: 0.5em !important;
   padding: 0 !important;
   z-index: 2 !important;
+} */
+
+.slide-time-container,
+.slide-weather-container {
+  position: absolute;
+  bottom: 1.5em;
+  height: auto;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: auto;
+  z-index: 2;
+}
+
+.slide-time-container {
+  right: 2em;
+}
+
+.slide-weather-container {
+  left: 0.5em;
 }

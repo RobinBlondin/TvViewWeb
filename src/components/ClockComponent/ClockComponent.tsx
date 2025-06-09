@@ -9,7 +9,9 @@ const ClockComponent: React.FC = () => {
     const hour = now.getHours().toString();
     const minute = now.getMinutes().toString();
 
-    return `${hour.length === 1 ? "0" + hour : hour}:${minute.length === 1 ? "0" + minute : minute}`;
+    return `${hour.length === 1 ? "0" + hour : hour}:${
+      minute.length === 1 ? "0" + minute : minute
+    }`;
   };
 
   useEffect(() => {
@@ -22,18 +24,15 @@ const ClockComponent: React.FC = () => {
     <Container
       className="clock-main-container"
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-        width: "100%",
+        width: "auto",
         padding: "0 !important",
       }}
     >
       <Container
         className="clock-time-container"
         sx={{
-          textAlign: "center",
+          textAlign: "right",
+          width: "auto",
           color: "white",
           fontSize: "5em",
           fontWeight: "600",
