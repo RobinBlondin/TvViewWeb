@@ -26,7 +26,11 @@ const ReminderList = () => {
   const [component, setComponent] = useState<string>("remindersList");
   const [departures, setDepartures] = useState<DepartureModel[]>([]);
   const [timeoutId, setTimeoutId] = useState<number>();
-  const { lastMessage } = useWebSocket(WS_URL);
+  const { lastMessage } = useWebSocket(WS_URL, {
+    shouldReconnect: () => true,
+    reconnectAttempts: 20,
+    reconnectInterval: 15000,
+  });
   const [loading, setLoading] = useState(false);
   const [updateReminders, setUpdateReminders] = useState<boolean>(false);
 
@@ -123,7 +127,7 @@ const ReminderList = () => {
         />
       </Container>
     ),
-    [],
+    []
   );
 
   return (

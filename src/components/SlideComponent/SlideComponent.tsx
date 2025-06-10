@@ -12,7 +12,11 @@ const WS_URL = import.meta.env.VITE_WS_URL;
 const SlideComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { lastMessage } = useWebSocket(WS_URL);
+  const { lastMessage } = useWebSocket(WS_URL, {
+    shouldReconnect: () => true,
+    reconnectAttempts: 20,
+    reconnectInterval: 15000,
+  });
   const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
   const [updateSlides, setUpdateSlides] = useState<boolean>(false);
 

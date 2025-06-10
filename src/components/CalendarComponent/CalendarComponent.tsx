@@ -10,9 +10,13 @@ const WS_URL = import.meta.env.VITE_WS_URL;
 const CalendarComponent: React.FC = () => {
   const [events, setEvents] = useState<CalendarEventModel[]>();
   const [eventsMap, setEventsMap] = useState<Map<number, CalendarEventModel[]>>(
-    new Map(),
+    new Map()
   );
-  const { lastMessage } = useWebSocket(WS_URL);
+  const { lastMessage } = useWebSocket(WS_URL, {
+    shouldReconnect: () => true,
+    reconnectAttempts: 20,
+    reconnectInterval: 15000,
+  });
 
   useEffect(() => {
     const fetchEvents = async () => {
