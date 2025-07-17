@@ -70,7 +70,7 @@ function App() {
               path="/reminders"
               element={
                 <Box className="outer-content-container">
-                  <Navbar />
+                  {getWindowWidth() > 768 && <Navbar />}
                   <Container maxWidth={false} className="content-container">
                     {getWindowWidth() > 768 ? (
                       <AdminReminders />
@@ -85,7 +85,7 @@ function App() {
               path="/slides"
               element={
                 <Box className="outer-content-container">
-                  <Navbar />
+                  {getWindowWidth() > 768 && <Navbar />}
                   <Container maxWidth={false} className="content-container">
                     {getWindowWidth() > 768 ? (
                       <AdminSlides />
