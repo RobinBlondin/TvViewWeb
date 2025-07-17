@@ -1,8 +1,17 @@
 .menu-button {
-  width: 80%;
+  width: 80% !important;
   height: 15%;
-  display: flex;
-  padding: 0 !important;
+  display: flex !important;
+  padding-left: 2em !important;
   margin: 0 !important;
-  text-align: left !important;
+  align-items: center !important;
+  justify-content: start !important;
+  background: #a86c74 !important;
+  color: white !important;
+  font-weight: bold !important;
+  font-size: 1.3em !important;
+}
+
+.icon {
+  font-size: 2.5rem !important;
 }
