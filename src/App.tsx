@@ -15,13 +15,15 @@ import AdminSlides from "./components/AdminSlides/AdminSlides";
 import Navbar from "./components/Navbar/Navbar";
 import TvView from "./components/TvView/TvView";
 import AutoLogin from "./configuration/AutoLogin";
+import { getWindowWidth } from "./utils/utils";
+import AdminMobileComponent from "./components/AdminMobileComponent/AdminMobileComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN;
 
 function App() {
   const [token, setToken] = useState<string | null>(
-    localStorage.getItem(TOKEN_STORAGE_KEY),
+    localStorage.getItem(TOKEN_STORAGE_KEY)
   );
 
   const isJwtExpired = (token: string | null) => {
@@ -70,7 +72,11 @@ function App() {
                 <Box className="outer-content-container">
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
-                    <AdminReminders />
+                    {getWindowWidth() > 768 ? (
+                      <AdminReminders />
+                    ) : (
+                      <AdminMobileComponent />
+                    )}
                   </Container>
                 </Box>
               }
@@ -81,12 +87,21 @@ function App() {
                 <Box className="outer-content-container">
                   <Navbar />
                   <Container maxWidth={false} className="content-container">
-                    <AdminSlides />
+                    {getWindowWidth() > 768 ? (
+                      <AdminSlides />
+                    ) : (
+                      <AdminMobileComponent />
+                    )}
                   </Container>
                 </Box>
               }
             />
-            <Route path="/" element={<TvView />} />
+            <Route
+              path="/"
+              element={
+                getWindowWidth() > 768 ? <TvView /> : <AdminMobileComponent />
+              }
+            />
           </Routes>
         ) : (
           <AutoLogin
