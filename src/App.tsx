@@ -10,13 +10,14 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import AdminMobileComponent from "./components/AdminMobileComponent/AdminMobileComponent";
+import AdminMobileSlidesComponent from "./components/AdminMobileSlidesComponent/AdminMobileSlidesComponent";
 import AdminReminders from "./components/AdminReminders/AdminReminders";
 import AdminSlides from "./components/AdminSlides/AdminSlides";
 import Navbar from "./components/Navbar/Navbar";
 import TvView from "./components/TvView/TvView";
 import AutoLogin from "./configuration/AutoLogin";
 import { getWindowWidth } from "./utils/utils";
-import AdminMobileComponent from "./components/AdminMobileComponent/AdminMobileComponent";
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const TOKEN_STORAGE_KEY = import.meta.env.VITE_JWT_TOKEN;
@@ -72,11 +73,7 @@ function App() {
                 <Box className="outer-content-container">
                   {getWindowWidth() > 768 && <Navbar />}
                   <Container maxWidth={false} className="content-container">
-                    {getWindowWidth() > 768 ? (
-                      <AdminReminders />
-                    ) : (
-                      <AdminMobileComponent />
-                    )}
+                    <AdminReminders />
                   </Container>
                 </Box>
               }
@@ -90,7 +87,7 @@ function App() {
                     {getWindowWidth() > 768 ? (
                       <AdminSlides />
                     ) : (
-                      <AdminMobileComponent />
+                      <AdminMobileSlidesComponent />
                     )}
                   </Container>
                 </Box>
