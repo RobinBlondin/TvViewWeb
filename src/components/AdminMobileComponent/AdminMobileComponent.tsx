@@ -34,7 +34,6 @@ const AdminMobileComponent: React.FC = () => {
   }, [feedBack]);
 
   const handleClick = (action: string) => {
-    console.log(action);
     if (action === "edit-reminder") {
       window.location.href = "/reminders";
     } else if (action === "edit-slide") {
@@ -62,7 +61,6 @@ const AdminMobileComponent: React.FC = () => {
 
   const triggerFileInput = () => {
     const input = document.getElementById("fileInput");
-    console.log("there is input");
     if (input) {
       input.click();
     }
