@@ -1,7 +1,5 @@
 .ar-main-container {
   align-items: start;
-  border-top: 1px solid #fbe2dc;
-  border-bottom: 1px solid #fbe2dc;
   height: 80% !important;
   overflow: auto;
   min-width: 80% !important;

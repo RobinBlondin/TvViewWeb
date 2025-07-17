@@ -1,4 +1,5 @@
 import AddIcon from "@mui/icons-material/Add";
+import ArrowBack from "@mui/icons-material/ArrowBack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
   Box,
@@ -25,6 +26,7 @@ import {
   getAllReminders,
 } from "../../service/reminderService";
 import "./AdminReminders.css";
+import { getWindowWidth } from "../../utils/utils";
 
 const AdminReminders: React.FC = () => {
   const [reminders, setReminders] = useState<ReminderModel[]>([]);
@@ -59,8 +61,20 @@ const AdminReminders: React.FC = () => {
   };
 
   return (
-    <Box className="ar-main-container">
+    <Box
+      className="ar-main-container"
+      sx={{
+        borderTop: getWindowWidth() > 768 ? "1px solid #fbe2dc" : 0,
+        borderBottom: getWindowWidth() > 768 ? "1px solid #fbe2dc" : 0,
+      }}
+    >
       <Grid2 container spacing={4} className="grid-content-container">
+        <ArrowBack
+          sx={{ fontSize: 30, color: "#fbe2dc" }}
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        />
         <Grid2 className="add-reminder-grid">
           <Card elevation={3}>
             <CardContent className="add-reminder-content">
