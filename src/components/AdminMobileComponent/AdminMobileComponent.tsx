@@ -1,5 +1,5 @@
 import { Add, Edit } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -68,9 +68,8 @@ const AdminMobileComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh !important",
-        height: "100vh",
-        padding: "4em 0 0 0 !important",
+        height: "90vh !important",
+        paddingTop: "10vh",
         margin: "0 !important",
         display: "flex",
         flexDirection: "column",
@@ -79,20 +78,16 @@ const AdminMobileComponent: React.FC = () => {
         gap: "1em",
       }}
     >
-      {feedBack !== "" && (
-        <Typography
-          color="warning"
-          sx={{
-            position: "fixed",
-            top: "5%",
-            left: "25%",
-            zIndex: 100,
-            width: "100%",
-          }}
-        >
-          {feedBack}
-        </Typography>
-      )}
+      <Container
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 100,
+        }}
+      >
+        {feedBack !== "" && <Typography color="warning">{feedBack}</Typography>}
+      </Container>
       <Button
         className="menu-button"
         variant="contained"
