@@ -1,13 +1,12 @@
 import { Add, Edit } from "@mui/icons-material";
-import Box from "@mui/material/Box";
+import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
-import { uploadFile } from "../../service/fileUploadService";
-import "./AdminMobileComponent.css";
-import { SlideModel } from "../../models/SlideModel";
-import { createSlide } from "../../service/slideService";
 import { useSearchParams } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { SlideModel } from "../../models/SlideModel";
+import { uploadFile } from "../../service/fileUploadService";
+import { createSlide } from "../../service/slideService";
+import "./AdminMobileComponent.css";
 
 const AdminMobileComponent: React.FC = () => {
   const [feedBack, setFeedBack] = useState<string>("");
@@ -69,16 +68,15 @@ const AdminMobileComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "100vw !important",
-        height: "100vh !important",
-        padding: "0 !important",
+        minHeight: "100vh !important",
+        height: "100vh",
+        padding: "4em 0 0 0 !important",
         margin: "0 !important",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "start",
         gap: "1em",
-        background: "radial-gradient(circle at top, #6e3a40, #4c2b2f, #2e1a1e)",
       }}
     >
       {feedBack !== "" && (
