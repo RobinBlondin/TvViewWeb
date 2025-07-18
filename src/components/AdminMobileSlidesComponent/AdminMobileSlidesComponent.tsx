@@ -69,65 +69,68 @@ const AdminMobileSlidesComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh !important",
-        flex: 1,
-        padding: "3em 1em 1em 1em !important",
-        margin: "0 !important",
+        height: "100vh",
+        width: "85vw",
         display: "flex",
         flexDirection: "column",
-        overflowX: "hidden",
-        gap: "1.5em",
+        background: "radial-gradient(circle at top, #6c3a40, #4c2b2f, #2c1a1e)",
+        padding: 0,
       }}
-      className="mobile-main-container"
     >
-      <ArrowBack
-        onClick={() => {
-          window.location.href = "/";
-        }}
-        htmlColor="#f2a9a0"
-        fontSize="large"
-      />
-      <Container
+      {/* Pil högst upp */}
+      <Box sx={{ height: "50px", display: "flex", alignItems: "center" }}>
+        <ArrowBack
+          onClick={() => (window.location.href = "/")}
+          htmlColor="#f2a9a0"
+          fontSize="large"
+          sx={{ cursor: "pointer" }}
+        />
+      </Box>
+
+      {/* Scrollbar tar resterande yta */}
+      <Box
         sx={{
           flex: 1,
+          overflowY: "scroll", // (eller "auto" – båda funkar)
+          scrollbarWidth: "none", // Firefox
+          "&::-webkit-scrollbar": { display: "none" }, // Chrome/Safari
+
           display: "flex",
           flexDirection: "column",
-          border: "0.5em !important",
-          gap: "0.2em",
+          gap: "0.3em",
+          paddingRight: "0.5em",
         }}
       >
-        {slides?.map((slide) => (
-          <Container
+        {slides.map((slide) => (
+          <Box
             key={slide.id}
             sx={{
               width: "100%",
               height: "60px",
               display: "flex",
               borderRadius: "0.5em",
-              // borderBottom: "solid 0.5px rgba(0, 0, 0, 0.3)",
               justifyContent: "space-between",
               padding: "0.3em",
+              gap: "0.3em",
               background: "rgba(0, 0, 0, 0.15)",
             }}
           >
-            <Container
+            <Box
               sx={{
-                width: "20%",
+                width: "15%",
                 background: `url(${slide.url})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
                 borderRadius: "0.5em",
               }}
-            ></Container>
-            <Container
+            />
+            <Box
               sx={{
                 width: "60%",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "start",
                 justifyContent: "end",
-                overflowX: "hidden",
+                overflow: "hidden",
               }}
             >
               <Typography className="slide-title">
@@ -136,23 +139,23 @@ const AdminMobileSlidesComponent: React.FC = () => {
                   slide.created?.split("T")[1].substring(0, 5)}
               </Typography>
               <Typography className="slide-title">{slide.createdBy}</Typography>
-            </Container>
-            <Container
+            </Box>
+            <Box
               sx={{
+                width: "20%",
                 display: "flex",
                 justifyContent: "end",
                 alignItems: "end",
-                width: "20%",
                 color: "#e06666",
-                padding: "0 !important",
+                padding: 0,
               }}
               onClick={() => removeSlide(slide.id!)}
             >
               <DeleteIcon sx={{ fontSize: "2em" }} />
-            </Container>
-          </Container>
+            </Box>
+          </Box>
         ))}
-      </Container>
+      </Box>
     </Box>
   );
 };
