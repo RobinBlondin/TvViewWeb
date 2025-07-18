@@ -1,6 +1,6 @@
 import { ArrowBack } from "@mui/icons-material";
 import DeleteIcon from "@mui/icons-material/Clear";
-import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SlideModel } from "../../models/SlideModel";
 import { deleteSlideById, getAllSlides } from "../../service/slideService";
@@ -77,7 +77,6 @@ const AdminMobileSlidesComponent: React.FC = () => {
         padding: 0,
       }}
     >
-      {/* Pil högst upp */}
       <Box sx={{ height: "50px", display: "flex", alignItems: "center" }}>
         <ArrowBack
           onClick={() => (window.location.href = "/")}
@@ -87,13 +86,12 @@ const AdminMobileSlidesComponent: React.FC = () => {
         />
       </Box>
 
-      {/* Scrollbar tar resterande yta */}
       <Box
         sx={{
           flex: 1,
-          overflowY: "scroll", // (eller "auto" – båda funkar)
-          scrollbarWidth: "none", // Firefox
-          "&::-webkit-scrollbar": { display: "none" }, // Chrome/Safari
+          overflowY: "scroll",
+          scrollbarWidth: "none",
+          "&::-webkit-scrollbar": { display: "none" },
 
           display: "flex",
           flexDirection: "column",
