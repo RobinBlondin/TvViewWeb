@@ -27,18 +27,28 @@ const AdminMobileSlidesComponent: React.FC = () => {
 
   useEffect(() => {
     if (slides.length === 0) return;
-    console.log("running");
-    if (loadedImages >= slides.length) {
-      setAllImagesLoaded(true);
-    }
-  }, [loadedImages, slides]);
 
-  const removeSlide = async (id: string) => {
-    console.log(id);
-    await deleteSlideById(id).then(() => {
-      setSlides([]);
+    let loaded = 0;
+
+    slides.forEach((slide) => {
+      const img = new Image();
+      img.src = slide.url;
+
+      img.onload = () => {
+        loaded++;
+        if (loaded === slides.length) {
+          setAllImagesLoaded(true);
+        }
+      };
+
+      img.onerror = () => {
+        loaded++;
+        if (loaded === slides.length) {
+          setAllImagesLoaded(true);
+        }
+      };
     });
-  };
+  }, [slides]);
 
   if (!allImagesLoaded) {
     return (
@@ -52,16 +62,6 @@ const AdminMobileSlidesComponent: React.FC = () => {
         }}
       >
         <CircularProgress sx={{ color: "#f2a9a0" }} />
-        {slides.map((slide) => (
-          <img
-            key={slide.id}
-            src={slide.url}
-            style={{ display: "none" }}
-            onLoad={() => setLoadedImages((prev) => prev + 1)}
-            onError={() => setLoadedImages((prev) => prev + 1)}
-            alt=""
-          />
-        ))}
       </Box>
     );
   }
