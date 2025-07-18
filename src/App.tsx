@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  createTheme,
-  CssBaseline,
-  ThemeProvider,
-} from "@mui/material";
+import { Box, Container } from "@mui/material";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
@@ -52,61 +46,49 @@ function App() {
     }
   }, []);
 
-  const theme = createTheme({
-    palette: {
-      primary: { main: "#d90429" },
-      secondary: { main: "#000000" },
-      background: { default: "#FFFFFF" },
-      text: { primary: "#000000", secondary: "#000000" },
-    },
-  });
-
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        {token ? (
-          <Routes>
-            <Route
-              path="/reminders"
-              element={
-                <Box className="outer-content-container">
-                  {getWindowWidth() > 768 && <Navbar />}
-                  <Container maxWidth={false} className="content-container">
-                    <AdminReminders />
-                  </Container>
-                </Box>
-              }
-            />
-            <Route
-              path="/slides"
-              element={
-                <Box className="outer-content-container">
-                  {getWindowWidth() > 768 && <Navbar />}
-                  <Container maxWidth={false} className="content-container">
-                    {getWindowWidth() > 768 ? (
-                      <AdminSlides />
-                    ) : (
-                      <AdminMobileSlidesComponent />
-                    )}
-                  </Container>
-                </Box>
-              }
-            />
-            <Route
-              path="/"
-              element={
-                getWindowWidth() > 768 ? <TvView /> : <AdminMobileComponent />
-              }
-            />
-          </Routes>
-        ) : (
-          <AutoLogin
-            isTvView={localStorage.getItem("preLoginPath") === "/"}
-            initialPath={window.location.href}
+      {token ? (
+        <Routes>
+          <Route
+            path="/reminders"
+            element={
+              <Box className="outer-content-container">
+                {getWindowWidth() > 768 && <Navbar />}
+                <Container maxWidth={false} className="content-container">
+                  <AdminReminders />
+                </Container>
+              </Box>
+            }
           />
-        )}
-      </ThemeProvider>
+          <Route
+            path="/slides"
+            element={
+              <Box className="outer-content-container">
+                {getWindowWidth() > 768 && <Navbar />}
+                <Container maxWidth={false} className="content-container">
+                  {getWindowWidth() > 768 ? (
+                    <AdminSlides />
+                  ) : (
+                    <AdminMobileSlidesComponent />
+                  )}
+                </Container>
+              </Box>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              getWindowWidth() > 768 ? <TvView /> : <AdminMobileComponent />
+            }
+          />
+        </Routes>
+      ) : (
+        <AutoLogin
+          isTvView={localStorage.getItem("preLoginPath") === "/"}
+          initialPath={window.location.href}
+        />
+      )}
     </GoogleOAuthProvider>
   );
 }
