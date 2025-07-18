@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Typography, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { ArrowBack } from "@mui/icons-material";
 import { SlideModel } from "../../models/SlideModel";
@@ -8,6 +8,7 @@ import "./AdminMobileSlidesComponent.css";
 
 const AdminMobileSlidesComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllSlides().then((data) => {
@@ -18,17 +19,47 @@ const AdminMobileSlidesComponent: React.FC = () => {
           return dateB - dateA;
         });
 
-        setSlides(sortedData);
+        const imagePromises = sortedData.map(
+          (slide) =>
+            new Promise<void>((resolve) => {
+              const img = new Image();
+              img.src = slide.url;
+              img.onload = () => resolve();
+              img.onerror = () => resolve();
+            })
+        );
+
+        Promise.all(imagePromises).then(() => {
+          setSlides(sortedData);
+          setLoading(false);
+        });
       }
     });
-  }, [slides]);
+  }, []);
 
   const removeSlide = async (id: string) => {
-    console.log(id);
-    await deleteSlideById(id).then(() => {
-      setSlides([]);
-    });
+    await deleteSlideById(id);
+    setSlides((prev) => prev?.filter((s) => s.id !== id));
   };
+
+  if (loading) {
+    return (
+      <Box
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          background:
+            "radial-gradient(circle at top, #6e3a40, #4c2b2f, #2e1a1e)",
+        }}
+      >
+        <CircularProgress sx={{ color: "#f2a9a0" }} />
+      </Box>
+    );
+  }
+
   return (
     <Box
       sx={{
@@ -68,7 +99,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
               display: "flex",
               borderBottom: "solid 0.5px rgba(0, 0, 0, 0.3)",
               justifyContent: "space-between",
-              padding: "0.3em 0 0.3em 0",
+              padding: "0.3em 0",
             }}
           >
             <Container
