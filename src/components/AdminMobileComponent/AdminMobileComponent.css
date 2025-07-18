@@ -2,8 +2,9 @@
   width: 80% !important;
   height: 15%;
   display: flex !important;
-  padding-left: 2.5em !important;
   margin: 0 !important;
+  padding-left: 1em !important;
+  gap: 15% !important;
   align-items: center !important;
   justify-content: start !important;
   background: #a86c74 !important;
