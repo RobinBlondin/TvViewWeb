@@ -69,12 +69,14 @@ const AdminReminders: React.FC = () => {
       }}
     >
       <Grid2 container spacing={4} className="grid-content-container">
-        <ArrowBack
-          sx={{ fontSize: 30, color: "#fbe2dc" }}
-          onClick={() => {
-            window.location.href = "/";
-          }}
-        />
+        {getWindowWidth() < 768 && (
+          <ArrowBack
+            sx={{ fontSize: 30, color: "#fbe2dc" }}
+            onClick={() => {
+              window.location.href = "/";
+            }}
+          />
+        )}
         <Grid2 className="add-reminder-grid">
           <Card elevation={3}>
             <CardContent className="add-reminder-content">
