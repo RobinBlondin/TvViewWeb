@@ -2,13 +2,13 @@
   width: 80% !important;
   height: 15%;
   display: flex !important;
-  padding-left: 2em !important;
+  padding-left: 2.5em !important;
   margin: 0 !important;
   align-items: center !important;
   justify-content: start !important;
   background: #a86c74 !important;
   color: white !important;
-  font-weight: bold !important;
+  font-weight: 700 !important;
   font-size: 1.3em !important;
 }
 

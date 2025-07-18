@@ -101,7 +101,7 @@ const AdminMobileComponent: React.FC = () => {
         startIcon={<Add className="icon" />}
         onClick={triggerFileInput}
       >
-        Quick Add Slide
+        Add Slide
         <input
           type="file"
           accept="image/*"
@@ -116,7 +116,7 @@ const AdminMobileComponent: React.FC = () => {
         startIcon={<Edit className="icon" />}
         onClick={() => handleClick("edit-slide")}
       >
-        Edit Slides
+        Slides
       </Button>
       <Button
         className="menu-button"
@@ -124,7 +124,7 @@ const AdminMobileComponent: React.FC = () => {
         startIcon={<Edit className="icon" />}
         onClick={() => handleClick("edit-reminder")}
       >
-        Edit Reminders
+        Reminders
       </Button>
     </Box>
   );
