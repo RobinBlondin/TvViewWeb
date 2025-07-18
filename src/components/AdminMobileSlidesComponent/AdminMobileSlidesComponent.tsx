@@ -8,7 +8,6 @@ import "./AdminMobileSlidesComponent.css";
 
 const AdminMobileSlidesComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
-  const [loadedImages, setLoadedImages] = useState(0);
   const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
@@ -49,6 +48,13 @@ const AdminMobileSlidesComponent: React.FC = () => {
       };
     });
   }, [slides]);
+
+  const removeSlide = async (id: string) => {
+    await deleteSlideById(id).then(() => {
+      const updatedSlides = slides.filter((slide) => slide.id !== id);
+      setSlides(updatedSlides);
+    });
+  };
 
   if (!allImagesLoaded) {
     return (
