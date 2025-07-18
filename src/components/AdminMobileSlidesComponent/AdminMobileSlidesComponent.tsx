@@ -32,15 +32,16 @@ const AdminMobileSlidesComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        width: "100vw !important",
-        height: "100vh !important",
-        padding: "1em !important",
+        height: "100%",
+        flex: 1,
+        padding: "1.5em 1em 1em 1em !important",
         margin: "0 !important",
         display: "flex",
         flexDirection: "column",
+        overflowX: "hidden",
         gap: "1.5em",
-        background: "radial-gradient(circle at top, #6e3a40, #4c2b2f, #2e1a1e)",
       }}
+      className="mobile-main-container"
     >
       <ArrowBack
         onClick={() => {
