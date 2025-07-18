@@ -1,14 +1,15 @@
-import { Box, Container, Typography, CircularProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import { ArrowBack } from "@mui/icons-material";
+import DeleteIcon from "@mui/icons-material/Clear";
+import { Box, CircularProgress, Container, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { SlideModel } from "../../models/SlideModel";
 import { deleteSlideById, getAllSlides } from "../../service/slideService";
-import DeleteIcon from "@mui/icons-material/Clear";
 import "./AdminMobileSlidesComponent.css";
 
 const AdminMobileSlidesComponent: React.FC = () => {
-  const [slides, setSlides] = useState<SlideModel[]>();
-  const [loading, setLoading] = useState(true);
+  const [slides, setSlides] = useState<SlideModel[]>([]);
+  const [loadedImages, setLoadedImages] = useState(0);
+  const [allImagesLoaded, setAllImagesLoaded] = useState(false);
 
   useEffect(() => {
     getAllSlides().then((data) => {
@@ -19,30 +20,27 @@ const AdminMobileSlidesComponent: React.FC = () => {
           return dateB - dateA;
         });
 
-        const imagePromises = sortedData.map(
-          (slide) =>
-            new Promise<void>((resolve) => {
-              const img = new Image();
-              img.src = slide.url;
-              img.onload = () => resolve();
-              img.onerror = () => resolve();
-            })
-        );
-
-        Promise.all(imagePromises).then(() => {
-          setSlides(sortedData);
-          setLoading(false);
-        });
+        setSlides(sortedData);
       }
     });
   }, []);
 
+  useEffect(() => {
+    if (slides.length === 0) return;
+    console.log("running");
+    if (loadedImages >= slides.length) {
+      setAllImagesLoaded(true);
+    }
+  }, [loadedImages, slides]);
+
   const removeSlide = async (id: string) => {
-    await deleteSlideById(id);
-    setSlides((prev) => prev?.filter((s) => s.id !== id));
+    console.log(id);
+    await deleteSlideById(id).then(() => {
+      setSlides([]);
+    });
   };
 
-  if (loading) {
+  if (!allImagesLoaded) {
     return (
       <Box
         sx={{
@@ -51,11 +49,19 @@ const AdminMobileSlidesComponent: React.FC = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          background:
-            "radial-gradient(circle at top, #6e3a40, #4c2b2f, #2e1a1e)",
         }}
       >
         <CircularProgress sx={{ color: "#f2a9a0" }} />
+        {slides.map((slide) => (
+          <img
+            key={slide.id}
+            src={slide.url}
+            style={{ display: "none" }}
+            onLoad={() => setLoadedImages((prev) => prev + 1)}
+            onError={() => setLoadedImages((prev) => prev + 1)}
+            alt=""
+          />
+        ))}
       </Box>
     );
   }
@@ -63,9 +69,9 @@ const AdminMobileSlidesComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        height: "100%",
+        minHeight: "100vh !important",
         flex: 1,
-        padding: "1.5em 1em 1em 1em !important",
+        padding: "3em 1em 1em 1em !important",
         margin: "0 !important",
         display: "flex",
         flexDirection: "column",
@@ -95,16 +101,18 @@ const AdminMobileSlidesComponent: React.FC = () => {
             key={slide.id}
             sx={{
               width: "100%",
-              height: "70px",
+              height: "60px",
               display: "flex",
-              borderBottom: "solid 0.5px rgba(0, 0, 0, 0.3)",
+              borderRadius: "0.5em",
+              // borderBottom: "solid 0.5px rgba(0, 0, 0, 0.3)",
               justifyContent: "space-between",
-              padding: "0.3em 0",
+              padding: "0.3em",
+              background: "rgba(0, 0, 0, 0.15)",
             }}
           >
             <Container
               sx={{
-                width: "25%",
+                width: "20%",
                 background: `url(${slide.url})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -114,7 +122,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
             ></Container>
             <Container
               sx={{
-                width: "55%",
+                width: "60%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "start",
@@ -133,7 +141,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
               sx={{
                 display: "flex",
                 justifyContent: "end",
-                alignItems: "center",
+                alignItems: "end",
                 width: "20%",
                 color: "#e06666",
                 padding: "0 !important",
