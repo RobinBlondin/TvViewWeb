@@ -106,8 +106,8 @@ const AdminMobileComponent: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-evenly",
-        gap: "1em",
+        justifyContent: "center",
+        gap: "2em",
       }}
     >
       <Button
