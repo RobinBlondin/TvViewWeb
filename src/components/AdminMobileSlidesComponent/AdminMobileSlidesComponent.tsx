@@ -19,12 +19,22 @@ const AdminMobileSlidesComponent: React.FC = () => {
           return dateB - dateA;
         });
 
-        setSlides(sortedData);
-        const estimatedTimeMs = data.length * 800;
+        const preloadImages = sortedData.map((slide) => {
+          return new Promise<void>((resolve) => {
+            const img = new Image();
+            img.src = slide.url;
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          });
+        });
 
-        setTimeout(() => {
-          setAllImagesLoaded(true);
-        }, estimatedTimeMs);
+        Promise.all(preloadImages).then(() => {
+          const delay = sortedData.length * 300;
+          setTimeout(() => {
+            setSlides(sortedData);
+            setAllImagesLoaded(true);
+          }, delay);
+        });
       }
     });
   }, []);
@@ -102,15 +112,19 @@ const AdminMobileSlidesComponent: React.FC = () => {
               background: "rgba(0, 0, 0, 0.15)",
             }}
           >
-            <Box
-              sx={{
-                width: "15%",
-                background: `url(${slide.url})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                borderRadius: "0.5em",
-              }}
-            />
+            <Box sx={{ width: "15%" }}>
+              <img
+                src={slide.url}
+                alt="slide"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "0.5em",
+                  display: "block",
+                }}
+              />
+            </Box>
             <Box
               sx={{
                 width: "60%",
