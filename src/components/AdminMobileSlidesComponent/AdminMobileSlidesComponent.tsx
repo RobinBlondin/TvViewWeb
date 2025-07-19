@@ -29,11 +29,8 @@ const AdminMobileSlidesComponent: React.FC = () => {
         });
 
         Promise.all(preloadImages).then(() => {
-          const delay = sortedData.length * 300;
-          setTimeout(() => {
-            setSlides(sortedData);
-            setAllImagesLoaded(true);
-          }, delay);
+          setSlides(sortedData);
+          setAllImagesLoaded(true);
         });
       }
     });
