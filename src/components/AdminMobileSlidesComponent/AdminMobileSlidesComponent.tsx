@@ -20,36 +20,14 @@ const AdminMobileSlidesComponent: React.FC = () => {
         });
 
         setSlides(sortedData);
+        const estimatedTimeMs = Math.min(5000, slides.length * 400);
+
+        setTimeout(() => {
+          setAllImagesLoaded(true);
+        }, estimatedTimeMs);
       }
     });
   }, []);
-
-  useEffect(() => {
-    if (slides.length === 0) {
-      setAllImagesLoaded(true);
-    }
-
-    let loaded = 0;
-
-    slides.forEach((slide) => {
-      const img = new Image();
-      img.src = slide.url;
-
-      img.onload = () => {
-        loaded++;
-        if (loaded === slides.length) {
-          setAllImagesLoaded(true);
-        }
-      };
-
-      img.onerror = () => {
-        loaded++;
-        if (loaded === slides.length) {
-          setAllImagesLoaded(true);
-        }
-      };
-    });
-  }, [slides]);
 
   const removeSlide = async (id: string) => {
     await deleteSlideById(id).then(() => {
@@ -65,11 +43,14 @@ const AdminMobileSlidesComponent: React.FC = () => {
           height: "100vh",
           width: "100vw",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          gap: "2em",
         }}
       >
         <CircularProgress sx={{ color: "#f2a9a0" }} />
+        <Typography>Loading images...</Typography>
       </Box>
     );
   }
