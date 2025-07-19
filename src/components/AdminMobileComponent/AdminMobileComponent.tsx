@@ -45,9 +45,12 @@ const AdminMobileComponent: React.FC = () => {
     await Promise.all(uploadPromises);
 
     setUploadProgress(100);
-    setLoading(false);
-    setUploadSuccess(true);
-    setTimeout(() => setUploadSuccess(false), 3000);
+
+    setTimeout(() => {
+      setLoading(false);
+      setUploadSuccess(true);
+      setTimeout(() => setUploadSuccess(false), 3000);
+    }, 1000);
   };
 
   const triggerFileInput = () => {
