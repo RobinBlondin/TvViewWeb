@@ -1,36 +1,17 @@
-import { Add, Edit } from "@mui/icons-material";
-import { Box, Container, Typography } from "@mui/material";
+import { Add, CheckCircle, Edit } from "@mui/icons-material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { SlideModel } from "../../models/SlideModel";
 import { uploadFile } from "../../service/fileUploadService";
 import { createSlide } from "../../service/slideService";
 import "./AdminMobileComponent.css";
 
 const AdminMobileComponent: React.FC = () => {
-  const [feedBack, setFeedBack] = useState<string>("");
-  const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
 
-  useEffect(() => {
-    const success = searchParams.get("success");
-
-    if (success) {
-      if (success === "true") {
-        setFeedBack("Slide uploaded successfully...");
-      } else if (success === "false") {
-        setFeedBack("Error! Could not upload slide...");
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (feedBack !== "") {
-      setTimeout(() => {
-        setFeedBack("");
-      }, 5000);
-    }
-  }, [feedBack]);
+  useEffect(() => {}, []);
 
   const handleClick = (action: string) => {
     if (action === "edit-reminder") {
@@ -43,17 +24,24 @@ const AdminMobileComponent: React.FC = () => {
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
 
-    await uploadFile(file).then((url) => {
-      const slide = new SlideModel(null, url, null, null);
-      createSlide(slide).then((res) => {
-        if (res) {
-          window.location.href = "/?success=true";
-        } else {
-          window.location.href = "/?success=false";
-        }
+    const fileArray = Array.from(files);
+    let counter = 0;
+    setLoading(true);
+
+    fileArray.forEach(async (file) => {
+      await uploadFile(file).then((url) => {
+        const slide = new SlideModel(null, url, null, null);
+        createSlide(slide).then(() => {
+          counter++;
+          if (counter === files.length) {
+            setLoading(false);
+            setUploadSuccess(true);
+            setTimeout(() => setUploadSuccess(false), 2000); // Hide after 2s
+          }
+        });
       });
     });
   };
@@ -64,6 +52,34 @@ const AdminMobileComponent: React.FC = () => {
       input.click();
     }
   };
+
+  if (loading || uploadSuccess) {
+    return (
+      <Box
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        {loading ? (
+          <>
+            <CircularProgress sx={{ color: "#f2a9a0" }} />
+            <Typography>Uploading images</Typography>
+          </>
+        ) : (
+          <>
+            <CheckCircle sx={{ fontSize: 60, color: "green" }} />
+            <Typography>Upload complete</Typography>
+          </>
+        )}
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -78,16 +94,6 @@ const AdminMobileComponent: React.FC = () => {
         gap: "1em",
       }}
     >
-      <Container
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          zIndex: 100,
-        }}
-      >
-        {feedBack !== "" && <Typography color="warning">{feedBack}</Typography>}
-      </Container>
       <Button
         className="menu-button"
         variant="contained"
@@ -97,6 +103,7 @@ const AdminMobileComponent: React.FC = () => {
         Add Slide
         <input
           type="file"
+          multiple
           accept="image/*"
           id="fileInput"
           style={{ display: "none" }}
