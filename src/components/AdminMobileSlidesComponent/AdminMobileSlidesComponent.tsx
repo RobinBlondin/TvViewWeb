@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { SlideModel } from "../../models/SlideModel";
 import { deleteSlideById, getAllSlides } from "../../service/slideService";
 import "./AdminMobileSlidesComponent.css";
+import { formatDateToLocaleString } from "../../utils/utils";
 
 const AdminMobileSlidesComponent: React.FC = () => {
   const [slides, setSlides] = useState<SlideModel[]>([]);
@@ -66,14 +67,20 @@ const AdminMobileSlidesComponent: React.FC = () => {
     <Box
       sx={{
         height: "100vh",
-        width: "85vw",
+        width: "100vw",
         display: "flex",
         flexDirection: "column",
         background: "radial-gradient(circle at top, #6c3a40, #4c2b2f, #2c1a1e)",
-        padding: 0,
       }}
     >
-      <Box sx={{ height: "50px", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          height: "50px",
+          display: "flex",
+          alignItems: "center",
+          padding: "1em",
+        }}
+      >
         <ArrowBack
           onClick={() => (window.location.href = "/")}
           htmlColor="#f2a9a0"
@@ -92,7 +99,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           gap: "0.3em",
-          paddingRight: "0.5em",
+          padding: "0 1.5em 0 1em",
         }}
       >
         {slides.map((slide) => (
@@ -100,16 +107,16 @@ const AdminMobileSlidesComponent: React.FC = () => {
             key={slide.id}
             sx={{
               width: "100%",
-              height: "60px",
+              height: "55px",
               display: "flex",
               borderRadius: "0.5em",
               justifyContent: "space-between",
               padding: "0.3em",
-              gap: "0.3em",
-              background: "rgba(0, 0, 0, 0.15)",
+              gap: "0.75em",
+              background: "rgba(179, 175, 175, 0.15)",
             }}
           >
-            <Box sx={{ width: "15%" }}>
+            <Box sx={{ width: "20%" }}>
               <img
                 src={slide.url}
                 alt="slide"
@@ -117,8 +124,10 @@ const AdminMobileSlidesComponent: React.FC = () => {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  borderRadius: "0.5em",
+                  borderRadius: "0.75em",
                   display: "block",
+                  boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
+                  transition: "transform 0.3s ease",
                 }}
               />
             </Box>
@@ -131,12 +140,10 @@ const AdminMobileSlidesComponent: React.FC = () => {
                 overflow: "hidden",
               }}
             >
-              <Typography className="slide-title">
-                {slide.created?.split("T")[0] +
-                  " " +
-                  slide.created?.split("T")[1].substring(0, 5)}
+              <Typography className="slide-timestamp">
+                {formatDateToLocaleString(slide.created!)}
               </Typography>
-              <Typography className="slide-title">{slide.createdBy}</Typography>
+              <Typography className="slide-email">{slide.createdBy}</Typography>
             </Box>
             <Box
               sx={{
@@ -149,7 +156,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
               }}
               onClick={() => removeSlide(slide.id!)}
             >
-              <DeleteIcon sx={{ fontSize: "2em" }} />
+              <DeleteIcon sx={{ fontSize: "2.5em" }} />
             </Box>
           </Box>
         ))}

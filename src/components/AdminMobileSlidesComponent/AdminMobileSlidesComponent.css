@@ -1,5 +1,11 @@
-.slide-title {
+.slide-timestamp {
+  font-weight: 500 !important;
+  font-size: 0.6em !important;
+  color: white;
+}
+
+.slide-email {
   font-weight: 700 !important;
-  font-size: 0.8em !important;
-  color: wheat;
+  font-size: 0.9em !important;
+  color: white;
 }
