@@ -20,7 +20,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
         });
 
         setSlides(sortedData);
-        const estimatedTimeMs = Math.min(5000, slides.length * 400);
+        const estimatedTimeMs = Math.min(5000, slides.length * 800);
 
         setTimeout(() => {
           setAllImagesLoaded(true);
