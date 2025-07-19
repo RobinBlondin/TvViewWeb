@@ -30,25 +30,23 @@ const AdminMobileComponent: React.FC = () => {
 
     const fileArray = Array.from(files);
     setUploadProgress(0);
-    let counter = 0;
     setLoading(true);
 
-    fileArray.forEach(async (file) => {
-      await uploadFile(file).then((url) => {
-        const slide = new SlideModel(null, url, null, null);
-        createSlide(slide).then(() => {
-          counter++;
-          const progress = Math.round((counter / fileArray.length) * 100);
-          setUploadProgress(progress);
+    let completed = 0;
 
-          if (progress === 100 || counter >= fileArray.length) {
-            setLoading(false);
-            setUploadSuccess(true);
-            setTimeout(() => setUploadSuccess(false), 2000);
-          }
-        });
-      });
+    const uploadPromises = fileArray.map(async (file) => {
+      const url = await uploadFile(file);
+      const slide = new SlideModel(null, url, null, null);
+      await createSlide(slide);
+      completed++;
+      setUploadProgress(Math.round((completed / fileArray.length) * 100));
     });
+
+    await Promise.all(uploadPromises);
+
+    setLoading(false);
+    setUploadSuccess(true);
+    setTimeout(() => setUploadSuccess(false), 2000);
   };
 
   const triggerFileInput = () => {
