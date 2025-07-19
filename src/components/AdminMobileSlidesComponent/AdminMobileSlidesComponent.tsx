@@ -25,7 +25,9 @@ const AdminMobileSlidesComponent: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (slides.length === 0) {
+      setAllImagesLoaded(true);
+    }
 
     let loaded = 0;
 
