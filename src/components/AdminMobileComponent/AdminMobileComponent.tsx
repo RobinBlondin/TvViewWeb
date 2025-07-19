@@ -10,6 +10,7 @@ import "./AdminMobileComponent.css";
 const AdminMobileComponent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [uploadSuccess, setUploadSuccess] = useState<boolean>(false);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
 
   useEffect(() => {}, []);
 
@@ -28,6 +29,7 @@ const AdminMobileComponent: React.FC = () => {
     if (!files || files.length === 0) return;
 
     const fileArray = Array.from(files);
+    setUploadProgress(0);
     let counter = 0;
     setLoading(true);
 
@@ -36,10 +38,13 @@ const AdminMobileComponent: React.FC = () => {
         const slide = new SlideModel(null, url, null, null);
         createSlide(slide).then(() => {
           counter++;
-          if (counter === files.length) {
+          const progress = Math.round((counter / fileArray.length) * 100);
+          setUploadProgress(progress);
+
+          if (progress === 100) {
             setLoading(false);
             setUploadSuccess(true);
-            setTimeout(() => setUploadSuccess(false), 2000); // Hide after 2s
+            setTimeout(() => setUploadSuccess(false), 2000);
           }
         });
       });
@@ -69,7 +74,7 @@ const AdminMobileComponent: React.FC = () => {
         {loading ? (
           <>
             <CircularProgress sx={{ color: "#f2a9a0" }} />
-            <Typography>Uploading images</Typography>
+            <Typography>Uploading images: {uploadProgress}%</Typography>
           </>
         ) : (
           <>
