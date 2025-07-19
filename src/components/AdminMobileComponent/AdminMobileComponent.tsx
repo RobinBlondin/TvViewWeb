@@ -1,4 +1,4 @@
-import { Add, CheckCircle, Edit } from "@mui/icons-material";
+import { Add, CheckCircle, Alarm, Image } from "@mui/icons-material";
 import { Box, CircularProgress, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
@@ -84,13 +84,12 @@ const AdminMobileComponent: React.FC = () => {
   return (
     <Box
       sx={{
-        height: "90vh !important",
-        paddingTop: "10vh",
+        height: "100vh !important",
         margin: "0 !important",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "start",
+        justifyContent: "space-evenly",
         gap: "1em",
       }}
     >
@@ -100,7 +99,7 @@ const AdminMobileComponent: React.FC = () => {
         startIcon={<Add className="icon" />}
         onClick={triggerFileInput}
       >
-        Add Slide
+        Add Slides
         <input
           type="file"
           multiple
@@ -113,7 +112,7 @@ const AdminMobileComponent: React.FC = () => {
       <Button
         className="menu-button"
         variant="contained"
-        startIcon={<Edit className="icon" />}
+        startIcon={<Image className="icon" />}
         onClick={() => handleClick("edit-slide")}
       >
         Slides
@@ -121,7 +120,7 @@ const AdminMobileComponent: React.FC = () => {
       <Button
         className="menu-button"
         variant="contained"
-        startIcon={<Edit className="icon" />}
+        startIcon={<Alarm className="icon" />}
         onClick={() => handleClick("edit-reminder")}
       >
         Reminders

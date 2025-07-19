@@ -1,18 +1,23 @@
 .menu-button {
   width: 80% !important;
-  height: 15%;
+  height: 25%;
   display: flex !important;
-  margin: 0 !important;
-  padding-left: 1em !important;
-  gap: 15% !important;
+  flex-direction: column !important;
   align-items: center !important;
-  justify-content: start !important;
-  background: #a86c74 !important;
+  justify-content: center !important;
+  background: #d94f6d !important;
   color: white !important;
   font-weight: 700 !important;
-  font-size: 1.3em !important;
+  font-size: 1.7em !important;
+  border-radius: 0.5em !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.menu-button:active {
+  background: #b93c5a !important;
 }
 
 .icon {
-  font-size: 2.5rem !important;
+  font-size: 4rem !important;
 }
