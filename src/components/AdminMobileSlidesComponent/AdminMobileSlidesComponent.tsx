@@ -116,7 +116,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
               background: "rgba(179, 175, 175, 0.15)",
             }}
           >
-            <Box sx={{ width: "20%" }}>
+            <Box sx={{ width: "20%", height: "55px" }}>
               <img
                 src={slide.url}
                 alt="slide"
