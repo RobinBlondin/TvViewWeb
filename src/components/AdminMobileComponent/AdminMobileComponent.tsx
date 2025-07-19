@@ -60,7 +60,7 @@ const AdminMobileComponent: React.FC = () => {
     }
   };
 
-  if (loading || uploadSuccess) {
+  if (loading) {
     return (
       <Box
         sx={{
@@ -73,17 +73,27 @@ const AdminMobileComponent: React.FC = () => {
           gap: 2,
         }}
       >
-        {loading ? (
-          <>
-            <CircularProgress sx={{ color: "#f2a9a0" }} />
-            <Typography>Uploading images: {uploadProgress}%</Typography>
-          </>
-        ) : (
-          <>
-            <CheckCircle sx={{ fontSize: 60, color: "green" }} />
-            <Typography>Upload complete</Typography>
-          </>
-        )}
+        <CircularProgress sx={{ color: "#f2a9a0" }} />
+        <Typography>Uploading images: {uploadProgress}%</Typography>
+      </Box>
+    );
+  }
+
+  if (uploadSuccess) {
+    return (
+      <Box
+        sx={{
+          height: "100vh",
+          width: "100vw",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <CheckCircle sx={{ fontSize: 60, color: "green" }} />
+        <Typography>Upload complete</Typography>
       </Box>
     );
   }
