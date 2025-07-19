@@ -41,7 +41,7 @@ const AdminMobileComponent: React.FC = () => {
           const progress = Math.round((counter / fileArray.length) * 100);
           setUploadProgress(progress);
 
-          if (progress === 100) {
+          if (progress === 100 || counter >= fileArray.length) {
             setLoading(false);
             setUploadSuccess(true);
             setTimeout(() => setUploadSuccess(false), 2000);
