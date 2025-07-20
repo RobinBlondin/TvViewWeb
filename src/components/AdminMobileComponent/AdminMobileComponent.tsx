@@ -35,11 +35,16 @@ const AdminMobileComponent: React.FC = () => {
     let completed = 0;
 
     const uploadPromises = fileArray.map(async (file) => {
-      const url = await uploadFile(file);
-      const slide = new SlideModel(null, url, null, null);
-      await createSlide(slide);
-      completed++;
-      setUploadProgress(Math.round((completed / fileArray.length) * 100));
+      try {
+        const url = await uploadFile(file);
+        const slide = new SlideModel(null, url, null, null);
+        await createSlide(slide);
+      } catch (error) {
+        console.error("Error uploading file:", error);
+      } finally {
+        completed++;
+        setUploadProgress(Math.round((completed / fileArray.length) * 100));
+      }
     });
 
     await Promise.all(uploadPromises);
