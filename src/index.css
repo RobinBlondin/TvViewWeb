@@ -11,6 +11,7 @@ body,
   height: 100vh !important;
   padding: 0 !important;
   margin: 0 !important;
+  font-family: Kanit, sans-serif;
   background: radial-gradient(
     circle at top,
     #6c3a40,
