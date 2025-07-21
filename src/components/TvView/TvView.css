@@ -11,8 +11,8 @@
 .tv-view-container {
   display: flex;
   flex-direction: row;
-  width: 100vw !important;
-  height: 100vh !important;
+  width: 100% !important;
+  height: 100% !important;
   overflow: hidden !important;
   padding: 0.5em !important;
   margin: 0 !important;

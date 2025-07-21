@@ -99,7 +99,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
           display: "flex",
           flexDirection: "column",
           gap: "0.3em",
-          padding: "0 1.5em 0 1em",
+          padding: "0 1em",
         }}
       >
         {slides.map((slide) => (
