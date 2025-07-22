@@ -107,16 +107,17 @@ const AdminMobileSlidesComponent: React.FC = () => {
             key={slide.id}
             sx={{
               width: "100%",
-              height: "55px",
+              minHeight: "3.5em",
               display: "flex",
               borderRadius: "0.5em",
               justifyContent: "space-between",
+              alignItems: "end",
               padding: "0.3em",
               gap: "0.75em",
               background: "rgba(179, 175, 175, 0.15)",
             }}
           >
-            <Box sx={{ width: "20%", height: "55px" }}>
+            <Box sx={{ width: "18%", height: "100%" }}>
               <img
                 src={slide.url}
                 alt="slide"
@@ -124,7 +125,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  borderRadius: "0.75em",
+                  borderRadius: "0.5em",
                   display: "block",
                   boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
                   transition: "transform 0.3s ease",
@@ -138,6 +139,7 @@ const AdminMobileSlidesComponent: React.FC = () => {
                 flexDirection: "column",
                 justifyContent: "end",
                 overflow: "hidden",
+                padding: "0 !important",
               }}
             >
               <Typography className="slide-timestamp">
