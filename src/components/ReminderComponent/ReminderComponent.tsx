@@ -94,16 +94,16 @@ const ReminderList = () => {
 
     setLoading(true);
     if (type === "bus") {
+      setComponent("bus");
       await getBusDepartures().then((response) => {
         setDepartures(response);
       });
     } else if (type === "train") {
+      setComponent("train");
       await getTrainDepartures().then((response) => {
         setDepartures(response);
       });
     }
-
-    setComponent("commute");
     setLoading(false);
 
     const id = setTimeout(() => {
@@ -233,6 +233,10 @@ const ReminderList = () => {
         <IconButton
           className="reminder-button"
           size="large"
+          sx={{
+            background:
+              component === "bus" ? "rgba(255, 255, 255, 0.2)" : "transparent",
+          }}
           onClick={() => handleCommuteClick("bus")}
         >
           <DirectionsBus />
@@ -241,6 +245,12 @@ const ReminderList = () => {
         <IconButton
           className="reminder-button"
           size="large"
+          sx={{
+            background:
+              component === "train"
+                ? "rgba(255, 255, 255, 0.2)"
+                : "transparent",
+          }}
           onClick={() => handleCommuteClick("train")}
         >
           <Train />
@@ -249,6 +259,12 @@ const ReminderList = () => {
         <IconButton
           className="reminder-button"
           size="large"
+          sx={{
+            background:
+              component === "bridge"
+                ? "rgba(255, 255, 255, 0.2)"
+                : "transparent",
+          }}
           onClick={() => handleBridgeClick()}
         >
           <AccountBalance />

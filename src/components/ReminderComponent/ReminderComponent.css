@@ -86,7 +86,7 @@
 .reminder-button-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   gap: 1em;
   padding: 0 !important;
   font-size: 1.5em;
@@ -97,6 +97,7 @@
 
 .reminder-button {
   color: #f2a9a0 !important;
+  border-radius: 0 !important;
 }
 
 .line-text {
