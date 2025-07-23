@@ -1,6 +1,5 @@
-.menu-button {
-  width: 80% !important;
-  height: 25%;
+.menu-button,
+.remote-button {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -14,10 +13,25 @@
   transition: background-color 0.3s ease !important;
 }
 
+.menu-button {
+  width: 80% !important;
+  height: 25%;
+  padding: 0 !important;
+}
+
+.remote-button {
+  height: 100% !important;
+  width: 25% !important;
+}
+
 .menu-button:active {
   background: #b93c5a !important;
 }
 
 .icon {
   font-size: 4rem !important;
+}
+
+.small-icon {
+  font-size: 3rem !important;
 }

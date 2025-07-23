@@ -1,11 +1,20 @@
-import { Add, CheckCircle, Alarm, Image } from "@mui/icons-material";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import {
+  Add,
+  CheckCircle,
+  Alarm,
+  Image,
+  DirectionsBus,
+  Train,
+  AccountBalance,
+} from "@mui/icons-material";
+import { Box, CircularProgress, Container, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 import { SlideModel } from "../../models/SlideModel";
 import { uploadFile } from "../../service/fileUploadService";
 import { createSlide } from "../../service/slideService";
 import "./AdminMobileComponent.css";
+import { sendRemoteCommand } from "../../service/remoteButtonService";
 
 const AdminMobileComponent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -63,6 +72,12 @@ const AdminMobileComponent: React.FC = () => {
     if (input) {
       input.click();
     }
+  };
+
+  const handleRemoteClick = async (command: string) => {
+    await sendRemoteCommand(command).then((res) => {
+      console.log(`Remote command ${command} sent successfully:`, res);
+    });
   };
 
   if (loading) {
@@ -147,6 +162,36 @@ const AdminMobileComponent: React.FC = () => {
       >
         Reminders
       </Button>
+      <Container
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+          height: "4em",
+        }}
+      >
+        <Button
+          className="remote-button"
+          variant="contained"
+          onClick={() => handleRemoteClick("BUS")}
+        >
+          <DirectionsBus />
+        </Button>
+        <Button
+          className="remote-button"
+          variant="contained"
+          onClick={() => handleRemoteClick("TRAIN")}
+        >
+          <Train />
+        </Button>
+        <Button
+          className="remote-button"
+          variant="contained"
+          onClick={() => handleRemoteClick("BRIDGE")}
+        >
+          <AccountBalance />
+        </Button>
+      </Container>
     </Box>
   );
 };
