@@ -127,7 +127,7 @@ const AdminMobileComponent: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: "2em",
+        gap: "1em",
       }}
     >
       <Button
@@ -165,9 +165,11 @@ const AdminMobileComponent: React.FC = () => {
       <Container
         sx={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "space-evenly",
+          alignItems: "start",
+          justifyContent: "center",
+          padding: "0 !important",
           height: "4em",
+          gap: "2%",
         }}
       >
         <Button
