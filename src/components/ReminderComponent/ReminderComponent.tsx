@@ -44,8 +44,22 @@ const ReminderList = () => {
   }, [updateReminders]);
 
   useEffect(() => {
-    if (lastMessage && lastMessage.data === "reminders") {
-      setUpdateReminders(!updateReminders);
+    switch (lastMessage && lastMessage.data) {
+      case "reminders":
+        setUpdateReminders(!updateReminders);
+        break;
+      case "bus":
+        handleCommuteClick("bus");
+        break;
+      case "train":
+        handleCommuteClick("train");
+        break;
+      case "bridge":
+        handleBridgeClick();
+        break;
+      default:
+        console.log("Received unknown message:", lastMessage?.data);
+        break;
     }
   }, [lastMessage]);
 
