@@ -1,62 +1,91 @@
-name: Build and Push Docker Image
+
+name: Docker image build and GitOps deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout TvViewWeb
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Set up environment variables
+      - name: Set up Vite environment
         env:
           VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
           VITE_BASE_URL: ${{ secrets.VITE_BASE_URL }}
           VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY: ${{ secrets.VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY }}
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
-          VITE_GOOGLE_CLIENT_SECRET: ${{ secrets.VITE_GOOGLE_CLIENT_SECRET }}
           VITE_JWT_TOKEN: ${{ secrets.VITE_JWT_TOKEN }}
           VITE_GOOGLE_CLIENT_REDIRECT_URI: ${{ secrets.VITE_GOOGLE_CLIENT_REDIRECT_URI }}
           VITE_WS_URL: ${{ secrets.VITE_WS_URL }}
         run: |
-          echo "VITE_API_BASE_URL=${VITE_API_BASE_URL}" >> .env
-          echo "VITE_BASE_URL=${VITE_BASE_URL}" >> .env
-          echo "VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY=${VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY}" >> .env
-          echo "VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}" >> .env
-          echo "VITE_GOOGLE_CLIENT_SECRET=${VITE_GOOGLE_CLIENT_SECRET}" >> .env
-          echo "VITE_JWT_TOKEN=${VITE_JWT_TOKEN}" >> .env
-          echo "VITE_GOOGLE_CLIENT_REDIRECT_URI=${VITE_GOOGLE_CLIENT_REDIRECT_URI}" >> .env
-          echo "VITE_WS_URL=${VITE_WS_URL}" >> .env
-      - name: Log in to Docker Hub
+          {
+            printf 'VITE_API_BASE_URL=%s\n' "$VITE_API_BASE_URL"
+            printf 'VITE_BASE_URL=%s\n' "$VITE_BASE_URL"
+            printf 'VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY=%s\n' "$VITE_GOOGLE_ACCESS_TOKEN_STORAGE_KEY"
+            printf 'VITE_GOOGLE_CLIENT_ID=%s\n' "$VITE_GOOGLE_CLIENT_ID"
+            printf 'VITE_JWT_TOKEN=%s\n' "$VITE_JWT_TOKEN"
+            printf 'VITE_GOOGLE_CLIENT_REDIRECT_URI=%s\n' "$VITE_GOOGLE_CLIENT_REDIRECT_URI"
+            printf 'VITE_WS_URL=%s\n' "$VITE_WS_URL"
+          } > .env.production
+
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/tvviewweb:latest
+      - name: Build and push multi-arch image
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm64 \
+            -t robinblondin/tvviewweb:latest \
+            -t robinblondin/tvviewweb:${{ github.sha }} \
+            --file Dockerfile \
+            --push .
 
-      - name: SSH into server, pull and deploy latest image from Docker Hub
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_PRIVATE_KEY }}
-          port: ${{ secrets.VPS_PORT }}
-          script: |
-            cd /opt/apps
-            docker compose pull tvview_web
-            docker compose up -d --no-deps tvview_web
+      - name: Configure GitOps SSH key
+        env:
+          GITOPS_SSH_KEY: ${{ secrets.GITOPS_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$GITOPS_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+
+      - name: Checkout GitOps repository
+        run: |
+          git clone git@github.com:robinblondin/platform-gitops.git /tmp/platform-gitops
+
+      - name: Install Kustomize
+        uses: imranismail/setup-kustomize@v2
+
+      - name: Update TvViewWeb image tag
+        env:
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd /tmp/platform-gitops/applications/tvview/base
+
+          kustomize edit set image \
+            robinblondin/tvviewweb=robinblondin/tvviewweb:${IMAGE_TAG}
+
+          cd /tmp/platform-gitops
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add applications/tvview/base/kustomization.yaml
+          git commit -m "Deploy TvViewWeb ${IMAGE_TAG}"
+          git push origin main

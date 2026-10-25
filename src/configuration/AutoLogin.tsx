@@ -5,7 +5,6 @@ import LoginFailed from "../components/LoginFailed/LoginFailed";
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const REDIRECT_URI = import.meta.env.VITE_GOOGLE_CLIENT_REDIRECT_URI;
-const GOOGLE_CLIENT_SECRET = import.meta.env.VITE_GOOGLE_CLIENT_SECRET;
 const TOKEN = import.meta.env.VITE_JWT_TOKEN;
 
 const AutoLogin: React.FC<{ isTvView: boolean; initialPath: string }> = ({
@@ -45,10 +44,8 @@ const AutoLogin: React.FC<{ isTvView: boolean; initialPath: string }> = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           code: code,
-          clientId: GOOGLE_CLIENT_ID,
           scope:
             "openid profile email https://www.googleapis.com/auth/calendar",
-          clientSecret: GOOGLE_CLIENT_SECRET,
           isTvView: isTvView,
           redirectUri: REDIRECT_URI,
         }),
